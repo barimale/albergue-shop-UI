@@ -1,11 +1,14 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import { configSection, configSectionType, OrderedSectionsConfiguration, GetFullPathTo } from "../../router/routerConfiguration";
+import { configSection, configSectionType, GetFullPathTo } from "../../router/routerConfiguration";
+import { useCategories } from '../../hooks/useCategories';
 
 export default function MenuButtons(props: any) {
+  const { configSections } = useCategories();
+
     return (
     <div {...props}>
-      {OrderedSectionsConfiguration.map((section: configSection, index: number) => {
+      {configSections.map((section: configSection, index: number) => {
         if(section.type === configSectionType.divider){
           return  '|';
         }else{
@@ -16,7 +19,7 @@ export default function MenuButtons(props: any) {
             color="inherit" 
             style={{
               fontWeight: 'bold'}} 
-            href={GetFullPathTo(section.title)}>
+            href={GetFullPathTo(configSections, section.title)}>
               {section.title.toUpperCase()}
             </Button>
         }

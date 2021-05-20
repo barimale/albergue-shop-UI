@@ -75,7 +75,7 @@ function EmptyCart(){
                     color: 'white',
                     fontSize: context === DeviceType.isDesktopOrLaptop ? '40px' : '25px'
                 }}>
-                    {"Brak produktów w Twoim koszyku".toUpperCase()}
+                    {"There are no items in the basket".toUpperCase()}
                 </div>
             }
         </DeviceContextConsumer>

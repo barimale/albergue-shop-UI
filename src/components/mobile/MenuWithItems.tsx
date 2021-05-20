@@ -4,8 +4,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from 'react-router-dom';
-import { configSection, configSectionType, OrderedSectionsConfiguration, GetFullPathTo } from "../../router/routerConfiguration";
+import { configSection, configSectionType, GetFullPathTo } from "../../router/routerConfiguration";
 import Divider from '@material-ui/core/Divider';
+import { useCategories } from '../../hooks/useCategories';
 
 export const MenuWithItems = (props: any) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -47,6 +48,8 @@ type MenuItemsProps ={
 }
 
 const MenuItems = (props: MenuItemsProps) => {
+  const { configSections: OrderedSectionsConfiguration } = useCategories();
+
   return (
   <>
     {OrderedSectionsConfiguration.map((section: configSection, index: number) => {
@@ -65,7 +68,7 @@ const MenuItems = (props: MenuItemsProps) => {
                 textAlign: 'left',
                 paddingLeft:'10px',
                 paddingRight: '10px'
-              }} to={GetFullPathTo(section.title)}>
+              }} to={GetFullPathTo(OrderedSectionsConfiguration, section.title)}>
                   {section.title.toUpperCase()}
               </Link>
           </MenuItem>);

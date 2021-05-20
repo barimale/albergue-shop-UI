@@ -66,7 +66,12 @@ function OfferItem(props: ClothesItemProps){
             width: '100%'
         }}>
           {isLoading === true ? (
+            <div style={{
+              width:context.valueOf() === DeviceType.isDesktopOrLaptop ? 'inherit' : '100%',
+              height:context.valueOf() === DeviceType.isDesktopOrLaptop ? 'inherit' : 'unset'
+            }}>
               <LoadingInProgress />
+            </div>
           ):(
             <img src={tile.img[0]} alt={tile.title} style={{
               WebkitTapHighlightColor: 'transparent',

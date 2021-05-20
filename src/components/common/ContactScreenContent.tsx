@@ -1,4 +1,4 @@
-import { IconButton, Typography } from '@material-ui/core';
+import { IconButton, LinearProgress, Typography } from '@material-ui/core';
 import React from 'react';
 import { 
   EmailIcon,
@@ -6,9 +6,32 @@ import {
   FacebookIcon,
   FacebookMessengerIcon } from 'react-share';
 import { DeviceContextConsumer, DeviceType } from '../../contexts/DeviceContext';
+import { useShopStatus } from '../../hooks/useShopStatus';
 import { Logo } from './Logo';
 
+
 export default function ContactScreenContent(){
+    const status = useShopStatus();
+
+    return(
+        <>
+            {status === undefined ? (
+                <LinearProgress/>
+            ):(
+                <>
+                    {status !== undefined && status.isAtLeastOneCategoryDefined.valueOf() === true ?(
+                        <p>{'Redirect to the first category'}</p>
+                    ):(
+                        <SystemIsEmpty/>
+                    )}
+                </>
+            )}
+        </>
+    );
+
+}
+ const SystemIsEmpty = () => {
+
     return (
         <DeviceContextConsumer>
             {context => 

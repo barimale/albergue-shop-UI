@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css';
 import './AdditionalStyles.css';
 import { FirebaseAuthProvider } from '@react-firebase/auth';
@@ -9,7 +8,7 @@ import { CartContextProvider } from './contexts/CartContext';
 import CustomMuiThemeProvider from "./customTheme";
 import Routes from "./router/Routes";
 import { MainLayout } from './components/layouts/MainLayout';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 function ResourceLoadedApp() {
   return (
@@ -18,11 +17,11 @@ function ResourceLoadedApp() {
         <CustomMuiThemeProvider>
           <CartContextProvider>
             <DeviceContextProvider>
-              <Router>
+              <BrowserRouter>
                 <MainLayout>
                   <Routes/>
                 </MainLayout>
-              </Router>
+              </BrowserRouter>
             </DeviceContextProvider>
           </CartContextProvider>
         </CustomMuiThemeProvider>

@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { Path as HomePath } from '../screens/ContactScreen';
 import styled from "styled-components";
 import MenuButtons from '../desktop/MenuButtons';
+import { useShopStatus } from '../../hooks/useShopStatus';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 function TopMenu() {
   const classes = useStyles();
+  const status = useShopStatus();
 
   return (
     <div className={classes.root} style={{
@@ -57,25 +59,20 @@ function TopMenu() {
                       WebkitTapHighlightColor: 'transparent',
                       fontSize: context === DeviceType.isDesktopOrLaptop ? '44px':'32px',
                       textAlign: context === DeviceType.isDesktopOrLaptop ? "left" : 'center'}}>
-                        {'SH'}
-                        {/* <StyledLink 
-                          className={context === DeviceType.isDesktopOrLaptop ? "pointerOverEffect" : ""}
-                          to={HomePath}>
-                          
-                        </StyledLink> */}
-                        <img src={'logo.webp'} style= {{height: '30px', width: '30px'}}/>
-                        {'P'}
+                        {'SHOP'}
                   </Typography>
                   {context === DeviceType.isDesktopOrLaptop && (
                     <MenuButtons />
                   )}
-                <Cart
+                {status !== undefined && status.isAtLeastOneCategoryDefined.valueOf() === true && (
+                  <Cart
                   className={context === DeviceType.isDesktopOrLaptop ? "pointerOverEffect" : ""}
                   style={{
                     WebkitTapHighlightColor: 'transparent',
                     paddingLeft: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
                     paddingRight: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px'
                   }}/>
+                )}
               </Toolbar>
             )}
           </DeviceContextConsumer>

@@ -43,8 +43,8 @@
     "yup": "^0.32.8"
   },
   "scripts": {
-    "start": "set PORT=3006 && react-scripts start",
-    "build-fast": "react-scripts build",
+    "start": "set PORT=3006 && react-scripts start .env.development",
+    "build-fast": "react-scripts build .env.production",
     "build": "npx ts-node --project tsconfig.node.json ./src/sitemap-builder.ts && yarn build-fast",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
