@@ -15,11 +15,6 @@ yarn build
 
 firebase deploy
 ```
-or
-```
-pscp -pw inZCQIZzt ./build/* ftp@odkrywajcie.pl@megahost.pl:/public_html/
-mv c:\filedump\* c:\backup\*
-```
 
 ## How to generate sitemap.xml?
 Execute:

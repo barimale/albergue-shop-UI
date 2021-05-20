@@ -10,10 +10,10 @@ ReactDOM.render(
   <React.StrictMode>
     <>
     <Helmet>
-      <title>odkrywajcie.</title>
+      <title>shop - albergue de peregrinos porto</title>
       <meta 
         name="description"
-        content="Karty rozwojowe z serii „odkrywam.” powstały z potrzeby wyrażenia siebie i na skutek wielkiej Rewolucji w życiu – udziału w Szkole Odwagi Jesteś Rewolucją" />
+        content="WIP" />
     </Helmet>
     <App />
     </>

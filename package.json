@@ -1,5 +1,5 @@
 {
-  "name": "odkrywajcie",
+  "name": "shop",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -50,7 +50,7 @@
     "eject": "react-scripts eject",
     "sitemap": "npx ts-node --project tsconfig.node.json ./src/sitemap-builder.ts",
     "deploy": "yarn build && firebase deploy",
-    "deploy-miniserver": "yarn build && scp -r ./build/* albergue@192.168.1.5:/var/www/odkrywajcie.pl"
+    "deploy-miniserver": "yarn build && scp -r ./build/* albergue@192.168.2.100:/var/www/shop-alberguedeperegrinoporto.pt"
   },
   "eslintConfig": {
     "extends": [

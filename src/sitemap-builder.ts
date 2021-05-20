@@ -4,7 +4,7 @@ interface SitemapRoute { path: string }
 import fs from 'fs'
 import Routes from './router/Routes'
 
-const PUBLIC_URL = "https://odkrywajcie.pl"
+const PUBLIC_URL = "https://shop.albergueperegrinosporto.pt"
 
 const routes = (Routes()?.props.children || []).reduce((acc: SitemapRoute[], route: RouterRoute) => {
   if (Array.isArray(route)) {
