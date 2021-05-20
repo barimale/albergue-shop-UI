@@ -6,7 +6,9 @@ export enum DeviceType{
     isTabletOrMobile
 };
 
-const { Provider, Consumer } = React.createContext(DeviceType.isDesktopOrLaptop);
+const DeviceContext = React.createContext(DeviceType.isDesktopOrLaptop);
+
+const DeviceContextConsumer = DeviceContext.Consumer;
 
 const DeviceContextProvider = (props: any) => {
     const isLandscape = useMediaQuery({ orientation: 'landscape' });
@@ -29,7 +31,7 @@ const DeviceContextProvider = (props: any) => {
         return DeviceType.isDesktopOrLaptop;
     }
   
-    return <Provider value={ObtainType()}>{props.children}</Provider>;
+    return <DeviceContext.Provider value={ObtainType()}>{props.children}</DeviceContext.Provider>;
   }
 
-export { DeviceContextProvider, Consumer as DeviceContextConsumer };
+export { DeviceContextProvider, DeviceContextConsumer , DeviceContext };

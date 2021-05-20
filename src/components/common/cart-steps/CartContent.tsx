@@ -5,7 +5,7 @@ import { CountedItemDetails, useGroupedItems } from "../../../hooks/useGroupedIt
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
-import { Path as HomePath } from '../../screens/ProductsScreen';
+import { Path as HomePath } from '../../screens/ContactScreen';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';

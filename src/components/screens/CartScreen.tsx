@@ -7,7 +7,7 @@ import StepperContainer from "../molecules/Stepper";
 import { CartContent } from "../common/cart-steps/CartContent";
 import { AddressStepContent } from "../common/cart-steps/AddressStepContent";
 import { Redirect } from 'react-router-dom';
-import { Path as HomePath } from '../screens/ProductsScreen';
+import { Path as HomePath } from '../screens/ContactScreen';
 import { appBaseRouteKey} from "../../router/routerConfiguration";
 import SummaryContent from '../common/cart-steps/SummaryContent';
 import CenteredDiv from '../common/CenteredDiv';

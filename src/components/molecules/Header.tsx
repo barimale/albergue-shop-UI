@@ -8,8 +8,7 @@ import { MenuWithItems } from "../mobile/MenuWithItems";
 import sizeMe from 'react-sizeme';
 import Cart from './Cart';
 import { Link } from 'react-router-dom';
-import { Title as HomeTitle } from '../screens/ProductsScreen';
-import { GetFullPathTo } from "../../router/routerConfiguration";
+import { Path as HomePath } from '../screens/ContactScreen';
 import styled from "styled-components";
 import MenuButtons from '../desktop/MenuButtons';
 
@@ -54,16 +53,18 @@ function TopMenu() {
                     className={classes.title}
                     align={context === DeviceType.isDesktopOrLaptop ? "left" : 'center'}
                     style={{
-                      fontFamily: 'SacramentoRegular',
                       fontWeight: 'bold',
                       WebkitTapHighlightColor: 'transparent',
                       fontSize: context === DeviceType.isDesktopOrLaptop ? '44px':'32px',
                       textAlign: context === DeviceType.isDesktopOrLaptop ? "left" : 'center'}}>
-                        <StyledLink 
+                        {'SH'}
+                        {/* <StyledLink 
                           className={context === DeviceType.isDesktopOrLaptop ? "pointerOverEffect" : ""}
-                          to={GetFullPathTo(HomeTitle)}>
-                          odkrywajcie.
-                        </StyledLink>
+                          to={HomePath}>
+                          
+                        </StyledLink> */}
+                        <img src={'logo.webp'} style= {{height: '30px', width: '30px'}}/>
+                        {'P'}
                   </Typography>
                   {context === DeviceType.isDesktopOrLaptop && (
                     <MenuButtons />

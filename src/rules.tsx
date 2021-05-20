@@ -1,4 +1,4 @@
-export const title = "Regulamin sklepu";
+export const title = "Rules";
 
 const description = `
 Sklep internetowy dostępny pod adresem internetowym www.odkrywajcie.pl prowadzony 

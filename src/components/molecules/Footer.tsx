@@ -38,23 +38,8 @@ export const Footer = () =>  {
         <div className={classes.title}>
           <span>
             <>
-              &copy; 2020
+              &copy; 2021
             </>
-            <a 
-              className={"pointerOverEffect"}
-              style={{
-                paddingLeft: '10px',
-                paddingRight: '10px',
-                cursor: 'pointer',
-                color: 'white',
-                textDecoration: 'underline',
-                WebkitTapHighlightColor: 'transparent',
-              }}
-              onClick={(event:any)=>{
-              event.stopPropagation();
-              setIsModal2Displayed(true);
-            }}>
-            {RulesTitle}</a>
             <a 
               className={"pointerOverEffect"}
               style={{
@@ -70,6 +55,21 @@ export const Footer = () =>  {
               setIsModalDisplayed(true);
             }}>
             {PivacyTermsTitle}</a>
+            <a 
+              className={"pointerOverEffect"}
+              style={{
+                paddingLeft: '10px',
+                paddingRight: '10px',
+                cursor: 'pointer',
+                color: 'white',
+                textDecoration: 'underline',
+                WebkitTapHighlightColor: 'transparent',
+              }}
+              onClick={(event:any)=>{
+              event.stopPropagation();
+              setIsModal2Displayed(true);
+            }}>
+            {RulesTitle}</a>
         </span>
         <PrivayTermsModal 
           isDisplayed={isModalDisplayed} 

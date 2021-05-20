@@ -1,5 +1,4 @@
-import { Title as HomeTitle, Path as HomePath } from '../components/screens/ProductsScreen';
-import { Title as ContactTitle, Path as ContactPath } from "../components/screens/ContactScreen";
+import { Title as HomeTitle, Path as HomePath } from '../components/screens/ContactScreen';
 import { Title as AboutMeTitle, Path as AboutMePath } from "../components/screens/AboutMeScreen";
 import { 
     Subtitle1 as JestemKobietaTitle,
@@ -47,30 +46,5 @@ export const OrderedSectionsConfiguration: Array<configSection> = [
         title: "",
         api: "",
         type: configSectionType.divider
-    },
-    {
-        title: TusTitle,
-        api: appBaseRouteKey + TusPath,
-        type: configSectionType.link
-    },
-    {
-        title: "",
-        api: "",
-        type: configSectionType.divider
-    },
-    {
-        title: HomeTitle,
-        api: appBaseRouteKey + HomePath,
-        type: configSectionType.link
-    },
-    {
-        title: ContactTitle,
-        api: appBaseRouteKey + ContactPath,
-        type: configSectionType.link
-    },
-    {
-        title: AboutMeTitle,
-        api: appBaseRouteKey + AboutMePath,
-        type: configSectionType.link
     }
 ];

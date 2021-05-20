@@ -5,8 +5,8 @@ import CenteredDiv from '../common/CenteredDiv';
 
 const ContactScreenContent = lazy(() => import("../common/ContactScreenContent"));
 
-export const Path = "/contact";
-export const Title = "Kontakt";
+export const Path = "/";
+export const Title = "Welcome";
 
 export function ContactScreen(){
     return (

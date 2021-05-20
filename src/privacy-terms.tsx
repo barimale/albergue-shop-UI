@@ -1,4 +1,4 @@
-export const title = "Polityka prywatności";
+export const title = "Privacy terms";
 
 const section1Title = "I. Postanowienia ogólne";
 const section1Content = `
