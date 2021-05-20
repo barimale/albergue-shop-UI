@@ -1,20 +1,40 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Tips
+## CSS nice border
+```
+              style={{
+                borderStyle: 'solid',
+                borderWidth: context === DeviceType.isDesktopOrLaptop ? '22px' : '16px',
+                borderImageSource: `url('${process.env.PUBLIC_URL}/Frame205Colour2.svg')`,
+                borderImageSlice: 100,
+                borderImageRepeat: 'round stretch'
+              }}
+```
+## How to deploy?
+```
+yarn build
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+firebase deploy
+```
+or
+```
+pscp -pw inZCQIZzt ./build/* ftp@odkrywajcie.pl@megahost.pl:/public_html/
+mv c:\filedump\* c:\backup\*
+```
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
-
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+## How to generate sitemap.xml?
+Execute:
+```
+yarn sitemap
+```
+If something does not work at all just ensure, if the environmental variable is in place:
+```
+NODE_PATH
+```
+and has value of:
+```
+./src
+```
+If not, open PS terminal and do as follows:
+```
+$env:NODE_PATH='./src'
+```
