@@ -3,18 +3,18 @@
   "name": "shop",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "logo.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
-      "src": "startsSmall.jxr",
-      "type": "image/jxr",
+      "src": "logo.png",
+      "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "startsSmall.jxr",
-      "type": "image/jxr",
+      "src": "logo.png",
+      "type": "image/png",
       "sizes": "512x512"
     }
   ],

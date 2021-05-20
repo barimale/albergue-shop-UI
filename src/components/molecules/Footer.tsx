@@ -5,6 +5,7 @@ import RulesModal from "../common/RulesModal";
 import { title as RulesTitle } from "../../rules";
 import { title as PivacyTermsTitle } from "../../privacy-terms";
 import { DeviceType, DeviceContextConsumer } from '../../contexts/DeviceContext';
+import { useShopStatus } from '../../hooks/useShopStatus';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
 export const Footer = () =>  {
   const [ isModalDisplayed, setIsModalDisplayed ] = useState<boolean>(false);
   const [ isModal2Displayed, setIsModal2Displayed ] = useState<boolean>(false);
+  const status = useShopStatus();
 
   const classes = useStyles();
 
@@ -40,36 +42,40 @@ export const Footer = () =>  {
             <>
               &copy; 2021
             </>
-            <a 
-              className={"pointerOverEffect"}
-              style={{
-                paddingLeft: '10px',
-                paddingRight: '10px',
-                cursor: 'pointer',
-                color: 'white',
-                textDecoration: 'underline',
-                WebkitTapHighlightColor: 'transparent',
-              }}
-              onClick={(event:any)=>{
-              event.stopPropagation();
-              setIsModalDisplayed(true);
-            }}>
-            {PivacyTermsTitle}</a>
-            <a 
-              className={"pointerOverEffect"}
-              style={{
-                paddingLeft: '10px',
-                paddingRight: '10px',
-                cursor: 'pointer',
-                color: 'white',
-                textDecoration: 'underline',
-                WebkitTapHighlightColor: 'transparent',
-              }}
-              onClick={(event:any)=>{
-              event.stopPropagation();
-              setIsModal2Displayed(true);
-            }}>
-            {RulesTitle}</a>
+            {status !== undefined && status.isAtLeastOneCategoryDefined.valueOf() === true && (
+            <>
+                <a 
+                  className={"pointerOverEffect"}
+                  style={{
+                    paddingLeft: '10px',
+                    paddingRight: '10px',
+                    cursor: 'pointer',
+                    color: 'white',
+                    textDecoration: 'underline',
+                    WebkitTapHighlightColor: 'transparent',
+                  }}
+                  onClick={(event:any)=>{
+                  event.stopPropagation();
+                  setIsModalDisplayed(true);
+                }}>
+                {PivacyTermsTitle}</a>
+                <a 
+                  className={"pointerOverEffect"}
+                  style={{
+                    paddingLeft: '10px',
+                    paddingRight: '10px',
+                    cursor: 'pointer',
+                    color: 'white',
+                    textDecoration: 'underline',
+                    WebkitTapHighlightColor: 'transparent',
+                  }}
+                  onClick={(event:any)=>{
+                  event.stopPropagation();
+                  setIsModal2Displayed(true);
+                }}>
+                {RulesTitle}</a>
+            </>
+            )}
         </span>
         <PrivayTermsModal 
           isDisplayed={isModalDisplayed} 
