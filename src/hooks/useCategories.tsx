@@ -7,6 +7,7 @@ export const shopBaseUrl = process.env.REACT_APP_SHOP_APP;
 
 export interface Category {
   id: string;
+  keyName: string;
   translatableDetails: Array<CategoryTranslatableDetails>;
 }
 
@@ -61,7 +62,7 @@ export const useCategories = () => {
     return categories?.map((p: Category) => {
         return(
           {
-              title: p.translatableDetails[0].name.toString(),
+              title: p.keyName,
               api: `/${BuyPath}/${p.id}`,
               type: configSectionType.link
           } as configSection
