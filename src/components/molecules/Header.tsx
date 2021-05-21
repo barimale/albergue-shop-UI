@@ -47,9 +47,12 @@ function TopMenu() {
                 backgroundColor:'white', 
                 paddingLeft: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px', 
                 paddingRight: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px'}}>
+                  {status !== undefined && status.isAtLeastOneCategoryDefined.valueOf() === true && (
+                    <>
                 {context === DeviceType.isTabletOrMobile && (
                   <MenuWithItems/>
-                )}
+                )}</>
+                  )}
                   <Typography
                     variant={context === DeviceType.isDesktopOrLaptop ? "h4" : "h4"}
                     className={classes.title}
@@ -61,10 +64,11 @@ function TopMenu() {
                       textAlign: context === DeviceType.isDesktopOrLaptop ? "left" : 'center'}}>
                         {'SHOP'}
                   </Typography>
+                  {status !== undefined && status.isAtLeastOneCategoryDefined.valueOf() === true && (
+                    <>
                   {context === DeviceType.isDesktopOrLaptop && (
                     <MenuButtons />
                   )}
-                {status !== undefined && status.isAtLeastOneCategoryDefined.valueOf() === true && (
                   <Cart
                   className={context === DeviceType.isDesktopOrLaptop ? "pointerOverEffect" : ""}
                   style={{
@@ -72,6 +76,7 @@ function TopMenu() {
                     paddingLeft: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
                     paddingRight: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px'
                   }}/>
+                  </>
                 )}
               </Toolbar>
             )}
