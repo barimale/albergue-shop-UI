@@ -50,6 +50,7 @@ function BuyContent(props: BuyScreenProps){
   
   return (
     <div className={classes.root}>
+      <p style={{color: 'red'}}>{props.filterByCategory}</p>
       <GridList 
         spacing={isHorizontalMobile ? undefined : 15}
         cellHeight={filtered.length > 1 ? window.innerHeight*0.35 : window.innerHeight*0.7} 

@@ -1,14 +1,14 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { appBaseRouteKey} from "./routerConfiguration";
+import { appBaseRouteKey, configSection} from "./routerConfiguration";
 import { ContactScreen, Path as HomePath } from "../components/screens/ContactScreen";
 import { CartScreen, Path as CartPath } from '../components/screens/CartScreen';
 import { BuyScreen, Path as BuyPath } from '../components/screens/BuyScreen';
 import { useShopStatus } from '../hooks/useShopStatus';
-import { Category, useCategories } from '../hooks/useCategories';
+import { useCategories } from '../hooks/useCategories';
 
 export default function Routes(){
     const status = useShopStatus();
-    const { categories } = useCategories();
+    const { configSections: OrderedSectionsConfiguration } = useCategories();
 
     return(
         <Switch>
@@ -16,10 +16,8 @@ export default function Routes(){
             {status !== undefined && status.isAtLeastOneCategoryDefined.valueOf() === true && (
                 <Route exact path={appBaseRouteKey + CartPath} render={() => <CartScreen/>} />
             )}
-            {categories?.map((category: Category)=>{
-                return(
-                    <Route exact path={appBaseRouteKey + BuyPath + "/" + category.translatableDetails[0].name } render={() => <BuyScreen filterByCategory={category.id}/>} />
-                );
+            {OrderedSectionsConfiguration?.map((p: configSection, index: number)=>{
+                return <Route exact key={index} path={p.api} render={() => <BuyScreen filterByCategory={p.title}/>} />
             })}
             <Route render={() => <Redirect to={appBaseRouteKey + HomePath} />} />
         </Switch>

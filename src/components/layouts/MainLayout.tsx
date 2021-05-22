@@ -23,7 +23,7 @@ export const MainLayout = (props : any) =>  {
     const history = useHistory();
 
     useEffect(()=>{
-      history.push(location.pathname);
+      history.replace(location.pathname);
     }, [window.screen.width, window.screen.height]);
 
     useEffect(()=>{
@@ -32,7 +32,7 @@ export const MainLayout = (props : any) =>  {
       }
 
       if(isPortrait !== prevVal){
-        history.push(location.pathname);
+        history.replace(location.pathname);
       }
     }, [isPortrait, prevVal]);
 

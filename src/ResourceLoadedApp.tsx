@@ -1,8 +1,5 @@
 import './App.css';
 import './AdditionalStyles.css';
-import { FirebaseAuthProvider } from '@react-firebase/auth';
-import firebase from 'firebase';
-import { firebaseConfig } from './firebaseConfiguration';
 import { DeviceContextProvider } from './contexts/DeviceContext';
 import { CartContextProvider } from './contexts/CartContext';
 import CustomMuiThemeProvider from "./customTheme";
@@ -13,7 +10,6 @@ import { BrowserRouter } from 'react-router-dom';
 function ResourceLoadedApp() {
   return (
     <div className="App">
-      <FirebaseAuthProvider firebase={firebase} {...firebaseConfig}>
         <CustomMuiThemeProvider>
           <CartContextProvider>
             <DeviceContextProvider>
@@ -25,7 +21,6 @@ function ResourceLoadedApp() {
             </DeviceContextProvider>
           </CartContextProvider>
         </CustomMuiThemeProvider>
-      </FirebaseAuthProvider>
     </div>
   );
 }

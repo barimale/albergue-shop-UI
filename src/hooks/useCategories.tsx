@@ -63,7 +63,7 @@ export const useCategories = () => {
         return(
           {
               title: p.keyName,
-              api: `/${BuyPath}/${p.id}`,
+              api: `${BuyPath}/${p.keyName.toLowerCase()}`,
               type: configSectionType.link
           } as configSection
         );}   
