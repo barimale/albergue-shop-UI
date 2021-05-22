@@ -17,7 +17,7 @@ export default function Routes(){
                 <Route exact path={appBaseRouteKey + CartPath} render={() => <CartScreen/>} />
             )}
             {OrderedSectionsConfiguration?.map((p: configSection, index: number)=>{
-                return <Route exact key={index} path={p.api} render={() => <BuyScreen filterByCategory={p.title}/>} />
+                return <Route exact key={index} path={p.api} render={() => <BuyScreen filterByCategory={p.id}/>} />
             })}
             <Route render={() => <Redirect to={appBaseRouteKey + HomePath} />} />
         </Switch>

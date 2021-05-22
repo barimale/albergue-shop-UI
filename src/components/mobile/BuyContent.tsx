@@ -2,12 +2,10 @@ import React from 'react';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import { tileData, ItemDetails, GetIdBybCategoryTitle } from '../common/BuyItems';
-import { BuyScreenProps } from '../screens/BuyScreen';
+import { ItemDetails } from '../common/BuyItems';
 import OfferItem from '../common/OfferItem';
 import { useMediaQuery } from 'react-responsive';
-import { useEffect } from 'react';
-import { useRef } from 'react';
+import { BuyContentProps } from '../desktop/BuyContent';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -41,14 +39,15 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function BuyContent(props: BuyScreenProps){
+function BuyContent(props: BuyContentProps){
+  const { items } = props;
   const classes = useStyles();
   const isWideDevice = useMediaQuery({ minDeviceWidth: 444 });
 
   return (
     <div className={classes.root}>
       <GridList className={classes.gridList} cols={isWideDevice ? 1 : 1} spacing={10} cellHeight={window.innerHeight*0.35}>
-        {tileData.filter((p: ItemDetails)=> p.categoryId === GetIdBybCategoryTitle(props.filterByCategory)).map((tile: ItemDetails, index: number) => (
+        {items.map((tile: ItemDetails, index: number) => (
           <GridListTile key={tile.title} 
             style={{
               WebkitTapHighlightColor: 'transparent',

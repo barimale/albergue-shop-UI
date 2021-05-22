@@ -12,6 +12,7 @@ export type configSection = {
     title: string;
     api: string;
     type: configSectionType;
+    id: string;
 }
 
 export function GetFullPathTo(items: configSection[], title: string): string{
