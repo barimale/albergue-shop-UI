@@ -10,7 +10,7 @@ import Cart from './Cart';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import MenuButtons from '../desktop/MenuButtons';
-import { useShopStatus } from '../../hooks/useShopStatus';
+import { ShopStatus, useShopStatus } from '../../hooks/useShopStatus';
 import LanguageSetter from '../organisms/LanguageSetter';
 import { thirdMain } from '../../customTheme';
 import { Ornament } from './Ornament';
@@ -46,7 +46,6 @@ function TopMenu() {
   const classes = useStyles();
   const theme = useTheme();
   const status = useShopStatus();
-  const { t } = useTranslation();
 
   return (
     <DeviceContextConsumer>
@@ -90,34 +89,11 @@ function TopMenu() {
                 </>
               )}
               <Logo />
-              <Typography
-                className={classes.title}
-                align={context === DeviceType.isDesktopOrLaptop ? "left" : 'center'}
-                style={{
-                  paddingLeft: '30px',
-                  fontWeight: 'bold',
-                  color: 'white',
-                  WebkitTapHighlightColor: 'transparent',
-                  fontSize: context === DeviceType.isDesktopOrLaptop ? '33px':'32px',
-                  textAlign: context === DeviceType.isDesktopOrLaptop ? "left" : 'center'
-              }}>
-                {t('Albergue de Peregrinos Porto - Shop')}
-              </Typography>
-              {status !== undefined && status.isAtLeastOneCategoryDefined.valueOf() === true && (
-                <>
-                  {context === DeviceType.isDesktopOrLaptop && (
-                    <MenuButtons />
-                  )}
-                  <LanguageSetter />
-                  <Cart
-                  className={context === DeviceType.isDesktopOrLaptop ? "pointerOverEffect" : ""}
-                  style={{
-                    WebkitTapHighlightColor: 'transparent',
-                    paddingLeft: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
-                    paddingRight: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px'
-                  }}/>
-                </>
-              )}
+              <Title />
+              <TopRightSectionWrapper>
+                <TopRightSection status={status} />
+                <CategoriesSection status={status} />
+              </TopRightSectionWrapper>
             </Toolbar>
             <Ornament />
           </AppBar>
@@ -125,6 +101,174 @@ function TopMenu() {
       </>
     )}
   </DeviceContextConsumer>
+  );
+}
+
+const TopRightSectionWrapper = (props: any) => {
+  return(
+    <DeviceContextConsumer>
+    {context => (
+      <Toolbar 
+        style={{
+          color:'white', 
+          backgroundColor:'transparent', 
+          paddingLeft: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px', 
+          paddingRight: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+          width: '100%',
+          alignItems: 'right'
+      }}>
+        {props.children}
+      </Toolbar>
+    )}
+    </DeviceContextConsumer>
+  );
+}
+
+const Title = () =>{
+  const classes = useStyles();
+  const theme = useTheme();
+  const { t } = useTranslation();
+
+  return(
+    <DeviceContextConsumer>
+    {context => (
+      <div 
+        style={{
+        display: 'flex',
+        flexDirection: 'row',
+        width: 'max-content',
+        justifyContent: 'space-between'
+      }}>
+        <Typography
+          className={classes.title}
+          align={context === DeviceType.isDesktopOrLaptop ? "left" : 'center'}
+          style={{
+            paddingLeft: '30px',
+            fontWeight: 'bold',
+            color: 'white',
+            WebkitTapHighlightColor: 'transparent',
+            fontSize: context === DeviceType.isDesktopOrLaptop ? '64px':'32px',
+            textAlign: context === DeviceType.isDesktopOrLaptop ? "left" : 'left'
+        }}>
+          {t('Shop').toUpperCase()}
+        </Typography>
+        <div 
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignContent: 'center',
+            fontSize: context === DeviceType.isDesktopOrLaptop ? '14px':'14px',
+        }}>
+          <Typography
+            align={'left'}
+            style={{
+              paddingLeft: '10px',
+              fontWeight: 'bold',
+              color: 'white',
+              WebkitTapHighlightColor: 'transparent',
+              fontSize: 'inherit',
+              textAlign: 'left'
+          }}>
+            {t('Albergue')}
+          </Typography>
+          <Typography
+            noWrap
+            align={'left'}
+              style={{
+              paddingLeft: '10px',
+              fontWeight: 'bold',
+              color: 'white',
+              WebkitTapHighlightColor: 'transparent',
+              fontSize: 'inherit',
+              textAlign: 'left'
+          }}>
+            {t('de Peregrinos')}
+          </Typography>
+          <Typography
+            align={'left'}
+            style={{
+              paddingLeft: '10px',
+              fontWeight: 'bold',
+              color: 'white',
+              WebkitTapHighlightColor: 'transparent',
+              fontSize: 'inherit',
+              textAlign: 'left'
+          }}>
+            {t('Porto')}
+          </Typography>
+        </div>
+      </div>
+      
+    )}
+    </DeviceContextConsumer>
+  );
+}
+
+type TopRightSectionProps = {
+  status: ShopStatus | undefined;
+}
+
+const TopRightSection = (props: TopRightSectionProps) =>{
+  const { status } = props;
+
+  return(
+    <DeviceContextConsumer>
+    {context => (
+      <>
+        {status !== undefined && status.isAtLeastOneCategoryDefined.valueOf() === true && (
+          <div 
+            style={{
+              width: '100%',
+              textAlign: 'right',
+              display: 'flex',
+              flexDirection: 'row',
+              alignContent: 'baseline',
+              justifyContent: 'flex-end'
+          }}>
+            <LanguageSetter />
+            <Cart
+            className={context === DeviceType.isDesktopOrLaptop ? "pointerOverEffect" : ""}
+            style={{
+              WebkitTapHighlightColor: 'transparent',
+              paddingLeft: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
+              paddingRight: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px'
+            }}/>
+          </div>
+        )}
+      </>
+    )}
+    </DeviceContextConsumer>
+  );
+}
+
+type BottomSectionProps = {
+  status: ShopStatus | undefined;
+}
+
+const CategoriesSection = (props: BottomSectionProps) =>{
+  const { status } = props;
+
+  return(
+    <DeviceContextConsumer>
+    {context => (
+      <>
+        {status !== undefined && status.isAtLeastOneCategoryDefined.valueOf() === true && (
+          <div 
+            style={{
+
+          }}>
+            {context === DeviceType.isDesktopOrLaptop && (
+              <MenuButtons />
+            )}
+          </div>
+        )}
+      </>
+    )}
+    </DeviceContextConsumer>
   );
 }
 
