@@ -49,8 +49,8 @@ export const MainLayout = (props : any) =>  {
             background: '#252526',
             justifyContent: 'center'}}>
             {props.children}
-            <Footer/>
         </div>
+        <Footer/>
     </>
     );
 }
