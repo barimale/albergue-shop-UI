@@ -47,6 +47,8 @@ function TopMenu() {
       left: 0, 
       width: '100%', 
       zIndex: 1000,
+      height: (status === undefined || status.isAtLeastOneCategoryDefined.valueOf() === false) ? '0px' : 'inherit',
+      visibility: (status === undefined || status.isAtLeastOneCategoryDefined.valueOf() === false) ? 'collapse' : 'visible',
       background: `${thirdMain}`
       }}>
       <AppBar position="sticky" style={{

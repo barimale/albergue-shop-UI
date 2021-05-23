@@ -6,6 +6,7 @@ import { title as RulesTitle } from "../../rules";
 import { title as PivacyTermsTitle } from "../../privacy-terms";
 import { DeviceType, DeviceContextConsumer } from '../../contexts/DeviceContext';
 import { useShopStatus } from '../../hooks/useShopStatus';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +27,7 @@ export const Footer = () =>  {
   const [ isModalDisplayed, setIsModalDisplayed ] = useState<boolean>(false);
   const [ isModal2Displayed, setIsModal2Displayed ] = useState<boolean>(false);
   const status = useShopStatus();
-
+  const { t } = useTranslation();
   const classes = useStyles();
 
   return (
@@ -58,7 +59,8 @@ export const Footer = () =>  {
                   event.stopPropagation();
                   setIsModalDisplayed(true);
                 }}>
-                {PivacyTermsTitle}</a>
+                {t(PivacyTermsTitle)}
+                </a>
                 <a 
                   className={"pointerOverEffect"}
                   style={{
@@ -73,7 +75,8 @@ export const Footer = () =>  {
                   event.stopPropagation();
                   setIsModal2Displayed(true);
                 }}>
-                {RulesTitle}</a>
+                {t(RulesTitle)}
+                </a>
             </>
             )}
         </span>
