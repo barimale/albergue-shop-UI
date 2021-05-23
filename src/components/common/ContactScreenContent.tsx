@@ -45,7 +45,7 @@ export default function ContactScreenContent(){
                     fontSize: context === DeviceType.isDesktopOrLaptop ? '40px' : '25px'
                 }}>
                     <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'end'}}>
-                        {"There are no items avalaible in the shop.".toUpperCase()}
+                        {"There are no items avalaible in the shop".toUpperCase()}
                     </div>
                     <div style={{
                         alignContent: 'center',

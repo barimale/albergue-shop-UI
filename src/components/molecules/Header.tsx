@@ -17,6 +17,7 @@ import { Ornament } from './Ornament';
 import useTheme from "@material-ui/core/styles/useTheme";
 import { useTranslation } from 'react-i18next';
 import { Logo } from "../common/Logo";
+import SearchField from './SearchField';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -113,7 +114,7 @@ const TopRightSectionWrapper = (props: any) => {
           color:'white', 
           backgroundColor:'transparent', 
           paddingLeft: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px', 
-          paddingRight: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px',
+          paddingRight: '0px',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-end',
@@ -226,13 +227,16 @@ const TopRightSection = (props: TopRightSectionProps) =>{
               textAlign: 'right',
               display: 'flex',
               flexDirection: 'row',
-              alignContent: 'baseline',
-              justifyContent: 'flex-end'
+              alignContent: 'center',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              height: 'max-content'
           }}>
             <LanguageSetter />
             <Cart
             className={context === DeviceType.isDesktopOrLaptop ? "pointerOverEffect" : ""}
             style={{
+              height: '100%',
               WebkitTapHighlightColor: 'transparent',
               paddingLeft: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
               paddingRight: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px'
@@ -259,11 +263,21 @@ const CategoriesSection = (props: BottomSectionProps) =>{
         {status !== undefined && status.isAtLeastOneCategoryDefined.valueOf() === true && (
           <div 
             style={{
-
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              width: '100%'
           }}>
             {context === DeviceType.isDesktopOrLaptop && (
-              <MenuButtons />
+              <MenuButtons 
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'flex-start'
+              }}/>
             )}
+            <SearchField />
           </div>
         )}
       </>
