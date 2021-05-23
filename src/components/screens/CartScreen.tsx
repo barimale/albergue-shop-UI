@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
     instructions: {
       marginTop: theme.spacing(1),
       marginBottom: theme.spacing(1),
-      fontFamily: "Montserrat"
+      fontFamily: "Signoria-Bold"
     },
   }),
 );

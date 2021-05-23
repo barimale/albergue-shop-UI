@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family:  'Signoria Bold', Arial, sans-serif;
   font-display: sans-serif;
 }
 
@@ -28,45 +28,6 @@
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes fadein {
-  from { 
-    opacity: 0;
-    }
-  to   { 
-    opacity: 1;
-  }
-}
-
-.animation {
-  animation: shakeAnim 1s 1;
-}
-
-@keyframes shakeAnim {
-  0% {left: 0}
-  1% {left: -3px}
-  2% {left: 5px}
-  3% {left: -8px}
-  4% {left: 8px}
-  5% {left: -5px}
-  6% {left: 3px}
-  7% {left: 0}
-}
-
-@keyframes glow {
-    40% {
-      text-shadow: 0 0 8px #fff;
-    }
 }
 
 .pointerOverEffect {

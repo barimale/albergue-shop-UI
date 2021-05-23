@@ -37,7 +37,8 @@ export const ItemDetailsTextButton = (props: ItemDetailsTextButtonProps) => {
                         verticalAlign: 'middle',
                         paddingRight: context === DeviceType.isDesktopOrLaptop ? '10px' : '6px'
                     }}/>
-                    {item.title}
+                    {/* //WIP */}
+                    {item.translatableDetails[0].name}
             </Typography>
             <ProductDetailsModal 
                 item={item}

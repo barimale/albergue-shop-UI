@@ -46,7 +46,7 @@ export const MainLayout = (props : any) =>  {
             width: '100%',
             paddingTop: paddingTop,
             display: 'inline-flex',
-            background: 'radial-gradient(ellipse at bottom, #0B3976 0%, black 100%)',
+            background: '#252526',
             justifyContent: 'center'}}>
             {props.children}
             <Footer/>

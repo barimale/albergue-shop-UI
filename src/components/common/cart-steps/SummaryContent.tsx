@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
     total: {
       fontWeight: 700,
-      fontFamily: 'Montserrat'
+      fontFamily: 'Signoria-Bold'
     },
     title: {
       marginTop: theme.spacing(2)

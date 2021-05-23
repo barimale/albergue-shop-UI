@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     fontSize: 10,
     color: 'white',
-    fontFamily: 'Montserrat'
+    fontFamily: 'Signoria-Bold'
   },
 }));
 

@@ -212,7 +212,8 @@ const ItemsInTable = (props: any) => {
             return (
             <TableRow key={index}>
               <TableCell component="th" scope="row" align="left" style={{fontWeight: 'normal'}}>
-                {item.details.title}
+                {/* WIP */}
+                {/* {item.details.title} */}
               </TableCell>
               <TableCell component="th" scope="row" style={{fontWeight: 'normal'}}>
                 {item.count + " szt."}

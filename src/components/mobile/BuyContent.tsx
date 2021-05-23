@@ -28,13 +28,13 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       color: 'white',
       fontWeight: 'bold',
-      fontFamily: 'Montserrat !important',
+      fontFamily: 'Signoria-Bold !important',
       whiteSpace: 'break-spaces'
     },
     titleBar: {
       color: 'white',
       background: 'rgba(206, 17, 38, 0.68)',
-      fontFamily: 'Montserrat'
+      fontFamily: 'Signoria-Bold'
     },
   }),
 );
@@ -48,7 +48,7 @@ function BuyContent(props: BuyContentProps){
     <div className={classes.root}>
       <GridList className={classes.gridList} cols={isWideDevice ? 1 : 1} spacing={10} cellHeight={window.innerHeight*0.35}>
         {items.map((tile: ItemDetails, index: number) => (
-          <GridListTile key={tile.title} 
+          <GridListTile key={tile.id || index} 
             style={{
               WebkitTapHighlightColor: 'transparent',
               marginTop: '10px', 

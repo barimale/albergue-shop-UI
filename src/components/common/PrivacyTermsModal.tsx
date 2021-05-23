@@ -5,7 +5,8 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { content, title } from "../../privacy-terms";
 import { DeviceContextConsumer, DeviceType } from '../../contexts/DeviceContext';
-import { Button } from '@material-ui/core';
+import { Button, useTheme } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,6 +34,8 @@ export default function PrivayTermsModal(props: PrivayTermsModalProps) {
   const { isDisplayed, onHide } = props;
   const [open, setOpen] = React.useState(false);
   const maxHeight = window.innerHeight * 0.7;
+  const { t } = useTranslation();
+  const theme = useTheme();
 
   useEffect(()=>{
     setOpen(isDisplayed);
@@ -62,15 +65,15 @@ export default function PrivayTermsModal(props: PrivayTermsModalProps) {
           <div 
             className={classes.paper}
             style={{
-              fontFamily: 'Montserrat !important',
+              fontFamily: 'Signoria-Bold !important',
               textAlign: 'center',
               width: context === DeviceType.isDesktopOrLaptop ? '50%' : '100%'
             }}>
-            <h2 style={{fontFamily: 'Montserrat'}}>{title.toUpperCase()}</h2>
+            <h2 style={{fontFamily: 'Signoria-Bold'}}>{title.toUpperCase()}</h2>
             <p style={{
               maxHeight: maxHeight,
               textAlign: 'justify',
-              fontFamily: 'Montserrat',
+              fontFamily: 'Signoria-Bold',
               overflowY: 'auto',
               paddingLeft: '5px',
               paddingRight: '5px',
@@ -81,15 +84,15 @@ export default function PrivayTermsModal(props: PrivayTermsModalProps) {
             <Button
               className={"pointerOverEffect"}
               style={{
-                fontFamily: 'Montserrat',
+                fontFamily: 'Signoria-Bold',
                 marginBottom: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px',
+                color: `${theme.palette.common.black}`,
                 marginTop: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px'}}
               variant={"contained"}
-              color="secondary"
               onClick={()=>{
                 handleClose();
               }}>
-              {'ZAMKNIJ'}
+              {t('Close').toUpperCase()}
             </Button>
           </div>
         </Fade>

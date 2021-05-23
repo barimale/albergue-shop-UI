@@ -76,8 +76,7 @@ const CartContextProvider = (props: any) => {
           setDefaultItems(current);     
       },
         isPhysicalItemIncluded: () => {
-          const result = defaultItems.findIndex((p: ItemDetails) => p.isPhysicalItem === true);
-          return result > -1;
+          return true;
         },
         registerAddressDetails: (data: AddressDetails) => {
           setAddressDetails(data); 

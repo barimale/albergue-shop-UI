@@ -71,7 +71,7 @@ export default function AboutMeScreenContent(){
                 width: context === DeviceType.isDesktopOrLaptop ? '70%' : '100%',
             }}>
                 <h2 style={{
-                fontFamily: 'Montserrat',
+                fontFamily: 'Signoria-Bold',
                 color: 'white'
                 }}>{`O mnie...`}</h2>
             </div>

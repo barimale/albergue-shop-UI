@@ -1,9 +1,7 @@
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import { tileData, ItemDetails, GetIdBybCategoryTitle } from '../common/BuyItems';
-import { BuyScreenProps } from '../screens/BuyScreen';
-import React from 'react';
+import { ItemDetails } from '../common/BuyItems';
 import OfferItem from '../common/OfferItem';
 import { useMediaQuery } from 'react-responsive';
 
@@ -33,12 +31,12 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       color: 'white',
       fontWeight: 'bold',
-      fontFamily: 'Montserrat !important',
+      fontFamily: 'Signoria-Bold !important',
       whiteSpace: 'break-spaces'
     },
     titleBar: {
       background: 'rgba(206, 17, 38, 0.68)',
-      fontFamily: 'Montserrat'
+      fontFamily: 'Signoria-Bold'
     }
   }),
 );
@@ -64,7 +62,12 @@ function BuyContent(props: BuyContentProps){
           height: items.length > 1 ? 'auto' : 'inherit',
         }}>
         {items?.map((tile: ItemDetails, index: number) => (
-          <GridListTile key={tile.title} style={{width: items.length > 1 ? '50%' : '100%',padding: '10px', outlineOffset: '-10px', outline: 'solid 1px rgba(206, 17, 38, 0.68)'}}>
+          <GridListTile key={tile.id || index} 
+            style={{
+              width: items.length > 1 ? '50%' : '100%',
+              padding: '10px', 
+              outlineOffset: '-10px', 
+              outline: 'solid 3px gray'}}>
             <OfferItem tile={tile} index={index}/>
           </GridListTile>
         ))}

@@ -3,13 +3,15 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import { ItemDetails } from './BuyItems';
+import { ItemDetails, ItemImageDetails } from './BuyItems';
 import { DeviceContextConsumer, DeviceType } from '../../contexts/DeviceContext';
 import { BuyButton } from '../molecules/Cart';
 import { AskButton } from "../molecules/AskButton";
 import Button from '@material-ui/core/Button';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import { useTranslation } from 'react-i18next';
+import { useTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -49,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) =>
       overflow: 'hidden',
       backgroundColor: theme.palette.background.paper,
       border: '2px solid #000',
-      boxShadow: theme.shadows[5],
+      boxShadow: theme.shadows[2],
       padding: theme.spacing(2, 4, 3),
     },
   }),
@@ -66,7 +68,9 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
   const { isDisplayed, onHide, item } = props;
   const [open, setOpen] = React.useState(false);
   const maxHeight = window.innerHeight * 0.9;
-  const images = item.img;
+  const images = item.images;
+  const { t } = useTranslation();
+  const theme = useTheme();
 
   useEffect(()=>{
     setOpen(isDisplayed);
@@ -95,28 +99,27 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
           <div 
             className={classes.paper}
             style={{
+              borderLeft: `20px solid ${theme.palette.primary.main}`,
               maxHeight: maxHeight,
               width: context === DeviceType.isDesktopOrLaptop ? (images.length === 1 ? '50%' : '75%') : '95%'
             }}>
             <h2 
             style={{
-              fontFamily: 'Montserrat',
               fontSize: context === DeviceType.isDesktopOrLaptop ? '24px' : '14px',
               marginTop: '5px'
-              }}>{item.title}</h2>
+              }}>{item.translatableDetails[0].name}</h2>
             <GridList 
               cellHeight={window.innerHeight*0.25} 
               className={classes.gridList} 
               cols={context === DeviceType.isDesktopOrLaptop ?(images.length > 1 ? (images.length > 2 ? 2.5 : 2) : 1):(images.length > 1 ? 1.5 : 1)}>
-              {images.map((tile: string, index: number) => (
+              {images.map((tile: ItemImageDetails, index: number) => (
                 <GridListTile key={index} cols={1}>
-                  <img src={tile} alt={item.title + '_' + index}/>
+                  <img src={tile.imageData} alt={item.id! + '_' + index}/>
                 </GridListTile>
               ))}
             </GridList>
             <h4 style={{
-                fontFamily: 'Montserrat',
-              }}>{'Cena: ' + (item.inFuture.valueOf() === true ? '-' : item.price + 'zł') }
+              }}>{t('Price') + ': ' + (item.active.valueOf() === false ? '-' : item.price + 'EUR') }
               </h4>
             <div 
               className={classes.scroolableContent}
@@ -124,33 +127,34 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
                 height:window.innerHeight*0.3
               }}>
             <h4 style={{
-              fontFamily: 'Montserrat',
+              fontFamily: 'Signoria-Bold',
               margin: '0px'
-            }}>Opis</h4>
+            }}>{t("Description")}</h4>
             <p style={{
               maxHeight: maxHeight,
               textAlign: 'justify',
-              fontFamily: 'Montserrat',
+              fontFamily: 'Signoria-Bold',
               overflowY: 'auto',
               paddingLeft: '5px',
               paddingRight: '5px',
               whiteSpace: 'pre-line',
               fontSize: context === DeviceType.isDesktopOrLaptop ? '14px' : '10px'
             }}>
-              <div dangerouslySetInnerHTML={{ __html: item.description }} />
+              {/* //WIP descriptionKey */}
+              <div dangerouslySetInnerHTML={{ __html: item.translatableDetails[0].description }} />
             </p>
-            <h4 style={{fontFamily: 'Montserrat', margin: '0px'}}>Szczegóły</h4>
+            <h4 style={{fontFamily: 'Signoria-Bold', margin: '0px'}}>{t('Details')}</h4>
             <p style={{
               maxHeight: maxHeight,
               textAlign: 'justify',
-              fontFamily: 'Montserrat',
+              fontFamily: 'Signoria-Bold',
               overflowY: 'auto',
               paddingLeft: '5px',
               paddingRight: '5px',
               whiteSpace: 'pre-line',
               fontSize: context === DeviceType.isDesktopOrLaptop ? '14px' : '10px'
             }}>
-              <div dangerouslySetInnerHTML={{ __html: item.shortDescription }} />
+              <div dangerouslySetInnerHTML={{ __html: item.translatableDetails[0].shortDescription }} />
             </p>
             </div>
             <div style={{
@@ -158,7 +162,7 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
               display: 'flex',
               alignItems: 'center',
               flexDirection: 'row'}}>
-            {item.inFuture === true ? (
+            {item.active === false ? (
               <AskButton/>
             ):(
               <BuyButton 
@@ -170,12 +174,13 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
             <Button
               className={"pointerOverEffect"}
               variant="contained"
-              color="secondary" 
-              style={{color: 'white'}}
+              style={{
+                color: `${theme.palette.common.black}`,
+              }}
               onClick={(event: any)=>{
                 event.stopPropagation();
                 handleClose();
-              }}>{'ZAMKNIJ'}</Button>
+              }}>{t('Close').toUpperCase()}</Button>
               </div>
           </div>
         </>

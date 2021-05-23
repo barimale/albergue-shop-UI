@@ -6,10 +6,11 @@ import { useContext, useEffect, useState } from "react";
 import { CartContext } from '../../contexts/CartContext';
 import Badge from '@material-ui/core/Badge';
 import { Theme, withStyles, createStyles } from '@material-ui/core/styles';
-import { tileData, ItemDetails } from '../common/BuyItems';
+import { ItemDetails } from '../common/BuyItems';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Button from '@material-ui/core/Button';
 import { DeviceType, DeviceContextConsumer } from '../../contexts/DeviceContext';
+import { useTranslation } from 'react-i18next';
 
 const StyledBadge = withStyles((theme: Theme) =>
   createStyles({
@@ -72,6 +73,7 @@ const Cart = (props: any) => {
 export const BuyButton = (props:{item: ItemDetails, onClicked: ()=> void}) => {
     const { add } = useContext(CartContext);
     const { item, onClicked } = props;
+    const { t } = useTranslation();
     
     return (
     <DeviceContextConsumer>
@@ -81,32 +83,33 @@ export const BuyButton = (props:{item: ItemDetails, onClicked: ()=> void}) => {
             color="secondary" 
             id={item.id}
             onClick={(event: any)=>{
-                try{
+                // try{
                 const result = event.currentTarget.id;
-                var foundIndex = tileData.findIndex(p => p.id === result);
-                if(foundIndex > -1){
-                    add(tileData[foundIndex]);
-                }
-                }catch(error: any){
-                  console.log(error);
-                }
-                finally{
-                  onClicked();
-                }
+                //WIP
+                // var foundIndex = tileData.findIndex(p => p.id === result);
+                // if(foundIndex > -1){
+                //     add(tileData[foundIndex]);
+                // }
+                // }catch(error: any){
+                //   console.log(error);
+                // }
+                // finally{
+                //   onClicked();}
             }}
             style={{
                 paddingRight: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
                 marginRight: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
-                color: 'white'
+                color: 'black'
             }}
-            aria-label={`${item.title}`}
+            //WIP
+            // aria-label={`${item.title}`}
             className={"pointerOverEffect"}>
             <AddShoppingCartIcon 
               style={{
-                color: 'white',
+                color: 'black',
                 paddingRight: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px'
             }}/>
-            {'DO KOSZYKA'}
+            {t('Buy').toUpperCase()}
         </Button>}
       </DeviceContextConsumer>
     );

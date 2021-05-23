@@ -29,7 +29,7 @@ export const useGroupedItems = () => {
       const grouped = GroupBy(items, "id");
       const flatGrouped = new Array<CountedItemDetails>();
 
-      grouped.forEach((value: Array<ItemDetails>, key: string) => {
+      grouped.forEach((value: Array<ItemDetails>) => {
           flatGrouped.push({details: value[0], count: value.length});
       });
 

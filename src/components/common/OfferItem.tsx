@@ -10,18 +10,19 @@ import useTouched from '../../hooks/useTouched';
 import { DeviceContextConsumer, DeviceType } from '../../contexts/DeviceContext';
 import { useState } from 'react';
 import { LoadingInProgress } from '../molecules/LoadingInProgress';
+import { Box } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     title: {
-      color: 'white',
+      color: `${theme.palette.common.white}`,
       fontWeight: 'bold',
       whiteSpace: 'break-spaces',
       width: '100%',
-      WebkitTapHighlightColor: 'transparent',
+      WebkitTapHighlightColor: 'transparent'
     },
     titleBar: {
-      background: 'rgba(206, 17, 38, 0.68)',
+      background: 'gray',
       WebkitTapHighlightColor: 'transparent',
     }
   }),
@@ -38,58 +39,57 @@ function OfferItem(props: ClothesItemProps){
   const hoverRef = useRef(null);
   const isHover = useHover(hoverRef);
   const isTouched = useTouched(hoverRef);
-  const [ isLoading, setIsLoading] = useState<boolean>(true);
-
-  useEffect(()=>{
-    cacheImages(tile.img).then(()=>{
-      setIsLoading(false);
-    });
-  }, [tile.img]);
+  const [ isLoading, setIsLoading] = useState<boolean>(false);
 
   return (
     <DeviceContextConsumer>
       {context =>
-        <div
-          ref={hoverRef}
-          onClick={()=>{
-            var element = document.getElementById((context.valueOf() === DeviceType.isDesktopOrLaptop ? "ccm" : "ccd")+tile.id);
-          
-            if(element !==null){
-              element.click();
-            }
-          }}
+       <Box boxShadow={10} 
           style={{
-            WebkitTapHighlightColor: 'transparent',
-            opacity: context === DeviceType.isDesktopOrLaptop ? (isHover ? '0.67' : '1') : isTouched ? '0.67' : '1',
-            cursor: 'pointer',
-            height: '100%',
-            width: '100%'
+            height: 'auto'
         }}>
-          {isLoading === true ? (
-            <div style={{
-              width:context.valueOf() === DeviceType.isDesktopOrLaptop ? 'inherit' : '100%',
-              height:context.valueOf() === DeviceType.isDesktopOrLaptop ? 'inherit' : 'unset'
-            }}>
-              <LoadingInProgress />
-            </div>
-          ):(
-            <img src={tile.img[0]} alt={tile.title} style={{
-              WebkitTapHighlightColor: 'transparent',
-              maxHeight: context.valueOf() === DeviceType.isDesktopOrLaptop ? 'unset': '100%',
-              objectFit: context.valueOf() === DeviceType.isDesktopOrLaptop ? 'cover' : 'cover',
-              width:context.valueOf() === DeviceType.isDesktopOrLaptop ? 'inherit' : '100%',
-              height:context.valueOf() === DeviceType.isDesktopOrLaptop ? 'inherit' : 'unset'
-            }}/>
-          )}
-          <GridListTileBar
-            key={index}
-            title={<ItemDetailsTextButton item={tile} id={(context.valueOf() === DeviceType.isDesktopOrLaptop ? "ccm" : "ccd")+tile.id}/>}
-            classes={{
-              root: classes.titleBar,
-              title: classes.title
+          <div
+            ref={hoverRef}
+            onClick={()=>{
+              var element = document.getElementById((context.valueOf() === DeviceType.isDesktopOrLaptop ? "ccm" : "ccd")+tile.id);
+            
+              if(element !==null){
+                element.click();
+              }
             }}
-          />
-        </div>
+            style={{
+              WebkitTapHighlightColor: 'transparent',
+              opacity: context === DeviceType.isDesktopOrLaptop ? (isHover ? '0.67' : '1') : isTouched ? '0.67' : '1',
+              cursor: 'pointer',
+              height: '100%',
+              width: '100%'
+          }}>
+            {isLoading === true ? (
+              <div style={{
+                width:context.valueOf() === DeviceType.isDesktopOrLaptop ? 'inherit' : '100%',
+                height:context.valueOf() === DeviceType.isDesktopOrLaptop ? 'inherit' : 'unset'
+              }}>
+                <LoadingInProgress />
+              </div>
+            ):(
+              <img src={tile.images[0].imageData} alt={tile.id || "title here"} style={{
+                WebkitTapHighlightColor: 'transparent',
+                maxHeight: context.valueOf() === DeviceType.isDesktopOrLaptop ? 'unset': '100%',
+                objectFit: context.valueOf() === DeviceType.isDesktopOrLaptop ? 'cover' : 'cover',
+                width:context.valueOf() === DeviceType.isDesktopOrLaptop ? 'auto' : '100%',
+                height:context.valueOf() === DeviceType.isDesktopOrLaptop ? 'inherit' : 'unset'
+              }}/>
+            )}
+            <GridListTileBar
+              key={index}
+              title={<ItemDetailsTextButton item={tile} id={(context.valueOf() === DeviceType.isDesktopOrLaptop ? "ccm" : "ccd")+tile.id}/>}
+              classes={{
+                root: classes.titleBar,
+                title: classes.title
+              }}
+            />
+          </div>
+        </Box>
       }
     </DeviceContextConsumer>
   );

@@ -23,7 +23,7 @@ return (
                 <StepLabel>
                   <div style={{
                     fontSize: context === DeviceType.isDesktopOrLaptop ? '16px': '10px',
-                    fontFamily: 'Montserrat'
+                    fontFamily: 'Signoria-Bold'
                     }}>
                       {label}
                     </div>

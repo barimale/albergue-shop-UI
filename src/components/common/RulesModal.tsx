@@ -6,6 +6,7 @@ import Fade from '@material-ui/core/Fade';
 import { content, title } from "../../rules";
 import { DeviceContextConsumer, DeviceType } from '../../contexts/DeviceContext';
 import { Button } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,7 +34,8 @@ export default function RulesModal(props: PrivayTermsModalProps) {
   const { isDisplayed, onHide } = props;
   const [open, setOpen] = React.useState(false);
   const maxHeight = window.innerHeight * 0.7;
-
+  const { t } = useTranslation();
+  
   useEffect(()=>{
     setOpen(isDisplayed);
   }, [ isDisplayed ]);
@@ -60,15 +62,15 @@ export default function RulesModal(props: PrivayTermsModalProps) {
           <div 
             className={classes.paper}
             style={{
-              fontFamily: 'Montserrat !important',
+              fontFamily: 'Signoria-Bold !important',
               textAlign: 'center',
               width: context === DeviceType.isDesktopOrLaptop ? '50%' : '100%'
             }}>
-            <h2 style={{fontFamily: 'Montserrat'}}>{title.toUpperCase()}</h2>
+            <h2 style={{fontFamily: 'Signoria-Bold'}}>{title.toUpperCase()}</h2>
             <p style={{
               maxHeight: maxHeight,
               textAlign: 'justify',
-              fontFamily: 'Montserrat',
+              fontFamily: 'Signoria-Bold',
               overflowY: 'auto',
               paddingLeft: '5px',
               paddingRight: '5px',
@@ -79,7 +81,7 @@ export default function RulesModal(props: PrivayTermsModalProps) {
             <Button
               className={"pointerOverEffect"}
               style={{
-                fontFamily: 'Montserrat',
+                fontFamily: 'Signoria-Bold',
                 marginBottom: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px',
                 marginTop: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px'}}
               variant={"contained"}
@@ -87,7 +89,7 @@ export default function RulesModal(props: PrivayTermsModalProps) {
               onClick={()=>{
                 handleClose();
               }}>
-              {'ZAMKNIJ'}
+              {t('Close').toUpperCase()}
             </Button>
           </div>
         </Fade>

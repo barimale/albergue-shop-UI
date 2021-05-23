@@ -13,6 +13,8 @@ code {
 }
 
 @font-face {
-  font-family: 'SacramentoRegular';
-  src: local('SacramentoRegular'), url(./fonts/Sacramento-Regular.ttf) format('truetype');
+  font-family: 'Signoria-Bold';
+  src:local('Signoria-Bold'), url('./assets/fonts/Signoria-Bold.ttf.woff') format('woff'); 
+  font-weight: normal;
+  font-style: normal;
 }
