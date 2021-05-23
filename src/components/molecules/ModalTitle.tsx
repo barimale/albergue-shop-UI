@@ -4,10 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { Typography } from '@material-ui/core';
 import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
+import { thirdMain } from '../../customTheme';
 
 type ModalTitleProps = {
     title: string;
-    close: () => void;
+    close: (event: any) => void;
 }
 
 export const ModalTitle = (props: ModalTitleProps) => {
@@ -18,7 +19,7 @@ export const ModalTitle = (props: ModalTitleProps) => {
         <DeviceContextConsumer>
             {context => 
             <div style={{
-                width: 'auto',
+                width: '100%',
                 height: 'auto',
                 display: 'flex',
                 flexDirection: 'row',
@@ -26,7 +27,7 @@ export const ModalTitle = (props: ModalTitleProps) => {
                 alignContent: 'center',
                 paddingTop: '10px',
                 paddingBottom: '10px',
-                borderLeft: `20px solid ${theme.palette.primary.main}`
+                backgroundColor: `${thirdMain}`
             }}>
                 <Typography
                     align={'center'}
@@ -34,6 +35,7 @@ export const ModalTitle = (props: ModalTitleProps) => {
                         margin: '0px',
                         color: `${theme.palette.common.white}`,
                         WebkitTapHighlightColor: 'transparent',
+                        // fontSize: context === DeviceType.isDesktopOrLaptop ? '24px' : '14px',
                         fontSize: context === DeviceType.isDesktopOrLaptop ? '30px' : '20px',
                         textAlign: 'left',
                         fontFamily: 'Signoria-Bold',
@@ -45,8 +47,8 @@ export const ModalTitle = (props: ModalTitleProps) => {
                 </Typography>
                 <IconButton 
                 className={"pointerOverEffect"}
-                onClick={async () => {
-                    props.close();
+                onClick={async (event:any) => {
+                    props.close(event);
                 }}>
                     <ClearIcon style={{color: 'white'}}/>
                 </IconButton>

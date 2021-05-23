@@ -5,6 +5,7 @@ import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import { Path as ContactPath } from "../screens/ContactScreen";
 import { useHistory } from "react-router-dom";
 import useTheme from "@material-ui/core/styles/useTheme";
+import { useTranslation } from "react-i18next";
 
 type AskButtonProps = {
     isFirstLineVisible? : boolean;
@@ -13,11 +14,13 @@ type AskButtonProps = {
 export const AskButton = (props: AskButtonProps) => {
     const history = useHistory();
     const theme = useTheme();
-    
+    const { t } = useTranslation();
+
     return(
     <DeviceContextConsumer>
     {context =>
         <div style={{
+            borderRadius: '0px',
             paddingRight: '20px',
             display: 'flex', 
             flexDirection: 'column'}}>
@@ -26,7 +29,7 @@ export const AskButton = (props: AskButtonProps) => {
                 verticalAlign: 'middle',
                 textAlign: 'left',
                 fontSize: context === DeviceType.isDesktopOrLaptop ? "14px" : "12px"}}>
-                {'Produkt niedostępny'}
+                {t('Out of stock')}
             </Typography>
             )}
             <Typography 
@@ -46,7 +49,7 @@ export const AskButton = (props: AskButtonProps) => {
                     }}
                     onClick={(event: any)=>{
                         event.stopPropagation();
-                        history.push(ContactPath);
+                        history.replace(ContactPath);
                     }}>
                     <OpenInNewIcon 
                     fontSize={context === DeviceType.isDesktopOrLaptop ? 'small' : 'small'}
@@ -54,7 +57,7 @@ export const AskButton = (props: AskButtonProps) => {
                         verticalAlign: 'middle',
                         paddingRight: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
                     }}/>
-                    {'ZAPYTAJ O DOSTĘPNOŚĆ'}
+                    {t('Contact Us')}
                 </a>
             </Typography>
         </div>

@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
       overflow: 'hidden',
       padding: '32px', 
       paddingTop: '0px',
-      maxHeight: '80%',
+      maxHeight: '100%',
       height: 'inherit'
     },
     gridList: {
@@ -67,7 +67,7 @@ function BuyContent(props: BuyContentProps){
               width: items.length > 1 ? '50%' : '100%',
               padding: '10px', 
               outlineOffset: '-10px', 
-              outline: 'solid 3px gray'}}>
+              outline: 'solid 2px black'}}>
             <OfferItem tile={tile} index={index}/>
           </GridListTile>
         ))}

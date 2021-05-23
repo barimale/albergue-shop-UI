@@ -12,6 +12,8 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@material-ui/core/styles';
+import { ModalTitle } from '../molecules/ModalTitle';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -37,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     gridList: {
       width: 'auto',
-      height: 'auto',
+      height: '100%',
       maxWidth: '100%',
       maxHeight: '100%',
       overflowX: 'auto',
@@ -52,7 +54,6 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.background.paper,
       border: '2px solid #000',
       boxShadow: theme.shadows[2],
-      padding: theme.spacing(2, 4, 3),
     },
   }),
 );
@@ -88,6 +89,7 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
         className={classes.modal}
         open={open}
         onClose={handleClose}
+        disableBackdropClick={true}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -103,11 +105,10 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
               maxHeight: maxHeight,
               width: context === DeviceType.isDesktopOrLaptop ? (images.length === 1 ? '50%' : '75%') : '95%'
             }}>
-            <h2 
-            style={{
-              fontSize: context === DeviceType.isDesktopOrLaptop ? '24px' : '14px',
-              marginTop: '5px'
-              }}>{item.translatableDetails[0].name}</h2>
+            <ModalTitle title={item.translatableDetails[0].name} close={(event: any)=> {
+              event.stopPropagation();
+              handleClose();
+            }}/>
             <GridList 
               cellHeight={window.innerHeight*0.25} 
               className={classes.gridList} 
@@ -118,74 +119,96 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
                 </GridListTile>
               ))}
             </GridList>
-            <h4 style={{
-              }}>{t('Price') + ': ' + (item.active.valueOf() === false ? '-' : item.price + 'EUR') }
-              </h4>
             <div 
-              className={classes.scroolableContent}
               style={{
-                height:window.innerHeight*0.3
+                paddingTop: '4px',
+                padding: '30px'
+            }}>
+              <Typography 
+                style={{
+                  fontSize: context.valueOf() === DeviceType.isDesktopOrLaptop ? '26px' : '20px',
+                  paddingBottom: '20px'
               }}>
-            <h4 style={{
-              fontFamily: 'Signoria-Bold',
-              margin: '0px'
-            }}>{t("Description")}</h4>
-            <p style={{
-              maxHeight: maxHeight,
-              textAlign: 'justify',
-              fontFamily: 'Signoria-Bold',
-              overflowY: 'auto',
-              paddingLeft: '5px',
-              paddingRight: '5px',
-              whiteSpace: 'pre-line',
-              fontSize: context === DeviceType.isDesktopOrLaptop ? '14px' : '10px'
-            }}>
-              {/* //WIP descriptionKey */}
-              <div dangerouslySetInnerHTML={{ __html: item.translatableDetails[0].description }} />
-            </p>
-            <h4 style={{fontFamily: 'Signoria-Bold', margin: '0px'}}>{t('Details')}</h4>
-            <p style={{
-              maxHeight: maxHeight,
-              textAlign: 'justify',
-              fontFamily: 'Signoria-Bold',
-              overflowY: 'auto',
-              paddingLeft: '5px',
-              paddingRight: '5px',
-              whiteSpace: 'pre-line',
-              fontSize: context === DeviceType.isDesktopOrLaptop ? '14px' : '10px'
-            }}>
-              <div dangerouslySetInnerHTML={{ __html: item.translatableDetails[0].shortDescription }} />
-            </p>
-            </div>
-            <div style={{
-              paddingTop: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
-              display: 'flex',
-              alignItems: 'center',
-              flexDirection: 'row'}}>
-            {item.active === false ? (
-              <AskButton/>
-            ):(
-              <BuyButton 
-              onClicked={()=>{
-                handleClose();
-              }}
-              item={item}/>
-            )}
-            <Button
-              className={"pointerOverEffect"}
-              variant="contained"
-              style={{
-                color: `${theme.palette.common.black}`,
-              }}
-              onClick={(event: any)=>{
-                event.stopPropagation();
-                handleClose();
-              }}>{t('Close').toUpperCase()}</Button>
+                {t('Price') + ': ' + (item.active.valueOf() === false ? '-' : item.price + 'EUR') }
+              </Typography>
+              <div 
+                className={classes.scroolableContent}
+                style={{
+                  height:window.innerHeight*0.3
+                }}>
+                <h4 style={{
+                  fontFamily: 'Signoria-Bold',
+                  margin: '0px'
+                }}>{t("Description")}</h4>
+                <p style={{
+                  maxHeight: maxHeight,
+                  textAlign: 'justify',
+                  fontFamily: 'Signoria-Bold',
+                  overflowY: 'auto',
+                  paddingLeft: '5px',
+                  paddingRight: '5px',
+                  whiteSpace: 'pre-line',
+                  fontSize: context === DeviceType.isDesktopOrLaptop ? '14px' : '10px'
+                }}>
+                  {/* //WIP descriptionKey */}
+                  <div dangerouslySetInnerHTML={{ __html: item.translatableDetails[0].description }} />
+                </p>
+                <h4 
+                  style={{
+                    fontFamily: 'Signoria-Bold',
+                    margin: '0px',
+                    paddingTop: '20px'
+                }}>
+                  {t('Details')}
+                </h4>
+                <p style={{
+                  maxHeight: maxHeight,
+                  textAlign: 'justify',
+                  fontFamily: 'Signoria-Bold',
+                  overflowY: 'auto',
+                  paddingLeft: '5px',
+                  paddingRight: '5px',
+                  whiteSpace: 'pre-line',
+                  fontSize: context === DeviceType.isDesktopOrLaptop ? '14px' : '10px'
+                }}>
+                  <div dangerouslySetInnerHTML={{ __html: item.translatableDetails[0].shortDescription }} />
+                </p>
               </div>
+              <div style={{
+                paddingTop: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
+                display: 'flex',
+                alignItems: 'center',
+                flexDirection: 'row'
+              }}>
+                {item.active === false ? (
+                  <AskButton/>
+                ):(
+                  <BuyButton 
+                  onClicked={()=>{
+                    handleClose();
+                  }}
+                  item={item}/>
+                )}
+                <Button
+                  className={"pointerOverEffect"}
+                  variant="contained"
+                  style={{
+                    color: `${theme.palette.common.black}`,
+                    borderRadius: '0px'
+                  }}
+                  onClick={(event: any)=>{
+                    event.stopPropagation();
+                    handleClose();
+                }}>
+                  {t('Close').toUpperCase()}
+                </Button>
+              </div>
+            </div>
           </div>
         </>
-        </Fade>
-      </Modal>}
+      </Fade>
+    </Modal>
+    }
     </DeviceContextConsumer>
   );
 }

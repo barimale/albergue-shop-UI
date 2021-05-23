@@ -5,6 +5,8 @@ import { useMediaQuery } from 'react-responsive';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { useLocation, useHistory } from "react-router-dom";
+import { RGBToRGBA, thirdMain } from "../../customTheme";
+import { hexToRgb } from "@material-ui/core/styles";
 
 const usePrevious = (value: any) => {
   const ref = useRef();
@@ -46,7 +48,7 @@ export const MainLayout = (props : any) =>  {
             width: '100%',
             paddingTop: paddingTop,
             display: 'inline-flex',
-            background: '#252526',
+            background: `${RGBToRGBA(hexToRgb(thirdMain), 1)}`,
             justifyContent: 'center'}}>
             {props.children}
         </div>

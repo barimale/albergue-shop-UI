@@ -15,7 +15,7 @@ import { Box } from '@material-ui/core';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     title: {
-      color: `${theme.palette.common.white}`,
+      color: `${theme.palette.common.black}`,
       fontWeight: 'bold',
       whiteSpace: 'break-spaces',
       width: '100%',
@@ -44,7 +44,7 @@ function OfferItem(props: ClothesItemProps){
   return (
     <DeviceContextConsumer>
       {context =>
-       <Box boxShadow={10} 
+       <Box boxShadow={2} 
           style={{
             height: 'auto'
         }}>

@@ -97,6 +97,7 @@ export const BuyButton = (props:{item: ItemDetails, onClicked: ()=> void}) => {
                 //   onClicked();}
             }}
             style={{
+                borderRadius: '0px',
                 paddingRight: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
                 marginRight: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
                 color: 'black'
