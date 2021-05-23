@@ -16,6 +16,7 @@ import { thirdMain } from '../../customTheme';
 import { Ornament } from './Ornament';
 import useTheme from "@material-ui/core/styles/useTheme";
 import { useTranslation } from 'react-i18next';
+import { Logo } from "../common/Logo";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -67,10 +68,12 @@ function TopMenu() {
                   <MenuWithItems/>
                 )}</>
                   )}
+                  <Logo />
                   <Typography
                     className={classes.title}
                     align={context === DeviceType.isDesktopOrLaptop ? "left" : 'center'}
                     style={{
+                      paddingLeft: '30px',
                       fontWeight: 'bold',
                       color: 'white',
                       WebkitTapHighlightColor: 'transparent',

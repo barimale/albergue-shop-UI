@@ -1,4 +1,3 @@
-
 export interface ItemDetails {
     id?: string;
     active: boolean;
