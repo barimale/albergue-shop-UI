@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '@material-ui/core/styles';
 import { ModalTitle } from '../molecules/ModalTitle';
 import { Typography } from '@material-ui/core';
+import { thirdMain } from '../../customTheme';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
     modal: {
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'center'
     },
     scroolableContent: {
       width: '100%',
@@ -51,6 +52,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexWrap: 'wrap',
       overflow: 'hidden',
+      // backgroundColor: `${thirdMain}`,
       backgroundColor: theme.palette.background.paper,
       border: '2px solid #000',
       boxShadow: theme.shadows[2],
@@ -109,13 +111,27 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
               event.stopPropagation();
               handleClose();
             }}/>
+            <div 
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+            }}>
             <GridList 
-              cellHeight={window.innerHeight*0.25} 
+              cellHeight={window.innerHeight*0.40} 
               className={classes.gridList} 
-              cols={context === DeviceType.isDesktopOrLaptop ?(images.length > 1 ? (images.length > 2 ? 2.5 : 2) : 1):(images.length > 1 ? 1.5 : 1)}>
+              cols={context === DeviceType.isDesktopOrLaptop ?(images.length > 1 ? (images.length > 2 ? 1.5 : 2) : 1):(images.length > 1 ? 1.5 : 1)}>
               {images.map((tile: ItemImageDetails, index: number) => (
-                <GridListTile key={index} cols={1}>
-                  <img src={tile.imageData} alt={item.id! + '_' + index}/>
+                <GridListTile key={index} cols={1} style={{
+                  width: 'max-content !important'
+                }}>
+                  <img 
+                    src={tile.imageData} 
+                    alt={item.id! + '_' + index} 
+                    style={{
+                      height: '100%',
+                      width: 'auto',
+                      textAlign: 'center'
+                  }}/>
                 </GridListTile>
               ))}
             </GridList>
@@ -134,7 +150,7 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
               <div 
                 className={classes.scroolableContent}
                 style={{
-                  height:window.innerHeight*0.3
+                  height:window.innerHeight*0.15
                 }}>
                 <h4 style={{
                   fontFamily: 'Signoria-Bold',
@@ -204,6 +220,7 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
                 </Button>
               </div>
             </div>
+          </div>
           </div>
         </>
       </Fade>
