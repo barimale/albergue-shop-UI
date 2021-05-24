@@ -1,5 +1,5 @@
 import Header from "../molecules/Header";
-import { Footer } from "../molecules/Footer";
+import Footer from "../molecules/Footer";
 import { useState } from "react";
 import { useMediaQuery } from 'react-responsive';
 import { useRef } from 'react';
@@ -18,6 +18,7 @@ const usePrevious = (value: any) => {
 
 export const MainLayout = (props : any) =>  {
     const [paddingTop, setPaddingTop] = useState<number>(10);
+    const [paddingBottom, setPaddingBottom] = useState<number>(10);
     const { innerHeight: height } = window;
     const isPortrait = useMediaQuery({ orientation: 'portrait' });
     const prevVal = usePrevious(isPortrait);
@@ -44,15 +45,18 @@ export const MainLayout = (props : any) =>  {
             setPaddingTop(size.height || 0);
         }} />
         <div className="main-layout" style={{
-            height: height - paddingTop,
+            height: height - paddingTop - paddingBottom,
             width: '100%',
             paddingTop: paddingTop,
+            paddingBottom: paddingBottom,
             display: 'inline-flex',
             background: `${RGBToRGBA(hexToRgb(thirdMain), 1)}`,
             justifyContent: 'center'}}>
             {props.children}
         </div>
-        <Footer/>
+        <Footer onSize={(size: any)=>{
+            setPaddingBottom(size.height || 0);
+        }} />
     </>
     );
 }

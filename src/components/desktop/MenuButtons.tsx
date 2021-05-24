@@ -18,9 +18,11 @@ export default function MenuButtons(props: any) {
             key={index} 
             color="inherit" 
             style={{
-              paddingLeft: '10px',
-              paddingRight: '10px',
-              fontSize: '26px',
+              paddingLeft: '12px',
+              // border: '0.5px solid white',
+              paddingRight: '12px',
+              fontSize: '20px',
+              margin: '10px',
               fontWeight: 'bold'}} 
             href={GetFullPathTo(configSections, section.title)}>
               {section.title.toUpperCase()}

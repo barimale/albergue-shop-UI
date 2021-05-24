@@ -7,6 +7,7 @@ import { title as PivacyTermsTitle } from "../../privacy-terms";
 import { DeviceType, DeviceContextConsumer } from '../../contexts/DeviceContext';
 import { useShopStatus } from '../../hooks/useShopStatus';
 import { useTranslation } from 'react-i18next';
+import sizeMe from 'react-sizeme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Footer = () =>  {
+function Footer(){
   const [ isModalDisplayed, setIsModalDisplayed ] = useState<boolean>(false);
   const [ isModal2Displayed, setIsModal2Displayed ] = useState<boolean>(false);
   const status = useShopStatus();
@@ -96,3 +97,5 @@ export const Footer = () =>  {
     </DeviceContextConsumer>
   )
 }
+
+export default sizeMe({ monitorHeight: true })(Footer);
