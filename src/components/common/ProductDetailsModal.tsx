@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
       scrollbarColor: `rgba(203,203,203,0.5) white`
     },
     gridList: {
-      width: 'auto',
+      width: window.innerWidth*0.8 - 70,
       height: '100%',
       maxWidth: '100%',
       maxHeight: '100%',
@@ -137,20 +137,24 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
             </GridList>
             <div 
               style={{
-                paddingTop: '4px',
-                padding: '30px'
+                padding: '20px',
+                paddingTop: '10px'
             }}>
               <Typography 
                 style={{
                   fontSize: context.valueOf() === DeviceType.isDesktopOrLaptop ? '26px' : '20px',
-                  paddingBottom: '20px'
+                  paddingBottom: '10px',
+                  paddingTop: '0px'
               }}>
                 {t('Price') + ': ' + (item.active.valueOf() === false ? '-' : item.price + 'EUR') }
               </Typography>
               <div 
                 className={classes.scroolableContent}
                 style={{
-                  height:window.innerHeight*0.15
+                  height:window.innerHeight*0.15,
+                  border: '0.5px solid gray',
+                  padding: '10px',
+                  marginRight: '30px'
                 }}>
                 <h4 style={{
                   fontFamily: 'Signoria-Bold',
@@ -210,7 +214,12 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
                   variant="contained"
                   style={{
                     color: `${theme.palette.common.black}`,
-                    borderRadius: '0px'
+                    borderRadius: '0px',
+                    paddingLeft: context === DeviceType.isDesktopOrLaptop ? '30px' : '10px',
+                    paddingRight: context === DeviceType.isDesktopOrLaptop ? '30px' : '10px',
+                    marginRight: context === DeviceType.isDesktopOrLaptop ? '30px' : '10px',
+                    backgroundColor: `${theme.palette.common.white}`,
+                    fontSize: '20px'
                   }}
                   onClick={(event: any)=>{
                     event.stopPropagation();

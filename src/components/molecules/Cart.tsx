@@ -11,6 +11,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Button from '@material-ui/core/Button';
 import { DeviceType, DeviceContextConsumer } from '../../contexts/DeviceContext';
 import { useTranslation } from 'react-i18next';
+import { blueColor } from "../../customTheme";
 
 const StyledBadge = withStyles((theme: Theme) =>
   createStyles({
@@ -98,16 +99,21 @@ export const BuyButton = (props:{item: ItemDetails, onClicked: ()=> void}) => {
             }}
             style={{
                 borderRadius: '0px',
-                paddingRight: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
-                marginRight: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
-                color: 'black'
+                paddingLeft: context === DeviceType.isDesktopOrLaptop ? '30px' : '10px',
+                paddingRight: context === DeviceType.isDesktopOrLaptop ? '30px' : '10px',
+                marginRight: context === DeviceType.isDesktopOrLaptop ? '30px' : '10px',
+                color: 'white',
+                backgroundColor: `${blueColor}`,
+                fontSize: '20px'
             }}
             //WIP
             // aria-label={`${item.title}`}
             className={"pointerOverEffect"}>
             <AddShoppingCartIcon 
               style={{
-                color: 'black',
+                color: 'white',
+                height: '30px',
+                width: 'auto',
                 paddingRight: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px'
             }}/>
             {t('Buy').toUpperCase()}
