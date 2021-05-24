@@ -64,6 +64,7 @@ export function BuyScreen(props: BuyScreenProps){
           flexDirection: 'column',
           justifyContent: context === DeviceType.isDesktopOrLaptop ? 'space-around': 'space-evenly',
           color: 'white',
+          width: '100%',
           paddingBottom: 0,
           height: 'inherit',
           fontSize: context === DeviceType.isDesktopOrLaptop ? '40px' : '25px'
