@@ -1,14 +1,23 @@
 {
     "Close": "Close",
+    "Back": "Back",
     "Menu": "Menu",
+    "Next": "Next",
+    "Buy": "Buy",
+    "Description" : "Description",
+    "ShortDescription" : "Details",
+    "Price": "Price",
+    "Privacy terms": "Privacy terms",
+    "Rules": "Rules",
     "Header title":{
         "Shop": "Shop",
-        "Line1": "ALBERGUE",
-        "Line2": "DE PEREGRINOS",
-        "Line3": "PORTO"
+        "Line1": "AlbergueE",
+        "Line2": "de Peregrinos",
+        "Line3": "Porto"
     },
     "Categories":"Categories",
     "Search": "Search",
     "There are no items in the shop": "There are no items in the shop",
-    "There are no items in the basket":"There are no items in the basket"
+    "There are no items in the basket":"There are no items in the basket",
+    "There are no items available in that category": "There are no items available in that category"
 }

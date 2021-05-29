@@ -16,6 +16,7 @@ import ErrorStepContent from "../common/cart-steps/ErrorStepContent";
 import { ShortAddressSchema, LongAddressSchema} from "../common/cart-steps/AddressStepContent";
 import { Formik, Form, FormikProps } from 'formik';
 import { ContentLayout2 } from "../../components/layouts/MainLayout";
+import { useTranslation } from 'react-i18next';
 
 export const Path = "/cart";
 
@@ -64,6 +65,8 @@ export function CartScreen(){
 }
 
 function EmptyCart(){
+  const { t } = useTranslation();
+  
     return(
         <DeviceContextConsumer>
             {context => 
@@ -75,7 +78,7 @@ function EmptyCart(){
                     color: 'white',
                     fontSize: context === DeviceType.isDesktopOrLaptop ? '40px' : '25px'
                 }}>
-                    {"There are no items in the basket".toUpperCase()}
+                    {t("There are no items in the basket").toUpperCase()}
                 </div>
             }
         </DeviceContextConsumer>
@@ -86,6 +89,7 @@ function CartWithItems(){
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
+  const { t } = useTranslation();
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -167,7 +171,7 @@ function CartWithItems(){
                         onClick={handleBack}
                         variant="text"
                         color="primary">
-                        {'WSTECZ'}
+                        {t('Back').toUpperCase()}
                     </Button>
                     {activeStep !== steps.length - 1  && (
                     <Button
@@ -181,7 +185,7 @@ function CartWithItems(){
                           handleNext();
                         }
                       }}>
-                      {'DALEJ'}
+                      {t('Next').toUpperCase()}
                     </Button>
                     )}
                   </div>

@@ -5,6 +5,7 @@ import { ItemDetails } from '../common/BuyItems';
 import OfferItem from '../common/OfferItem';
 import { useMediaQuery } from 'react-responsive';
 import { DeviceType, DeviceContextConsumer } from '../../contexts/DeviceContext';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -49,6 +50,7 @@ export type BuyContentProps = {
 function BuyContent(props: BuyContentProps){
   const { items } = props;
   const classes = useStyles();
+  const { t } = useTranslation();
   const isHorizontalMobile = useMediaQuery({ minDeviceWidth: 444, maxDeviceHeight: 500 });
   
   return (
@@ -66,7 +68,7 @@ function BuyContent(props: BuyContentProps){
               fontSize: context === DeviceType.isDesktopOrLaptop ? '40px' : '25px'
           }}>
             <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'end'}}>
-                {"There are no items avalaible in that category".toUpperCase()}
+                {t("There are no items available in that category").toUpperCase()}
             </div>
           </div>
         ):(

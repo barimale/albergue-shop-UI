@@ -30,7 +30,7 @@ type Cart = {
 
 const CartContext = React.createContext<Cart>({} as Cart);
 
-const CART_KEY = "71dc692c-47e5-4966-9fdc-da0fd26dbe13";
+const CART_KEY = "8D61A160-53B4-40F1-A078-4DEEDC4E6CD7";
 
 const CartContextProvider = (props: any) => {
     const [ defaultItems, setDefaultItems] = useState<Array<ItemDetails>>(new Array<ItemDetails>());

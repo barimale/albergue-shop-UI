@@ -154,7 +154,7 @@ const Title = () =>{
             fontSize: context === DeviceType.isDesktopOrLaptop ? '64px':'32px',
             textAlign: context === DeviceType.isDesktopOrLaptop ? "left" : 'left'
         }}>
-          {t('Shop').toUpperCase()}
+          {t('Header title:Shop').toUpperCase()}
         </Typography>
         <div 
           style={{
@@ -174,7 +174,7 @@ const Title = () =>{
               fontSize: 'inherit',
               textAlign: 'left'
           }}>
-            {t('Albergue')}
+            {t('Header title.Line1')}
           </Typography>
           <Typography
             noWrap
@@ -187,7 +187,7 @@ const Title = () =>{
               fontSize: 'inherit',
               textAlign: 'left'
           }}>
-            {t('de Peregrinos')}
+            {t('Header title.Line2')}
           </Typography>
           <Typography
             align={'left'}
@@ -199,7 +199,7 @@ const Title = () =>{
               fontSize: 'inherit',
               textAlign: 'left'
           }}>
-            {t('Porto')}
+            {t('Header title.Line3')}
           </Typography>
         </div>
       </div>
