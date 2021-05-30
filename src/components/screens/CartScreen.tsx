@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function getSteps() {
-  return ['Koszyk', 'Wprowadź dane do wysyłki', 'Potwierdź z obowiązkiem zapłaty'];
+  return ['Items', 'Shippment', 'Confirmation'];
 }
 
 function getStepContent(stepIndex: number, handleNext: ()=> void, formikProps: FormikProps<AddressDetails>): JSX.Element {
@@ -78,7 +78,7 @@ function EmptyCart(){
                     color: 'white',
                     fontSize: context === DeviceType.isDesktopOrLaptop ? '40px' : '25px'
                 }}>
-                    {t("There are no items in the basket").toUpperCase()}
+                    {t("There are no items in the cart").toUpperCase()}
                 </div>
             }
         </DeviceContextConsumer>

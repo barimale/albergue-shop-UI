@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ItemDetails } from '../components/common/BuyItems';
+import { ItemDetails, ItemImageDetails } from '../components/common/BuyItems';
 
 export interface AddressDetails {
   firstName: string;
@@ -58,6 +58,7 @@ const CartContextProvider = (props: any) => {
             return defaultItems.length;
           },
         add: (data: ItemDetails) => {
+          data.images = new Array<ItemImageDetails>();
           var currentCart = Array.from<ItemDetails>(defaultItems);
           const result = currentCart.concat([data]);
           setDefaultItems(result);

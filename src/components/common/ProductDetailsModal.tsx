@@ -107,7 +107,7 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
               maxHeight: maxHeight,
               width: context === DeviceType.isDesktopOrLaptop ? (images.length === 1 ? '50%' : '75%') : '95%'
             }}>
-            <ModalTitle title={item.translatableDetails[0].name} close={(event: any)=> {
+            <ModalTitle title={t(`${item.id||""}.name`)} close={(event: any)=> {
               event.stopPropagation();
               handleClose();
             }}/>
@@ -159,7 +159,7 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
                 <h4 style={{
                   fontFamily: 'Signoria-Bold',
                   margin: '0px'
-                }}>{t("Description")}</h4>
+                }}>{t('Description')}</h4>
                 <p style={{
                   maxHeight: maxHeight,
                   textAlign: 'justify',
@@ -171,7 +171,7 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
                   fontSize: context === DeviceType.isDesktopOrLaptop ? '14px' : '10px'
                 }}>
                   {/* //WIP descriptionKey */}
-                  <div dangerouslySetInnerHTML={{ __html: item.translatableDetails[0].description }} />
+                  <div dangerouslySetInnerHTML={{ __html: t(`${item.id||""}.description`)}} />
                 </p>
                 <h4 
                   style={{
@@ -191,7 +191,7 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
                   whiteSpace: 'pre-line',
                   fontSize: context === DeviceType.isDesktopOrLaptop ? '14px' : '10px'
                 }}>
-                  <div dangerouslySetInnerHTML={{ __html: item.translatableDetails[0].shortDescription }} />
+                  <div dangerouslySetInnerHTML={{ __html: t(`${item.id||""}.shortDescription`) }} />
                 </p>
               </div>
               <div style={{

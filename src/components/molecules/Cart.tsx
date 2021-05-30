@@ -84,18 +84,14 @@ export const BuyButton = (props:{item: ItemDetails, onClicked: ()=> void}) => {
             color="secondary" 
             id={item.id}
             onClick={(event: any)=>{
-                // try{
-                const result = event.currentTarget.id;
-                //WIP
-                // var foundIndex = tileData.findIndex(p => p.id === result);
-                // if(foundIndex > -1){
-                //     add(tileData[foundIndex]);
-                // }
-                // }catch(error: any){
-                //   console.log(error);
-                // }
-                // finally{
-                //   onClicked();}
+                try{
+                  add(item);
+                }catch(error: any){
+                  console.log(error);
+                }
+                finally{
+                  onClicked();
+                }
             }}
             style={{
                 borderRadius: '0px',
@@ -106,8 +102,7 @@ export const BuyButton = (props:{item: ItemDetails, onClicked: ()=> void}) => {
                 backgroundColor: `${blueColor}`,
                 fontSize: '20px'
             }}
-            //WIP
-            // aria-label={`${item.title}`}
+            aria-label={`${item.id || ""}`}
             className={"pointerOverEffect"}>
             <AddShoppingCartIcon 
               style={{

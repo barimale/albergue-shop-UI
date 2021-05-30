@@ -18,6 +18,8 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
+import { useTranslation } from "react-i18next";
+import EuroSymbolIcon from '@material-ui/icons/EuroSymbol';
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -30,7 +32,8 @@ export function CartContent(){
     const { groupedItems, total } = useGroupedItems();
     const { remove, add, getCount, decrementByOne } = useContext(CartContext);
     const history = useHistory();
-
+    const { t } = useTranslation();
+    
     useEffect(()=>{
         if(getCount() === 0){
             history.push(HomePath);
@@ -46,20 +49,20 @@ export function CartContent(){
             flexDirection: 'column',
             width: '100%',
             justifyContent: 'center',
-            paddingLeft: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px',
-            paddingRight: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px'
+            paddingLeft: context === DeviceType.isDesktopOrLaptop ? '0px' : '10px',
+            paddingRight: context === DeviceType.isDesktopOrLaptop ? '0px' : '10px'
         }}>
             <TableContainer component={Paper}>
                 <Table 
                     style={{
                         fontSize: context === DeviceType.isDesktopOrLaptop ? '20px': '12px'
                     }}
-                    aria-label="zawartość koszyka">
+                    aria-label="cart content">
                     <TableHead>
                         <TableRow>
-                            <TableCell style={{fontWeight: 'bold', fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}} width="40%">{'Produkty'.toUpperCase()}</TableCell>
-                            <TableCell style={{fontWeight: 'bold', fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}} align="center" width="15%">{'Szt.'.toUpperCase()}</TableCell>
-                            <TableCell style={{fontWeight: 'bold', fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}} align="right" width="45%">{'Cena'.toUpperCase()}</TableCell>
+                            <TableCell style={{fontWeight: 'bold', fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}} width="40%">{t('Products').toUpperCase()}</TableCell>
+                            <TableCell style={{fontWeight: 'bold', fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}} align="center" width="15%">{t('Qty.').toUpperCase()}</TableCell>
+                            <TableCell style={{fontWeight: 'bold', fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}} align="right" width="45%">{t('Price').toUpperCase()}</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody style={{fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}}>
@@ -68,15 +71,24 @@ export function CartContent(){
                                 <TableCell component="th" scope="row" style={{fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}}>
                                 {item.details.id || ""}
                                 </TableCell>
-                                <TableCell align="right" style={{fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}}>
+                                <TableCell align="center" style={{fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}}>
                                     <div 
                                         style={{
                                             display: 'flex',
                                             flexDirection: 'column',
                                             alignContent: 'center',
-                                            textAlign: 'center'
+                                            textAlign: 'center',
+                                            alignSelf: 'center',
+                                            width: '100%'
                                         }}>
-                                        <ButtonGroup size="small" style={{display: 'flex'}}>
+                                        <ButtonGroup 
+                                            size="small" 
+                                            style={{
+                                                display: 'flex', 
+                                                width: '100%',
+                                                alignItems: 'center',
+                                                justifyContent: 'center'
+                                        }}>
                                             <IconButton
                                                 onClick={()=>{
                                                     decrementByOne(item.details);
@@ -98,24 +110,40 @@ export function CartContent(){
                                             </IconButton>
                                         </ButtonGroup>
                                         <Typography style={{
-                                            paddingTop: context === DeviceType.isDesktopOrLaptop ? '10px' : '6px'
+                                            paddingTop: context === DeviceType.isDesktopOrLaptop ? '10px' : '6px',
+                                            width: '100%'
                                         }}>
                                             <a 
                                             className={"pointerOverEffect"}
                                             style={{
                                             cursor: 'pointer',
                                             color: 'rgba(206, 17, 38, 1)',
+                                            width: '100%'
                                             }}
                                             onClick={()=>{
                                                 remove(item.details)
                                             }}
                                             >
-                                            {'USUŃ'}</a>
+                                            {t('remove').toUpperCase()}</a>
                                         </Typography>
                                     </div>
                                 </TableCell>
                                 <TableCell align="right" style={{fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}}>
-                                    {item.details.price + 'zł'}
+                                    <div
+                                        style={{
+                                            display: 'flex',
+                                            flexDirection: 'row',
+                                            alignContent: 'center',
+                                            justifyContent: 'flex-end',
+                                            alignItems: 'center'
+                                    }}>
+                                        {item.details.price.toFixed(2)}
+                                        <EuroSymbolIcon style={{
+                                            paddingLeft: '5px',
+                                            height:'20px',
+                                            width: 'auto'
+                                        }}/>
+                                    </div>
                                 </TableCell>
                         </TableRow>);
                         })}
@@ -128,7 +156,7 @@ export function CartContent(){
                                 style={{
                                     fontWeight: 'bold'
                                 }}>
-                                SUMA
+                                {t("Total").toUpperCase()}
                             </Typography>
                             </TableCell>
                             <TableCell align="right" colSpan={2}>
@@ -139,7 +167,21 @@ export function CartContent(){
                                         fontWeight: 'normal',
                                         fontSize: context === DeviceType.isDesktopOrLaptop ? '40px' : '24px'
                                     }}>
-                                    {total() + 'zł'}
+                                        <div
+                                        style={{
+                                            display: 'flex',
+                                            flexDirection: 'row',
+                                            alignContent: 'center',
+                                            justifyContent: 'flex-end',
+                                            alignItems: 'center'
+                                    }}>
+                                         {total().toFixed(2)}
+                                        <EuroSymbolIcon style={{
+                                            paddingLeft: '5px',
+                                            height: context === DeviceType.isDesktopOrLaptop ? '44px' : '24px',
+                                            width: 'auto'
+                                        }}/>
+                                    </div>
                                 </Typography>
                             </TableCell>
                         </TableRow>
