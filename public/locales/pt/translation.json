@@ -6,7 +6,7 @@
     "Buy": "Buy",
     "Description" : "Description",
     "ShortDescription" : "Details",
-    "Price": "Preco",
+    "Price": "Price",
     "Privacy terms": "Privacy terms",
     "Rules": "Rules",
     "Header title":{
@@ -18,17 +18,28 @@
     "Categories":"Categories",
     "Search": "Search",
     "There are no items in the shop": "There are no items in the shop",
-    "There are no items in the basket":"There are no items in the basket",
+    "There are no items in the cart":"There are no items in the cart",
     "There are no items available in that category": "There are no items available in that category",
-    
-        "DemoEN": "DemoPT",
-        "DUMMY": "DUMMY",
-        "This and that": "Isso e aquilo",
-        "ALL": "asd",
-        "e71b6df8-08c8-43c0-b39d-ca13747acc09": {
-          "description": "Cigaros Camel Yellow",
-          "shortDescription": "Cigaros Camel Yellow",
-          "name": "Cigaros Camel Yellow PT"
-        }
-      
+    "Shopping bag": "Shopping bag",
+    "Order summary": "Order summary",
+    "Shipping": "Shipping",
+    "Review & order":"Review & order",
+    "Search...": "Search...",
+    "Total": "Total",
+    "Remove": "Remove",
+    "Qty.": "Quantity",
+    "Please select Your delivery address": "Please select Your delivery address",
+    "Firstname": "Firstname",
+    "Lastname": "Lastname",
+    "Address line 1": "Address line 1",
+    "Address line 2": "Address line 2",
+    "City": "City",
+    "Region": "Region",
+    "Postal-code": "Postal code",
+    "Country": "Country",
+    "Repeat e-mail": "Repeat e-mail",
+    "Field is required": "Field is required",
+    "Shippment cost": "Delivery price",
+    "Shippment details": "Address details"
+
 }

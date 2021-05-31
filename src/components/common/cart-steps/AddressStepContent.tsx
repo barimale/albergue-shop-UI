@@ -52,15 +52,24 @@ export function AddressStepContent(props: FormikProps<AddressDetails>) {
   const { isPhysicalItemIncluded } = useContext(CartContext);
   const { t } = useTranslation();
   return (
-    <>
-      <Typography>{t("Please select Your delivery address")}</Typography>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column'
+    }}>
+      <Typography 
+        style={{
+          paddingBottom: '10px'
+      }}>
+        {t("Please select Your delivery address")}
+      </Typography>
       <Grid container spacing={3} style={{width: '100%', verticalAlign: 'center', height: '100%'}}>
         {isPhysicalItemIncluded() === true && (
           <AddressForPostDelivery {...props}/>
         )}
         <AddressForOnlineDelivery {...props}/>
       </Grid>
-    </>
+    </div>
   );
 }
 

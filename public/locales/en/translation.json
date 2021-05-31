@@ -23,5 +23,23 @@
     "Shopping bag": "Shopping bag",
     "Order summary": "Order summary",
     "Shipping": "Shipping",
-    "Review & order":"Review & order"
+    "Review & order":"Review & order",
+    "Search...": "Search...",
+    "Total": "Total",
+    "Remove": "Remove",
+    "Qty.": "Quantity",
+    "Please select Your delivery address": "Please select Your delivery address",
+    "Firstname": "Firstname",
+    "Lastname": "Lastname",
+    "Address line 1": "Address line 1",
+    "Address line 2": "Address line 2",
+    "City": "City",
+    "Region": "Region",
+    "Postal-code": "Postal code",
+    "Country": "Country",
+    "Repeat e-mail": "Repeat e-mail",
+    "Field is required": "Field is required",
+    "Shippment cost": "Delivery price",
+    "Shippment details": "Address details"
+
 }
