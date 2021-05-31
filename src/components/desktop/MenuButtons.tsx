@@ -2,9 +2,11 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { configSection, configSectionType, GetFullPathTo } from "../../router/routerConfiguration";
 import { useCategories } from '../../hooks/useCategories';
+import { useTranslation } from "react-i18next";
 
 export default function MenuButtons(props: any) {
   const { configSections } = useCategories();
+  const { t } = useTranslation();
 
     return (
     <div {...props}>
@@ -25,7 +27,7 @@ export default function MenuButtons(props: any) {
               margin: '10px',
               fontWeight: 'bold'}} 
             href={GetFullPathTo(configSections, section.title)}>
-              {section.title.toUpperCase()}
+              {t(section.title).toUpperCase()}
             </Button>
         }
       })}
