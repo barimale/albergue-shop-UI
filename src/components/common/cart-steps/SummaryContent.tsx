@@ -13,6 +13,7 @@ import { Checkbox } from '@material-ui/core';
 import { useEmailClient } from '../../../hooks/useEmailClient';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ReCAPTCHA from "react-google-recaptcha";
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
     listItem: {
@@ -43,6 +44,7 @@ export default function SummaryContent(props: SummaryContentProps){
   const { clear, getAddressDetails, items, setOrderStatus } = useContext(CartContext);
   const [ isModalDisplayed, setIsModalDisplayed ] = useState<boolean>(false);
   const [ isModal2Displayed, setIsModal2Displayed ] = useState<boolean>(false);
+  const { t, i18n } = useTranslation();
 
   let captcha : ReCAPTCHA | null = null;
 
@@ -55,35 +57,25 @@ return(
           item 
           xs={12}>
             <Typography variant="h6" gutterBottom className={classes.title}>
-              {'WARTOŚĆ ZAMÓWIENIA'}
+              {t('Total')}
             </Typography>
-            <Typography gutterBottom>{'Zamówienie na łączną kwotę ' + total() + ' zł.'}</Typography>
+            <Typography gutterBottom>{`${t('Your order costs ') + total()} Euros.`}</Typography>
             <Divider/>
         </Grid>
         <Grid 
           item 
           xs={12}>
             <Typography variant="h6" gutterBottom className={classes.title}>
-              {'KOSZT WYSYŁKI'}
+              {t('Shippment cost')}
             </Typography>
-            <Typography gutterBottom>{'Usługa w cenie produktu.'}</Typography>
+            <Typography gutterBottom>{t('WIP')}</Typography>
             <Divider/>
         </Grid>
-        {getAddressDetails().firstName !== "" && (
-        <Grid 
-          item 
-          xs={12}>
-            <Typography variant="h6" gutterBottom className={classes.title}>
-              {'KOSZT WYSYŁKI'}
-            </Typography>
-            <Typography gutterBottom>{'Koszty wysyłki Pocztą Polska są zawarte w cenie artykułów.'}</Typography>
-            <Divider/>
-        </Grid>)}
         <Grid
           item 
           xs={12}>
           <Typography variant="h6" gutterBottom className={classes.title}>
-            {'DANE DO WYSYŁKI'}
+            {t('Shippment details')}
           </Typography>
           {getAddressDetails().firstName !== "" && (
             <Typography gutterBottom>{getAddressDetails().firstName + ' ' + getAddressDetails().lastName}</Typography>
@@ -120,7 +112,7 @@ return(
             }}
             color="secondary"/>
           <span>
-            {'Akceptuję '}
+            {t('I hereby accept ')}
             <a 
               style={{
                 cursor: 'pointer',
@@ -131,8 +123,8 @@ return(
               event.stopPropagation();
               setIsModal2Displayed(true);
             }}>
-            {'regulamin sklepu'}</a>
-            {' oraz zgadzam się z '}
+            {t('shop rules')}</a>
+            {t(' and fully agree with ')}
             <a 
               style={{
                 cursor: 'pointer',
@@ -143,7 +135,7 @@ return(
               event.stopPropagation();
               setIsModalDisplayed(true);
             }}>
-              {'polityką prywatności.'}</a>
+              {t('privacy policy.')}</a>
           </span>
           <PrivayTermsModal 
             isDisplayed={isModalDisplayed} 
@@ -163,7 +155,8 @@ return(
           <div style={{display: 'inline-block'}}>
             <ReCAPTCHA
             ref={el => { captcha = el; }}
-              hl="PL"
+              hl={i18n.language.toLowerCase()}
+              // WIP
               sitekey="6LcjoCgaAAAAAB7P7CzAN8jUbsXaS1cGht_CSsb0"
               onChange={(token: string | null)=>{
                 setCaptchaToken(token);
@@ -192,7 +185,7 @@ return(
 
               const result = await send(
                 getAddressDetails().email, 
-                "ZAMÓWIENIE - odkrywajcie.sklep", 
+                `${t("Order").toUpperCase()} - Albergue De Peregrinos Porto - Shop`, 
                 captchaToken || ""
               );
 
@@ -206,7 +199,7 @@ return(
             {isOrderInProgress === true && (
               <CircularProgress color={'inherit'} style={{height: '26px', width: '26px', marginRight: '10px'}}/>
             )}
-            ZAMAWIAM
+            {t("Order").toUpperCase()}
           </Button>
         </Grid>
       </Grid>

@@ -5,6 +5,7 @@ import { CartContext, AddressDetails } from '../../../contexts/CartContext';
 import * as Yup from 'yup';
 import { FormikProps, useField } from "formik";
 import { DeviceContextConsumer, DeviceType } from '../../../contexts/DeviceContext';
+import { useTranslation } from 'react-i18next';
 
 export const ShortAddressSchema = Yup.object().shape({
   email: Yup.string()
@@ -81,6 +82,8 @@ function MyTextField(props: any) {
 }
 
 const AddressForOnlineDelivery = (props: FormikProps<AddressDetails>) =>{
+  const { t } = useTranslation();
+
   return (
 <>
   <Grid item xs={12}>
@@ -88,7 +91,7 @@ const AddressForOnlineDelivery = (props: FormikProps<AddressDetails>) =>{
     {...props}
       id="email"
       name="email"
-      label="Email"
+      label={t("E-mail")}
       fullWidth
       autoComplete="email"
     />
@@ -98,7 +101,7 @@ const AddressForOnlineDelivery = (props: FormikProps<AddressDetails>) =>{
     {...props}
       id="emailConfirmed"
       name="emailConfirmed"
-      label="Powtórz email"
+      label={t("Repeat e-mail")}
       fullWidth
       autoComplete="email"
     />
@@ -108,6 +111,8 @@ const AddressForOnlineDelivery = (props: FormikProps<AddressDetails>) =>{
 }
 
 const AddressForPostDelivery = (props: FormikProps<AddressDetails>) =>{
+  const { t } = useTranslation();
+
   return(
     <>
       <Grid item xs={12} sm={6}>
@@ -115,7 +120,7 @@ const AddressForPostDelivery = (props: FormikProps<AddressDetails>) =>{
           {...props}
           id="firstName"
           name="firstName"
-          label="Imię"
+          label={t("Firstname")}
           fullWidth
           autoComplete="given-name"
         />
@@ -125,7 +130,7 @@ const AddressForPostDelivery = (props: FormikProps<AddressDetails>) =>{
           {...props}
           id="lastName"
           name="lastName"
-          label="Nazwisko"
+          label={t("Lastname")}
           fullWidth
           autoComplete="family-name"
         />
@@ -135,7 +140,7 @@ const AddressForPostDelivery = (props: FormikProps<AddressDetails>) =>{
           {...props}
           id="addressLine1"
           name="addressLine1"
-          label="Adres linia 1"
+          label={t("Address line 1")}
           fullWidth
           autoComplete="shipping address-line1"
         />
@@ -145,7 +150,7 @@ const AddressForPostDelivery = (props: FormikProps<AddressDetails>) =>{
           {...props}
           id="addressLine2"
           name="addressLine2"
-          label="Adres linia 2"
+          label={t("Address line 2")}
           fullWidth
           autoComplete="address-line2"
         />
@@ -155,7 +160,7 @@ const AddressForPostDelivery = (props: FormikProps<AddressDetails>) =>{
           {...props}
           id="city"
           name="city"
-          label="Miasto"
+          label={t("City")}
           fullWidth
           autoComplete="address-level2"
         />
@@ -166,7 +171,7 @@ const AddressForPostDelivery = (props: FormikProps<AddressDetails>) =>{
           id="region" 
           name="region"
           autoComplete="address-level1"
-          label="Województwo"
+          label={t("Region")}
           fullWidth />
       </Grid>
       <Grid item xs={12} sm={6}>
@@ -174,7 +179,7 @@ const AddressForPostDelivery = (props: FormikProps<AddressDetails>) =>{
           {...props}
           id="zipCode"
           name="zipCode"
-          label="Kod pocztowy"
+          label={t("Postal-code")}
           fullWidth
           autoComplete="postal-code"
         />
@@ -184,7 +189,7 @@ const AddressForPostDelivery = (props: FormikProps<AddressDetails>) =>{
           {...props}
           id="country"
           name="country"
-          label="Kraj"
+          label={t("Country")}
           autoComplete="country-name"
           fullWidth
         />
