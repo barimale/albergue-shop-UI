@@ -69,7 +69,7 @@ export function CartContent(){
                         {groupedItems.map((item: CountedItemDetails, index: number)=>{
                             return (<TableRow key={index}>
                                 <TableCell component="th" scope="row" style={{fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}}>
-                                {item.details.id || ""}
+                                {t(`${item.details.id || ""}.name`)}
                                 </TableCell>
                                 <TableCell align="center" style={{fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}}>
                                     <div 
