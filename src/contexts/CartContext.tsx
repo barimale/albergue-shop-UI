@@ -58,6 +58,7 @@ const CartContextProvider = (props: any) => {
             return defaultItems.length;
           },
         add: (data: ItemDetails) => {
+          data.images = new Array<ItemImageDetails>();
           var currentCart = Array.from<ItemDetails>(defaultItems);
           const result = currentCart.concat([data]);
           setDefaultItems(result);
