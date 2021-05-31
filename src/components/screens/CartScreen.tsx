@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function getSteps() {
-  return ['Items', 'Shippment', 'Confirmation'];
+  return ['Shopping bag', 'Shipping', 'Review & order'];
 }
 
 function getStepContent(stepIndex: number, handleNext: ()=> void, formikProps: FormikProps<AddressDetails>): JSX.Element {

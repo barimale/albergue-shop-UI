@@ -20,13 +20,8 @@
     "There are no items in the shop": "There are no items in the shop",
     "There are no items in the cart":"There are no items in the cart",
     "There are no items available in that category": "There are no items available in that category",
-    "DemoEN": "DemoEN",
-  "DUMMY": "DUMMY",
-  "This and that": "This and that",
-  "ALL": "ALL",
-  "e71b6df8-08c8-43c0-b39d-ca13747acc09": {
-    "description": "Cigaros Camel Yellow",
-    "shortDescription": "Cigaros Camel Yellow",
-    "name": "Cigaros Camel Yellow"
-  }
+    "Shopping bag": "Shopping bag",
+    "Order summary": "Order summary",
+    "Shipping": "Shipping",
+    "Review & order":"Review & order"
 }

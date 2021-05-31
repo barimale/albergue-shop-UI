@@ -96,23 +96,23 @@ export const BuyButton = (props:{item: ItemDetails, onClicked: ()=> void}) => {
             }}
             style={{
                 borderRadius: '0px',
-                paddingLeft: context === DeviceType.isDesktopOrLaptop ? '30px' : '10px',
-                paddingRight: context === DeviceType.isDesktopOrLaptop ? '30px' : '10px',
-                marginRight: context === DeviceType.isDesktopOrLaptop ? '30px' : '10px',
+                paddingLeft: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
+                paddingRight: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
+                marginRight: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
                 color: 'white',
                 backgroundColor: `${greenColor}`,
-                fontSize: '20px'
+                fontSize: '16px'
             }}
             aria-label={`${item.id || ""}`}
             className={"pointerOverEffect"}>
             <AddShoppingCartIcon 
               style={{
                 color: 'white',
-                height: '30px',
+                height: '20px',
                 width: 'auto',
-                paddingRight: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px'
+                paddingRight: context === DeviceType.isDesktopOrLaptop ? '10px' : '10px'
             }}/>
-            {t('Buy').toUpperCase()}
+            {t('Add to cart').toUpperCase()}
         </Button>}
       </DeviceContextConsumer>
     );

@@ -6,57 +6,61 @@ import * as Yup from 'yup';
 import { FormikProps, useField } from "formik";
 import { DeviceContextConsumer, DeviceType } from '../../../contexts/DeviceContext';
 import { useTranslation } from 'react-i18next';
+import Typography from '@material-ui/core/Typography';
 
 export const ShortAddressSchema = Yup.object().shape({
   email: Yup.string()
-  .email('Nieprawidłowy adres email')
-  .required('Pole jest wymagane'),
+  .email('Field format is incorrect')
+  .required('Field is required'),
   emailConfirmed: Yup.string()
-  .oneOf([Yup.ref('email'), null], "Adresy email różnią się")
-  .required('Pole jest wymagane')
+  .oneOf([Yup.ref('email'), null], "E-mail and confirmed e-mail needs to be the same")
+  .required('Field is required')
 });
 
 export const LongAddressSchema = Yup.object().shape({
   firstName: Yup.string()
-  .required('Pole jest wymagane')
-  .min(2, 'Pole musi mieć nie mniej niż 2 znaki'),
+  .required('Field is required')
+  .min(2, 'Firstname needs to have at least 2 characters'),
   lastName: Yup.string()
-  .required('Pole jest wymagane')
-  .min(2, 'Pole musi mieć nie mniej niż 2 znaki'),
+  .required('Field is required')
+  .min(2, 'Lastname needs to have at least 2 characters'),
   addressLine1: Yup.string()
-  .min(2, 'Pole musi mieć nie mniej niż 2 znaki')
-  .required('Pole jest wymagane'),
+  .min(2, 'Field needs to have at least 2 characters')
+  .required('Field is required'),
   addressLine2: Yup.string(),
   city: Yup.string()
-  .required('Pole jest wymagane')
-  .min(2, 'Pole musi mieć nie mniej niż 2 znaki'),
+  .required('Field is required')
+  .min(2, 'Field needs to have at least 2 characters'),
   zipCode: Yup.string()
-  .required('Pole jest wymagane')
-  .min(2, 'Pole musi mieć nie mniej niż 2 znaki'),
+  .required('Field is required')
+  .min(2, 'Field needs to have at least 2 characters'),
   region: Yup.string()
-  .required('Pole jest wymagane')
-  .min(2, 'Pole musi mieć nie mniej niż 2 znaki'),
+  .required('Field is required')
+  .min(2, 'Field needs to have at least 2 characters'),
   country: Yup.string()
-  .required('Pole jest wymagane')
-  .min(2, 'Pole musi mieć nie mniej niż 2 znaki'),
+  .required('Field is required')
+  .min(2, 'Field needs to have at least 2 characters'),
   email: Yup.string()
-  .email('Nieprawidłowy adres email')
-  .required('Pole jest wymagane'),
+  .email('Field format is incorrect')
+  .required('Field is required'),
   emailConfirmed: Yup.string()
-  .oneOf([Yup.ref('email'), null], "Adresy email różnią się")
-  .required('Pole jest wymagane')
+  .oneOf([Yup.ref('email'), null], "E-mail and confirmed e-mail needs to be the same")
+  .required('Field is required')
 });
 
 export function AddressStepContent(props: FormikProps<AddressDetails>) {
   const { isPhysicalItemIncluded } = useContext(CartContext);
-  
+  const { t } = useTranslation();
   return (
-    <Grid container spacing={3} style={{width: '100%', verticalAlign: 'center', height: '100%'}}>
-      {isPhysicalItemIncluded() === true && (
-        <AddressForPostDelivery {...props}/>
-      )}
-      <AddressForOnlineDelivery {...props}/>
-    </Grid>
+    <>
+      <Typography>{t("Please select Your delivery address")}</Typography>
+      <Grid container spacing={3} style={{width: '100%', verticalAlign: 'center', height: '100%'}}>
+        {isPhysicalItemIncluded() === true && (
+          <AddressForPostDelivery {...props}/>
+        )}
+        <AddressForOnlineDelivery {...props}/>
+      </Grid>
+    </>
   );
 }
 

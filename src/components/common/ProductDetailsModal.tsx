@@ -117,7 +117,7 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
                 flexDirection: 'column',
             }}>
             <GridList 
-              cellHeight={window.innerHeight*0.40} 
+              cellHeight={window.innerHeight*0.34} 
               className={classes.gridList} 
               cols={context === DeviceType.isDesktopOrLaptop ?(images.length > 1 ? (images.length > 2 ? 1.5 : 2) : 1):(images.length > 1 ? 1.5 : 1)}>
               {images.map((tile: ItemImageDetails, index: number) => (
@@ -142,9 +142,9 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
             }}>
               <Typography 
                 style={{
-                  fontSize: context.valueOf() === DeviceType.isDesktopOrLaptop ? '26px' : '20px',
+                  fontSize: context.valueOf() === DeviceType.isDesktopOrLaptop ? '18px' : '20px',
                   paddingBottom: '10px',
-                  paddingTop: '0px'
+                  paddingTop: '3px'
               }}>
                 <div
                   style={{
@@ -157,8 +157,9 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
                   {t('Price') + ': ' + (item.active.valueOf() === false ? '-' : item.price.toFixed(2))}
                   <EuroSymbolIcon 
                     style={{
-                      paddingLeft: '5px',
-                      height:'30px',
+                      paddingLeft: '4px',
+                      height:'18px',
+                      color: 'black',
                       width: 'auto'
                   }}/>
                 </div>
@@ -185,7 +186,6 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
                   whiteSpace: 'pre-line',
                   fontSize: context === DeviceType.isDesktopOrLaptop ? '14px' : '10px'
                 }}>
-                  {/* //WIP descriptionKey */}
                   <div dangerouslySetInnerHTML={{ __html: t(`${item.id||""}.description`)}} />
                 </p>
                 <h4 
@@ -230,11 +230,11 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
                   style={{
                     color: `${theme.palette.common.black}`,
                     borderRadius: '0px',
-                    paddingLeft: context === DeviceType.isDesktopOrLaptop ? '30px' : '10px',
-                    paddingRight: context === DeviceType.isDesktopOrLaptop ? '30px' : '10px',
-                    marginRight: context === DeviceType.isDesktopOrLaptop ? '30px' : '10px',
+                    paddingLeft: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
+                    paddingRight: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
+                    marginRight: context === DeviceType.isDesktopOrLaptop ? '20px' : '10px',
                     backgroundColor: `${theme.palette.common.white}`,
-                    fontSize: '20px'
+                    fontSize: '16px'
                   }}
                   onClick={(event: any)=>{
                     event.stopPropagation();
