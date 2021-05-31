@@ -17,6 +17,7 @@ import { ShortAddressSchema, LongAddressSchema} from "../common/cart-steps/Addre
 import { Formik, Form, FormikProps } from 'formik';
 import { ContentLayout2 } from "../../components/layouts/MainLayout";
 import { useTranslation } from 'react-i18next';
+import { theme } from '../../customTheme';
 
 export const Path = "/cart";
 
@@ -189,10 +190,18 @@ function CartWithItems(){
                     </Button>
                     )}
                   </div>
-                  <CenteredDiv style={{
+                  <div style={{
+                    // WIP:sizeme
+                    padding: '40px',
+                    boxShadow: `${theme.shadows[2]}`,
+                    border: '1px solid lightgray',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    maxHeight: window.innerHeight*0.35,
+                    overflowY: 'auto',
                     backgroundColor: 'white'}}>
                     {getStepContent(activeStep, handleNext, props)}
-                  </CenteredDiv>
+                  </div>
               </div>
               )}
             </Form>

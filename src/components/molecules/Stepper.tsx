@@ -20,11 +20,11 @@ const StepperContainer = (props: StepperContainerProps) => {
             <Stepper
                 activeStep={activeStep} 
                 alternativeLabel>
-                {steps.map((label) => (
+                {steps.map((label, index: number) => (
                 <Step key={label}>
                     <StepLabel>
                     <div style={{
-                        fontSize: context === DeviceType.isDesktopOrLaptop ? '16px': '10px',
+                        fontSize: activeStep === index ? (context === DeviceType.isDesktopOrLaptop ? '24px': '14px') : (context === DeviceType.isDesktopOrLaptop ? '16px': '10px'),
                         fontFamily: 'Signoria-Bold'
                         }}>
                         {t(label)}

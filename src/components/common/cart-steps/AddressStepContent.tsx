@@ -50,7 +50,7 @@ export function AddressStepContent(props: FormikProps<AddressDetails>) {
   const { isPhysicalItemIncluded } = useContext(CartContext);
   
   return (
-    <Grid container spacing={3} style={{width: '100%', verticalAlign: 'center'}}>
+    <Grid container spacing={3} style={{width: '100%', verticalAlign: 'center', height: '100%'}}>
       {isPhysicalItemIncluded() === true && (
         <AddressForPostDelivery {...props}/>
       )}

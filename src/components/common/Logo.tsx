@@ -30,7 +30,7 @@ export const Logo = (props: any) => {
             cursor: 'pointer',
             opacity: opacityValue,
             WebkitTapHighlightColor: 'transparent',
-            height: context === DeviceType.isDesktopOrLaptop ? '40px' : `${42 - 2}px`,
+            height: context === DeviceType.isDesktopOrLaptop ? '50px' : `${42 - 2}px`,
             objectFit: 'scale-down'
           }} />
       </div>}

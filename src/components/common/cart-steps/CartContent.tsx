@@ -52,7 +52,7 @@ export function CartContent(){
             paddingLeft: context === DeviceType.isDesktopOrLaptop ? '0px' : '10px',
             paddingRight: context === DeviceType.isDesktopOrLaptop ? '0px' : '10px'
         }}>
-            <TableContainer component={Paper}>
+            <TableContainer >
                 <Table 
                     style={{
                         fontSize: context === DeviceType.isDesktopOrLaptop ? '20px': '12px'

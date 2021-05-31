@@ -6,12 +6,12 @@ import { useContext, useEffect, useState } from "react";
 import { CartContext } from '../../contexts/CartContext';
 import Badge from '@material-ui/core/Badge';
 import { Theme, withStyles, createStyles } from '@material-ui/core/styles';
-import { ItemDetails } from '../common/BuyItems';
+import { ItemDetails, ItemImageDetails } from '../common/BuyItems';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Button from '@material-ui/core/Button';
 import { DeviceType, DeviceContextConsumer } from '../../contexts/DeviceContext';
 import { useTranslation } from 'react-i18next';
-import { blueColor } from "../../customTheme";
+import { greenColor } from "../../customTheme";
 
 const StyledBadge = withStyles((theme: Theme) =>
   createStyles({
@@ -85,6 +85,7 @@ export const BuyButton = (props:{item: ItemDetails, onClicked: ()=> void}) => {
             id={item.id}
             onClick={(event: any)=>{
                 try{
+                  //WIP map to Item without images
                   add(item);
                 }catch(error: any){
                   console.log(error);
@@ -99,7 +100,7 @@ export const BuyButton = (props:{item: ItemDetails, onClicked: ()=> void}) => {
                 paddingRight: context === DeviceType.isDesktopOrLaptop ? '30px' : '10px',
                 marginRight: context === DeviceType.isDesktopOrLaptop ? '30px' : '10px',
                 color: 'white',
-                backgroundColor: `${blueColor}`,
+                backgroundColor: `${greenColor}`,
                 fontSize: '20px'
             }}
             aria-label={`${item.id || ""}`}

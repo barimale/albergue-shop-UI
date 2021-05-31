@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '@material-ui/core/styles';
 import { ModalTitle } from '../molecules/ModalTitle';
 import { Typography } from '@material-ui/core';
-import { thirdMain } from '../../customTheme';
+import EuroSymbolIcon from '@material-ui/icons/EuroSymbol';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -146,7 +146,22 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
                   paddingBottom: '10px',
                   paddingTop: '0px'
               }}>
-                {t('Price') + ': ' + (item.active.valueOf() === false ? '-' : item.price + 'EUR') }
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    alignContent: 'center',
+                    width: 'max-content'
+                }}>
+                  {t('Price') + ': ' + (item.active.valueOf() === false ? '-' : item.price.toFixed(2))}
+                  <EuroSymbolIcon 
+                    style={{
+                      paddingLeft: '5px',
+                      height:'30px',
+                      width: 'auto'
+                  }}/>
+                </div>
               </Typography>
               <div 
                 className={classes.scroolableContent}
