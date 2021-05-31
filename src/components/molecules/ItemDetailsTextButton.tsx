@@ -4,6 +4,7 @@ import ProductDetailsModal from "../common/ProductDetailsModal";
 import SearchIcon from '@material-ui/icons/Search';
 import { DeviceContextConsumer, DeviceType } from "../../contexts/DeviceContext";
 import Typography from '@material-ui/core/Typography';
+import { useTranslation } from 'react-i18next';
 
 type ItemDetailsTextButtonProps = {
     item: ItemDetails;
@@ -13,7 +14,8 @@ type ItemDetailsTextButtonProps = {
 export const ItemDetailsTextButton = (props: ItemDetailsTextButtonProps) => {
     const [isModalDisplayed, setIsModalDisplayed] = useState<boolean>(false);
     const { item } = props;
-    
+    const { t } = useTranslation();
+
     return(
     <DeviceContextConsumer>
     {context =>
@@ -37,8 +39,7 @@ export const ItemDetailsTextButton = (props: ItemDetailsTextButtonProps) => {
                         verticalAlign: 'middle',
                         paddingRight: context === DeviceType.isDesktopOrLaptop ? '10px' : '6px'
                     }}/>
-                    {/* //WIP */}
-                    {item.translatableDetails[0].name}
+                    {t(`${item.id}.name`)}
             </Typography>
             <ProductDetailsModal 
                 item={item}

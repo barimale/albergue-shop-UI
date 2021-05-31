@@ -6,7 +6,7 @@
     "Buy": "Buy",
     "Description" : "Description",
     "ShortDescription" : "Details",
-    "Price": "Price",
+    "Price": "Preco",
     "Privacy terms": "Privacy terms",
     "Rules": "Rules",
     "Header title":{
@@ -19,5 +19,16 @@
     "Search": "Search",
     "There are no items in the shop": "There are no items in the shop",
     "There are no items in the basket":"There are no items in the basket",
-    "There are no items available in that category": "There are no items available in that category"
+    "There are no items available in that category": "There are no items available in that category",
+    
+        "DemoEN": "DemoPT",
+        "DUMMY": "DUMMY",
+        "This and that": "Isso e aquilo",
+        "ALL": "asd",
+        "e71b6df8-08c8-43c0-b39d-ca13747acc09": {
+          "description": "Cigaros Camel Yellow",
+          "shortDescription": "Cigaros Camel Yellow",
+          "name": "Cigaros Camel Yellow PT"
+        }
+      
 }
