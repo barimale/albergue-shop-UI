@@ -24,9 +24,9 @@ const StepperContainer = (props: StepperContainerProps) => {
                 <Step key={label}>
                     <StepLabel>
                     <div style={{
-                        fontSize: activeStep === index ? (context === DeviceType.isDesktopOrLaptop ? '24px': '14px') : (context === DeviceType.isDesktopOrLaptop ? '16px': '10px'),
+                        fontSize: activeStep === index ? (context === DeviceType.isDesktopOrLaptop ? '16px': '14px') : (context === DeviceType.isDesktopOrLaptop ? '16px': '10px'),
                         fontFamily: 'Signoria-Bold'
-                        }}>
+                    }}>
                         {t(label)}
                         </div>
                     </StepLabel>

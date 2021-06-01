@@ -219,7 +219,8 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
                   <AskButton/>
                 ):(
                   <BuyButton 
-                  onClicked={()=>{
+                  onClicked={(event: any)=>{
+                    event?.stopPropagation();
                     handleClose();
                   }}
                   item={item}/>

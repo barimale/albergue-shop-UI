@@ -59,7 +59,7 @@ return(
             <Typography variant="h6" gutterBottom className={classes.title}>
               {t('Total')}
             </Typography>
-            <Typography gutterBottom>{`${t('Your order costs ') + total()} Euros.`}</Typography>
+            <Typography gutterBottom>{`${t('Your order costs ') + total().toFixed(2)} Euros.`}</Typography>
             <Divider/>
         </Grid>
         <Grid 

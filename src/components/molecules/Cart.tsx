@@ -71,7 +71,7 @@ const Cart = (props: any) => {
     );
 }
 
-export const BuyButton = (props:{item: ItemDetails, onClicked: ()=> void}) => {
+export const BuyButton = (props:{item: ItemDetails, onClicked: React.MouseEventHandler<HTMLButtonElement> | undefined}) => {
     const { add } = useContext(CartContext);
     const { item, onClicked } = props;
     const { t } = useTranslation();
@@ -84,14 +84,15 @@ export const BuyButton = (props:{item: ItemDetails, onClicked: ()=> void}) => {
             color="secondary" 
             id={item.id}
             onClick={(event: any)=>{
+              event.stopPropagation();
+
                 try{
-                  //WIP map to Item without images
                   add(item);
                 }catch(error: any){
                   console.log(error);
                 }
                 finally{
-                  onClicked();
+                  onClicked !== undefined && onClicked(event);
                 }
             }}
             style={{

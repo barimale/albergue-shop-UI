@@ -58,9 +58,10 @@ const CartContextProvider = (props: any) => {
             return defaultItems.length;
           },
         add: (data: ItemDetails) => {
-          data.images = new Array<ItemImageDetails>();
+          let copied = Object.assign([], data);
+          copied.images = new Array<ItemImageDetails>();
           var currentCart = Array.from<ItemDetails>(defaultItems);
-          const result = currentCart.concat([data]);
+          const result = currentCart.concat([copied]);
           setDefaultItems(result);
         },
         remove: (data: ItemDetails) => {

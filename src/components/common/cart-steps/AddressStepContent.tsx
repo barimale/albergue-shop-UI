@@ -59,9 +59,11 @@ export function AddressStepContent(props: FormikProps<AddressDetails>) {
     }}>
       <Typography 
         style={{
-          paddingBottom: '10px'
+          fontSize: '20px',
+          paddingBottom: '10px',
+          width: '100%'
       }}>
-        {t("Please select Your delivery address")}
+        {t("Please select Your delivery address").toUpperCase()}
       </Typography>
       <Grid container spacing={3} style={{width: '100%', verticalAlign: 'center', height: '100%'}}>
         {isPhysicalItemIncluded() === true && (
