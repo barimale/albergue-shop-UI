@@ -1,5 +1,5 @@
 export interface ItemDetails {
-    id?: string;
+    id: string;
     active: boolean;
     price: number;
     categoryId: string;
@@ -8,13 +8,13 @@ export interface ItemDetails {
 }
 
 export interface ItemImageDetails {
-    id?: string;
+    id: string;
     name: string;
     imageData: string;
 }
 
 export interface ItemTranslatableDetails {
-    id?: string;
+    id: string;
     name: string;
     shortDescription: string;
     description: string;

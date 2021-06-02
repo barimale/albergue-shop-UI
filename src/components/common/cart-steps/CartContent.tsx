@@ -66,7 +66,7 @@ export function CartContent(){
                         </TableRow>
                     </TableHead>
                     <TableBody style={{fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}}>
-                        {groupedItems.map((item: CountedItemDetails, index: number)=>{
+                        {groupedItems?.map((item: CountedItemDetails, index: number)=>{
                             return (<TableRow key={index}>
                                 <TableCell component="th" scope="row" style={{fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}}>
                                 {t(`${item.details.id || ""}.name`)}
@@ -137,7 +137,7 @@ export function CartContent(){
                                             justifyContent: 'flex-end',
                                             alignItems: 'center'
                                     }}>
-                                        {item.details.price.toFixed(2)}
+                                        {item.details.price !== undefined && item.details.price.toFixed(2)}
                                         <EuroSymbolIcon style={{
                                             paddingLeft: '5px',
                                             height:'20px',

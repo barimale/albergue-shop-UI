@@ -38,6 +38,7 @@ const CartContextProvider = (props: any) => {
     const [ orderStatus, setOrderStatus ] = useState<string>("");
 
     useEffect(()=>{
+      debugger
       var cartContent = localStorage.getItem(CART_KEY);
       if(cartContent !== null){
         var result: Array<ItemDetails> = JSON.parse(cartContent);
@@ -46,6 +47,7 @@ const CartContextProvider = (props: any) => {
     }, []);
 
     useEffect(()=>{
+      debugger
       localStorage.setItem(CART_KEY, JSON.stringify(defaultItems));
     }, [defaultItems]);
 
@@ -58,7 +60,8 @@ const CartContextProvider = (props: any) => {
             return defaultItems.length;
           },
         add: (data: ItemDetails) => {
-          let copied = Object.assign([], data);
+          debugger
+          let copied = Object.assign({} as ItemDetails, data);
           copied.images = new Array<ItemImageDetails>();
           var currentCart = Array.from<ItemDetails>(defaultItems);
           const result = currentCart.concat([copied]);
