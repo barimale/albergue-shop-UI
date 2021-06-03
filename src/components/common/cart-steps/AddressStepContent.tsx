@@ -7,6 +7,7 @@ import { FormikProps, useField } from "formik";
 import { DeviceContextConsumer, DeviceType } from '../../../contexts/DeviceContext';
 import { useTranslation } from 'react-i18next';
 import Typography from '@material-ui/core/Typography';
+import { greenColor } from '../../../customTheme';
 
 export const ShortAddressSchema = Yup.object().shape({
   email: Yup.string()
@@ -61,7 +62,8 @@ export function AddressStepContent(props: FormikProps<AddressDetails>) {
         style={{
           fontSize: '20px',
           paddingBottom: '10px',
-          width: '100%'
+          width: '100%',
+          // color: `${greenColor}`
       }}>
         {t("Please select Your delivery address").toUpperCase()}
       </Typography>

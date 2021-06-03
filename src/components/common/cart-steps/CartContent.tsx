@@ -61,7 +61,7 @@ export function CartContent(){
                     <TableHead>
                         <TableRow>
                             <TableCell style={{fontWeight: 'bold', fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}} width="40%">{t('Products').toUpperCase()}</TableCell>
-                            <TableCell style={{fontWeight: 'bold', fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}} align="center" width="15%">{t('Qty.').toUpperCase()}</TableCell>
+                            <TableCell style={{fontWeight: 'bold', fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}} align="center" width="15%">{t('Quantity').toUpperCase()}</TableCell>
                             <TableCell style={{fontWeight: 'bold', fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}} align="right" width="45%">{t('Price').toUpperCase()}</TableCell>
                         </TableRow>
                     </TableHead>

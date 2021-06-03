@@ -60,7 +60,6 @@ const CartContextProvider = (props: any) => {
             return defaultItems.length;
           },
         add: (data: ItemDetails) => {
-          debugger
           let copied = Object.assign({} as ItemDetails, data);
           copied.images = new Array<ItemImageDetails>();
           var currentCart = Array.from<ItemDetails>(defaultItems);

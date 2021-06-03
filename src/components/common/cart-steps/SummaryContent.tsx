@@ -14,6 +14,8 @@ import { useEmailClient } from '../../../hooks/useEmailClient';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ReCAPTCHA from "react-google-recaptcha";
 import { useTranslation } from 'react-i18next';
+import EuroSymbolIcon from '@material-ui/icons/EuroSymbol';
+import { theme } from '../../../customTheme';
 
 const useStyles = makeStyles((theme) => ({
     listItem: {
@@ -30,9 +32,11 @@ const useStyles = makeStyles((theme) => ({
 
 type SummaryContentProps = {
   handleNext: () => void;
+  scrollToBottom?: () => void;
 }
 
 export default function SummaryContent(props: SummaryContentProps){
+  const { scrollToBottom } = props;
   const { send } = useEmailClient();
   const classes = useStyles();
   const [ isOrderInProgress, setIsOrderInProgress ] = useState<boolean>(false);
@@ -51,92 +55,176 @@ export default function SummaryContent(props: SummaryContentProps){
 return(
   <DeviceContextConsumer>
     {context => 
-    <div style={{width: '80%'}}>
+    <div 
+      style={{
+        width: '80%',
+        padding: '10px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 'max-content'
+    }}>
       <Grid container spacing={2}>
-        <Grid 
-          item 
-          xs={12}>
-            <Typography variant="h6" gutterBottom className={classes.title}>
+       <Grid item xs={12}>
+        <div 
+          style={{
+            alignContent: 'center',
+            alignItems: 'center'
+        }}>
+          <div 
+            style={{
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-evenly',
+              alignItems: 'center'
+          }}>
+            <Typography 
+              variant="h6" 
+              gutterBottom 
+              className={classes.title}
+              style={{
+                textAlign: 'right'
+            }}>
               {t('Total')}
             </Typography>
-            <Typography gutterBottom>{`${t('Your order costs ') + total().toFixed(2)} Euros.`}</Typography>
-            <Divider/>
-        </Grid>
-        <Grid 
-          item 
-          xs={12}>
-            <Typography variant="h6" gutterBottom className={classes.title}>
+            <Typography 
+              gutterBottom
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+              {`${t('Your order costs ') + total().toFixed(2)}`}
+              <EuroSymbolIcon 
+                style={{
+                  height: '16px', 
+                  width: 'auto',
+                  paddingLeft: '4px'
+              }}/>
+            </Typography>
+          </div>
+          <Divider/>
+          <div 
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-evenly',
+              alignItems: 'center'
+          }}>
+            <Typography 
+              variant="h6" 
+              gutterBottom 
+              className={classes.title}
+              style={{
+                textAlign: 'right'
+            }}>
               {t('Shippment cost')}
             </Typography>
             <Typography gutterBottom>{t('WIP')}</Typography>
-            <Divider/>
-        </Grid>
-        <Grid
-          item 
-          xs={12}>
-          <Typography variant="h6" gutterBottom className={classes.title}>
-            {t('Shippment details')}
-          </Typography>
-          {getAddressDetails().firstName !== "" && (
-            <Typography gutterBottom>{getAddressDetails().firstName + ' ' + getAddressDetails().lastName}</Typography>
-          )}
-          {getAddressDetails().zipCode !== "" && (
-            <Typography gutterBottom>{getAddressDetails().zipCode + ' ' + getAddressDetails().city}</Typography>
-          )}
-          {getAddressDetails().addressLine1 !== "" && (
-            <Typography gutterBottom>{getAddressDetails().addressLine1}</Typography>
-          )}
-          {getAddressDetails().addressLine2 !== "" && (
-            <Typography gutterBottom>{getAddressDetails().addressLine2}</Typography>
-          )}
-          {getAddressDetails().country !== "" && (
-            <Typography gutterBottom>{getAddressDetails().country + ', ' + getAddressDetails().region}</Typography>
-          )}
-          {getAddressDetails().email !== "" && (
-            <Typography gutterBottom>{getAddressDetails().email}</Typography>
-          )}
+          </div>
           <Divider/>
+          <div 
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-evenly',
+              alignItems: 'center'
+          }}>
+            <Typography variant="h6" gutterBottom className={classes.title}>
+                {t('Shippment details')}
+            </Typography>
+            <div 
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center'
+            }}>
+              {getAddressDetails().firstName !== "" && (
+                <Typography gutterBottom>{getAddressDetails().firstName + ' ' + getAddressDetails().lastName}</Typography>
+              )}
+              {getAddressDetails().zipCode !== "" && (
+                <Typography gutterBottom>{getAddressDetails().zipCode + ' ' + getAddressDetails().city}</Typography>
+              )}
+              {getAddressDetails().addressLine1 !== "" && (
+                <Typography gutterBottom>{getAddressDetails().addressLine1}</Typography>
+              )}
+              {getAddressDetails().addressLine2 !== "" && (
+                <Typography gutterBottom>{getAddressDetails().addressLine2}</Typography>
+              )}
+              {getAddressDetails().country !== "" && (
+                <Typography gutterBottom>{getAddressDetails().country + ', ' + getAddressDetails().region}</Typography>
+              )}
+              {getAddressDetails().email !== "" && (
+                <Typography gutterBottom>{getAddressDetails().email}</Typography>
+              )}
+            </div>
+          </div>
+        </div>
         </Grid>
-        <Grid item 
-          xs={12}>
-          <Checkbox
-            onChange={(event: any, checked: boolean)=>{
-              setIsPolicyTermAgreed(checked);
-              if(checked === false){
-                setCaptchaToken(null);
-                setIsCaptchaAgreed(false);
-                if(captcha !== null){
-                  captcha.reset();
+        <Grid item xs={12}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignContent: 'center'
+          }}>
+            <Checkbox
+              color={"primary"}
+              onChange={(event: any, checked: boolean)=>{
+                setIsPolicyTermAgreed(checked);
+                if(checked === false){
+                  setCaptchaToken(null);
+                  setIsCaptchaAgreed(false);
+                  if(captcha !== null){
+                    captcha.reset();
+                  }else{
+                    scrollToBottom !== undefined && scrollToBottom();
+                  }
                 }
-              }
-            }}
-            color="secondary"/>
-          <span>
-            {t('I hereby accept ')}
-            <a 
-              style={{
-                cursor: 'pointer',
-                color: '#0B3976',
-                textDecoration: 'underline'
               }}
-              onClick={(event:any)=>{
-              event.stopPropagation();
-              setIsModal2Displayed(true);
-            }}>
-            {t('shop rules')}</a>
-            {t(' and fully agree with ')}
-            <a 
+            />
+            <Typography 
+              noWrap={false}
               style={{
-                cursor: 'pointer',
-                color: '#0B3976',
-                textDecoration: 'underline'
-              }}
-              onClick={(event:any)=>{
-              event.stopPropagation();
-              setIsModalDisplayed(true);
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
             }}>
-              {t('privacy policy.')}</a>
-          </span>
+              {`${t('I hereby accept')}` + " "}
+              <a 
+                style={{
+                  paddingLeft: '10px',
+                  paddingRight: '10px',
+                  cursor: 'pointer',
+                  color: `${theme.palette.primary.main}`,
+                  textDecoration: 'unset'
+                }}
+                onClick={(event:any)=>{
+                event.stopPropagation();
+                setIsModal2Displayed(true);
+              }}>
+                {t('shop rules')}
+              </a>
+              {`${t('and fully agree with')}`}
+              <a 
+                style={{
+                  paddingLeft: '10px',
+                  paddingRight: '10px',
+                  cursor: 'pointer',
+                  color: `${theme.palette.primary.main}`,
+                  textDecoration: 'unset'
+                }}
+                onClick={(event:any)=>{
+                event.stopPropagation();
+                setIsModalDisplayed(true);
+              }}>
+                {`${t('privacy policy')}.`}
+              </a>
+            </Typography>
+          </div>
           <PrivayTermsModal 
             isDisplayed={isModalDisplayed} 
             onHide={()=>{
@@ -154,22 +242,23 @@ return(
           xs={12}>
           <div style={{display: 'inline-block'}}>
             <ReCAPTCHA
-            ref={el => { captcha = el; }}
-              hl={i18n.language.toLowerCase()}
-              // WIP
-              sitekey="6LcjoCgaAAAAAB7P7CzAN8jUbsXaS1cGht_CSsb0"
-              onChange={(token: string | null)=>{
-                setCaptchaToken(token);
-                setIsCaptchaAgreed(true);
-              }}
-              onExpired={()=>{
-                setIsCaptchaAgreed(false);
-                setCaptchaToken(null);
-              }}
-              onErrored={()=>{
-                setIsCaptchaAgreed(false);
-                setCaptchaToken(null);
-              }}/>
+              ref={el => { captcha = el; }}
+                hl={i18n.language.toLowerCase()}
+                theme={'dark'}
+                sitekey="6LcjoCgaAAAAAB7P7CzAN8jUbsXaS1cGht_CSsb0"
+                onChange={(token: string | null)=>{
+                  setCaptchaToken(token);
+                  setIsCaptchaAgreed(true);
+                }}
+                onExpired={()=>{
+                  setIsCaptchaAgreed(false);
+                  setCaptchaToken(null);
+                }}
+                onErrored={()=>{
+                  setIsCaptchaAgreed(false);
+                  setCaptchaToken(null);
+                }}
+            />
           </div>
         </Grid>
         <Grid

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { DeviceContextConsumer, DeviceType } from '../../contexts/DeviceContext';
@@ -18,6 +18,8 @@ import { Formik, Form, FormikProps } from 'formik';
 import { ContentLayout2 } from "../../components/layouts/MainLayout";
 import { useTranslation } from 'react-i18next';
 import { theme } from '../../customTheme';
+import { useRef } from 'react';
+import useScroll from '../../hooks/useScroll';
 
 export const Path = "/cart";
 
@@ -34,23 +36,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
-
-function getSteps() {
-  return ['Shopping bag', 'Shipping', 'Review & order'];
-}
-
-function getStepContent(stepIndex: number, handleNext: ()=> void, formikProps: FormikProps<AddressDetails>): JSX.Element {
-    switch (stepIndex) {
-      case 0:
-        return <CartContent />;
-      case 1:
-        return <AddressStepContent {...formikProps} />;
-      case 2:
-        return <SummaryContent handleNext={handleNext}/>;
-      default:
-        return <Redirect to={appBaseRouteKey + HomePath} />;
-    }
-}
 
 export function CartScreen(){
     const { getCount } = useContext(CartContext);
@@ -91,6 +76,8 @@ function CartWithItems(){
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
   const { t } = useTranslation();
+  const ref = useRef(null);
+  const { top, bottom } = useScroll(ref);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -99,6 +86,31 @@ function CartWithItems(){
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
+
+  useEffect(()=>{
+    top();
+  }, [activeStep]);
+
+  function getSteps() {
+    return ['Shopping bag', 'Shipping', 'Review & order'];
+  }
+  
+  function getStepContent(
+    stepIndex: number, 
+    handleNext: ()=> void, 
+    formikProps: FormikProps<AddressDetails>,
+    scroolToBottom?: () => void): JSX.Element {
+      switch (stepIndex) {
+        case 0:
+          return <CartContent />;
+        case 1:
+          return <AddressStepContent {...formikProps} />;
+        case 2:
+          return <SummaryContent handleNext={handleNext} scrollToBottom={() => bottom()}/>;
+        default:
+          return <Redirect to={appBaseRouteKey + HomePath} />;
+      }
+  }
 
   const [stepperHeight, setStepperHeight] = useState<number>(0);
   const { innerHeight: height } = window;
@@ -190,16 +202,18 @@ function CartWithItems(){
                     </Button>
                     )}
                   </div>
-                  <div style={{
-                    // WIP:sizeme
-                    padding: '40px',
-                    boxShadow: `${theme.shadows[2]}`,
-                    border: '1px solid lightgray',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    maxHeight: window.innerHeight*0.35,
-                    overflowY: 'auto',
-                    backgroundColor: 'white'}}>
+                  <div 
+                    ref={ref}
+                    style={{
+                      padding: '40px',
+                      boxShadow: `${theme.shadows[2]}`,
+                      border: '1px solid lightgray',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      maxHeight: window.innerHeight*0.35,
+                      overflowY: 'auto',
+                      backgroundColor: 'white'
+                  }}>
                     {getStepContent(activeStep, handleNext, props)}
                   </div>
               </div>
