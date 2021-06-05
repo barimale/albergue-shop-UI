@@ -192,7 +192,7 @@ export default function ProductDetailsModal(props: ProductDetailsModalProps) {
                   style={{
                     fontFamily: 'Signoria-Bold',
                     margin: '0px',
-                    paddingTop: '20px'
+                    paddingTop: '0px'
                 }}>
                   {t('Details')}
                 </h4>
