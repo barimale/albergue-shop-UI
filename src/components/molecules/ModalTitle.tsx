@@ -12,9 +12,9 @@ type ModalTitleProps = {
 }
 
 export const ModalTitle = (props: ModalTitleProps) => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation('externals');
     const theme = useTheme();
-
+    
     return (
         <DeviceContextConsumer>
             {context => 
@@ -43,7 +43,7 @@ export const ModalTitle = (props: ModalTitleProps) => {
                         paddingLeft: context === DeviceType.isDesktopOrLaptop ? '20px' : '12px',
                         textShadow: `1px 1px black`,
                     }}>
-                    {t(props.title)}
+                    {t(props.title) + i18n.language}
                 </Typography>
                 <IconButton 
                 className={"pointerOverEffect"}

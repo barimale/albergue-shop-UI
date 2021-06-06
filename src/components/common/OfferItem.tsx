@@ -9,6 +9,8 @@ import { DeviceContextConsumer, DeviceType } from '../../contexts/DeviceContext'
 import { useState } from 'react';
 import { LoadingInProgress } from '../molecules/LoadingInProgress';
 import { Box } from '@material-ui/core';
+import externali18n from '../../externali18n';
+import { I18nextProvider } from 'react-i18next';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -108,7 +110,11 @@ function OfferItem(props: ClothesItemProps){
             )}
             <GridListTileBar
               key={index}
-              title={<ItemDetailsTextButton item={tile} id={(context.valueOf() === DeviceType.isDesktopOrLaptop ? "ccm" : "ccd")+tile.id}/>}
+              title={
+                <I18nextProvider i18n={externali18n}>
+                  <ItemDetailsTextButton item={tile} id={(context.valueOf() === DeviceType.isDesktopOrLaptop ? "ccm" : "ccd")+tile.id} />
+                </I18nextProvider>
+              }
               classes={{
                 root: classes.titleBar,
                 title: classes.title

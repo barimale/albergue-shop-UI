@@ -11,7 +11,8 @@ import TranslateIcon from '@material-ui/icons/Translate';
 const LanguageSetter = (props: any) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const theme = useTheme();
-  const { t , i18n} = useTranslation();
+  const { i18n: externali18n } = useTranslation('externals');
+  const { i18n } = useTranslation();
 
   const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
@@ -98,7 +99,13 @@ const LanguageSetter = (props: any) => {
             }: 
             undefined}
           >
-            <Languages handleClose={handleClose} />
+            <Languages 
+              handleClose={handleClose}
+              onLanguageChanged={async (lng: string) => {
+                debugger
+                await externali18n.changeLanguage(lng.toLowerCase());
+              }}
+               />
         </Menu>
       </>
     }

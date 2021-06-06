@@ -2,24 +2,20 @@ import i18next from 'i18next';
 import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
-import LocalStorageBackend from "i18next-localstorage-backend";
 
-const maini18n = i18next.createInstance();
+const externali18n = i18next.createInstance();
 
-maini18n
+externali18n
   .use(Backend)
   .use(LanguageDetector)
-  // .use(LocalStorageBackend)s
-  // .use(Cache)
   .use(initReactI18next)
   .init({
-    defaultNS: 'translation',
-    preload:  ['en', 'pt', 'nl', 'de'],
-    fallbackLng: ['en', 'pt', 'nl', 'de'],
-    supportedLngs: ['en', 'pt', 'nl', 'de'],
     debug: true,
+    defaultNS: 'externals',
     backend: {
-      loadPath: '/locales/main/{{lng}}/{{ns}}.json'
+      loadPath: '/locales/externals/{{lng}}.json',
+      addPath: '/locales/externals/{{lng}}.json',
+      reloadInterval: 10000
     },
     react: {
       bindI18n: 'languageChanged',
@@ -27,9 +23,8 @@ maini18n
       transEmptyNodeValue: '',
       transSupportBasicHtmlNodes: true,
       transKeepBasicHtmlNodesFor: ['br', 'strong', 'i'],
-      useSuspense: false,
+      useSuspense: false
     },
-    // initImmediate: true
   });
 
-export default maini18n;
+export default externali18n;

@@ -26,7 +26,6 @@ export const useGroupedItems = () => {
       new Array<CountedItemDetails>());
 
   useEffect(()=>{
-      debugger
       const grouped = GroupBy(items, "id");
       const flatGrouped = new Array<CountedItemDetails>();
 

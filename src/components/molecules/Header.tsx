@@ -15,7 +15,7 @@ import LanguageSetter from '../organisms/LanguageSetter';
 import { thirdMain } from '../../customTheme';
 import { Ornament } from './Ornament';
 import useTheme from "@material-ui/core/styles/useTheme";
-import { useTranslation } from 'react-i18next';
+import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Logo } from "../common/Logo";
 import SearchField from './SearchField';
 
@@ -215,7 +215,8 @@ type TopRightSectionProps = {
 
 const TopRightSection = (props: TopRightSectionProps) =>{
   const { status } = props;
-
+  const { i18n: externali18n } = useTranslation('externals');
+  
   return(
     <DeviceContextConsumer>
     {context => (
@@ -232,7 +233,9 @@ const TopRightSection = (props: TopRightSectionProps) =>{
               justifyContent: 'flex-end',
               height: 'max-content'
           }}>
-            <LanguageSetter />
+            <I18nextProvider i18n={externali18n}>
+              <LanguageSetter />
+            </I18nextProvider>
             <Cart
             className={context === DeviceType.isDesktopOrLaptop ? "pointerOverEffect" : ""}
             style={{

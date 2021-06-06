@@ -2,33 +2,58 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { useTranslation } from 'react-i18next';
 import { Button, useTheme } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
+import maini18n from "../../i18n";
+import { I18nextProvider } from 'react-i18next';
+import useLanguages from '../../hooks/useLanguages';
+import { useEffect, useState } from 'react';
+import { LoadingInProgress } from './LoadingInProgress';
 
 type LanguagesProps ={  
   handleClose: () => void;
+  onLanguageChanged: (lng: string) => void;
 }
 
 export const Languages = (props: LanguagesProps) => {
-  const { i18n } = useTranslation();
+  // const { i18n } = useTranslation();
+  const [ isLoading, setIsLoading ] = useState<boolean>(true);
+  const {languages} = useLanguages();
+
+  useEffect(()=>{
+    setIsLoading(false);
+  }, [languages]);
 
   return (
   <>
-    {i18n.languages.sort((a: string, b: string) => b.localeCompare(a)).map((language: string, index: number) => {
-      return  (
-        <>
-          <MenuItem key={index}>
-              <Language language={language} handleClose={props.handleClose} />
-          </MenuItem>
-          {index !== (i18n.languages.length-1) && (
-            <Divider orientation="horizontal" />
-          )}
-        </>);
-      }
+    {isLoading.valueOf() === true ? (
+      <LoadingInProgress/>
+    ):(
+      <>
+        {languages?.flatMap((p: string) => p).sort((a: string, b: string) => b.localeCompare(a))?.map((language: string, index: number) => {
+          return  (
+            <I18nextProvider i18n={maini18n}>
+              <MenuItem key={index}>
+                  <Language 
+                    language={language} 
+                    handleClose={props.handleClose}
+                    onLanguageChanged={props.onLanguageChanged} />
+              </MenuItem>
+              <>
+              {index !== (languages.length-1) && (
+                <Divider orientation="horizontal" />
+              )}
+              </>
+            </I18nextProvider>
+            );
+          }
+        )}
+      </>
     )}
   </>);
 }
 
 interface LanguageProps extends LanguagesProps{
   language: string;
+  onLanguageChanged: (lng: string) => void;
 }
 
 const Language = (props: LanguageProps) => {
@@ -54,7 +79,10 @@ const Language = (props: LanguageProps) => {
       }}
       onClick={async () => {
         props.handleClose();
-        await changeLanguage(language);
+        await changeLanguage(language.toLowerCase())
+        .finally(()=>{
+          props.onLanguageChanged(language);
+        });
       }}>
         {/* <img id='myImage' src={`http://www.geonames.org/flags/x/${language}.gif`} style={{height: '20px', width: '20px', borderRadius: '50%', paddingRight: '5px'}}/> */}
         {language.toUpperCase()}

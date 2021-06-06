@@ -38,7 +38,6 @@ const CartContextProvider = (props: any) => {
     const [ orderStatus, setOrderStatus ] = useState<string>("");
 
     useEffect(()=>{
-      debugger
       var cartContent = localStorage.getItem(CART_KEY);
       if(cartContent !== null){
         var result: Array<ItemDetails> = JSON.parse(cartContent);
@@ -47,7 +46,6 @@ const CartContextProvider = (props: any) => {
     }, []);
 
     useEffect(()=>{
-      debugger
       localStorage.setItem(CART_KEY, JSON.stringify(defaultItems));
     }, [defaultItems]);
 

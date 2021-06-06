@@ -14,7 +14,7 @@ type ItemDetailsTextButtonProps = {
 export const ItemDetailsTextButton = (props: ItemDetailsTextButtonProps) => {
     const [isModalDisplayed, setIsModalDisplayed] = useState<boolean>(false);
     const { item } = props;
-    const { t } = useTranslation();
+    const { t } = useTranslation('externals');
 
     return(
     <DeviceContextConsumer>
