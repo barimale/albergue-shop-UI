@@ -102,8 +102,13 @@ const LanguageSetter = (props: any) => {
             <Languages 
               handleClose={handleClose}
               onLanguageChanged={async (lng: string) => {
-                debugger
-                await externali18n.changeLanguage(lng.toLowerCase());
+                await externali18n.changeLanguage(lng.toLowerCase())
+                  .then(()=>{
+                    console.log('Language for externali changed to: ' + externali18n.language);
+                  })
+                  .catch((error: any)=>{
+                    console.log(error);
+                  });
               }}
                />
         </Menu>

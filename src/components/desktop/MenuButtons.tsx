@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 export default function MenuButtons(props: any) {
   const { configSections } = useCategories();
-  const { t } = useTranslation();
+  const { t } = useTranslation('externals');
 
     return (
     <div {...props}>

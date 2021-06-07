@@ -18,6 +18,7 @@ import useTheme from "@material-ui/core/styles/useTheme";
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { Logo } from "../common/Logo";
 import SearchField from './SearchField';
+import externali18n from "../../externali18n";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -263,26 +264,28 @@ const CategoriesSection = (props: BottomSectionProps) =>{
     <DeviceContextConsumer>
     {context => (
       <>
-        {status !== undefined && status.isAtLeastOneCategoryDefined.valueOf() === true && (
-          <div 
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              width: '100%'
-          }}>
-            {context === DeviceType.isDesktopOrLaptop && (
-              <MenuButtons 
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'flex-start'
-              }}/>
-            )}
-            <SearchField />
-          </div>
-        )}
+        <I18nextProvider i18n={externali18n}>
+          {status !== undefined && status.isAtLeastOneCategoryDefined.valueOf() === true && (
+            <div 
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                width: '100%'
+            }}>
+              {context === DeviceType.isDesktopOrLaptop && (
+                <MenuButtons 
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'flex-start'
+                }}/>
+              )}
+              <SearchField />
+            </div>
+          )}
+        </I18nextProvider>
       </>
     )}
     </DeviceContextConsumer>

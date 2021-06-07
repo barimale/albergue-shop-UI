@@ -16,7 +16,7 @@ import useLanguages from './hooks/useLanguages';
 function ResourceLoadedApp() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { languages } = useLanguages();
-  
+
   useEffect(()=>{
     if(maini18n.isInitialized === false){
       maini18n.init();
@@ -24,22 +24,6 @@ function ResourceLoadedApp() {
 
     if(externali18n.isInitialized === false){
       externali18n.init();
-    }
-
-    if(languages.length > 0){
-      languages.forEach(p => {
-        externali18n.loadLanguages([p])
-          .then(()=>{
-            console.log("Language loaded: " + p);
-          })
-          .catch((error: any) => console.log(error));
-      });
-
-      externali18n
-        .reloadResources(languages.flatMap((p: string) => p), 'externals')
-        .catch((error: any) =>{
-          console.log(error);
-        });
     }
 
     setIsLoading(false);

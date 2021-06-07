@@ -14,7 +14,6 @@ type LanguagesProps ={
 }
 
 export const Languages = (props: LanguagesProps) => {
-  // const { i18n } = useTranslation();
   const [ isLoading, setIsLoading ] = useState<boolean>(true);
   const {languages} = useLanguages();
 
@@ -57,13 +56,9 @@ interface LanguageProps extends LanguagesProps{
 }
 
 const Language = (props: LanguageProps) => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const {language } = props;
   const theme = useTheme();
-    
-  const changeLanguage = async (lng: string) =>{
-      await i18n.changeLanguage(lng);
-  };
 
   return (
     <Button 
@@ -79,9 +74,9 @@ const Language = (props: LanguageProps) => {
       }}
       onClick={async () => {
         props.handleClose();
-        await changeLanguage(language.toLowerCase())
+        await i18n.changeLanguage(language.toLowerCase())
         .finally(()=>{
-          props.onLanguageChanged(language);
+          props.onLanguageChanged(i18n.language);
         });
       }}>
         {/* <img id='myImage' src={`http://www.geonames.org/flags/x/${language}.gif`} style={{height: '20px', width: '20px', borderRadius: '50%', paddingRight: '5px'}}/> */}

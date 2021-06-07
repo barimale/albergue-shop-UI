@@ -17,19 +17,20 @@ maini18n
     preload:  ['en', 'pt', 'nl', 'de'],
     fallbackLng: ['en', 'pt', 'nl', 'de'],
     supportedLngs: ['en', 'pt', 'nl', 'de'],
-    debug: true,
+    debug: process.env.NODE_ENV !== 'production',
     backend: {
       loadPath: '/locales/main/{{lng}}/{{ns}}.json'
     },
     react: {
-      bindI18n: 'languageChanged',
+      bindI18n: 'languageChanged loaded',
       bindI18nStore: '',
       transEmptyNodeValue: '',
       transSupportBasicHtmlNodes: true,
       transKeepBasicHtmlNodesFor: ['br', 'strong', 'i'],
       useSuspense: false,
+      wait: true
     },
-    // initImmediate: true
+    initImmediate: true
   });
 
 export default maini18n;

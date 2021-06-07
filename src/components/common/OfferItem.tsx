@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { LoadingInProgress } from '../molecules/LoadingInProgress';
 import { Box } from '@material-ui/core';
 import externali18n from '../../externali18n';
-import { I18nextProvider } from 'react-i18next';
+import { I18nextProvider, useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -40,22 +40,10 @@ function OfferItem(props: ClothesItemProps){
   const isHover = useHover(hoverRef);
   const isTouched = useTouched(hoverRef); 
   const [ isLoading, setIsLoading] = useState<boolean>(false);
-  // const [ isDelayedHover, setIsDelayedHover] = useState<boolean>(false);
-  // let timerId: any;
+  const { i18n: defaulti18n } = useTranslation();
+  const [ lng, setLng] = useState<string>(defaulti18n.language.toLowerCase());
 
-  // useEffect(() =>{
-  //   if(isHover.valueOf() === true){
-  //     timerId = setTimeout(()=>{
-  //       setIsDelayedHover(true);
-  //     }, 1000);
-  //   }else{
-  //     if(timerId !== undefined){
-  //       clearTimeout(timerId);
-  //     }
-  //     setIsDelayedHover(false);
-  //   }
-  // }, [isHover]);
-  // tile.images[tile.images.length > 1 ? (isDelayedHover.valueOf() === true ? 1 : 0) : 0
+    defaulti18n.on('languageChanged', (lng) => setLng(lng.toLowerCase()));
 
   return (
     <DeviceContextConsumer>
@@ -111,9 +99,7 @@ function OfferItem(props: ClothesItemProps){
             <GridListTileBar
               key={index}
               title={
-                <I18nextProvider i18n={externali18n}>
-                  <ItemDetailsTextButton item={tile} id={(context.valueOf() === DeviceType.isDesktopOrLaptop ? "ccm" : "ccd")+tile.id} />
-                </I18nextProvider>
+                  <ItemDetailsTextButton lng={lng} item={tile} id={(context.valueOf() === DeviceType.isDesktopOrLaptop ? "ccm" : "ccd")+tile.id} />
               }
               classes={{
                 root: classes.titleBar,
