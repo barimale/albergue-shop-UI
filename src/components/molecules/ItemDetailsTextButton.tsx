@@ -77,11 +77,10 @@ interface ItemDetailsContentProps extends ItemDetailsTextButtonProps{
 }
 
 const ItemDetailsContent = (props: ItemDetailsContentProps) =>{ 
-    const { onClick, item, llnngg } = props;
+    const { onClick, item } = props;
     const { t } = useTranslation('externals');
 
     useEffect(()=>{
-        debugger
         externali18n.changeLanguage(props.llnngg);
     },[props.llnngg]);
 
