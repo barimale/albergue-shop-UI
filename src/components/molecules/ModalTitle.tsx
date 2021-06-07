@@ -35,7 +35,6 @@ export const ModalTitle = (props: ModalTitleProps) => {
                         margin: '0px',
                         color: `${theme.palette.common.white}`,
                         WebkitTapHighlightColor: 'transparent',
-                        // fontSize: context === DeviceType.isDesktopOrLaptop ? '24px' : '14px',
                         fontSize: context === DeviceType.isDesktopOrLaptop ? '30px' : '20px',
                         textAlign: 'left',
                         fontFamily: 'Signoria-Bold',
@@ -43,7 +42,7 @@ export const ModalTitle = (props: ModalTitleProps) => {
                         paddingLeft: context === DeviceType.isDesktopOrLaptop ? '20px' : '12px',
                         textShadow: `1px 1px black`,
                     }}>
-                    {t(props.title) + i18n.language}
+                    {t(props.title)}
                 </Typography>
                 <IconButton 
                 className={"pointerOverEffect"}
