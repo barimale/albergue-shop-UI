@@ -1,17 +1,20 @@
 import { IconButton, LinearProgress, Typography } from '@material-ui/core';
 import React from 'react';
+import { Redirect } from 'react-router';
 import { 
   EmailIcon,
   WhatsappIcon,
   FacebookIcon,
   FacebookMessengerIcon } from 'react-share';
 import { DeviceContextConsumer, DeviceType } from '../../contexts/DeviceContext';
+import { useCategories } from '../../hooks/useCategories';
 import { useShopStatus } from '../../hooks/useShopStatus';
 import { Logo } from './Logo';
 
 
 export default function ContactScreenContent(){
     const status = useShopStatus();
+    const {configSections} = useCategories();
 
     return(
         <>
@@ -20,7 +23,7 @@ export default function ContactScreenContent(){
             ):(
                 <>
                     {status !== undefined && status.isAtLeastOneCategoryDefined.valueOf() === true ?(
-                        <p>{'Redirect to the first category'}</p>
+                        <Redirect to={configSections[0].api} />
                     ):(
                         <SystemIsEmpty/>
                     )}
