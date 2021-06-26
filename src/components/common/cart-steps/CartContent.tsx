@@ -20,6 +20,7 @@ import AddIcon from '@material-ui/icons/Add';
 import { I18nextProvider, useTranslation } from "react-i18next";
 import EuroSymbolIcon from '@material-ui/icons/EuroSymbol';
 import externali18n from "../../../externali18n";
+import useLanguages from "../../../hooks/useLanguages";
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -40,6 +41,39 @@ export function CartContent(){
         }
 
     }, [getCount]);
+
+    
+  const { languages } = useLanguages();
+  const { i18n } = useTranslation('externals');
+  const [llnngg, setLLnngg] = useState<string>(i18n.language.toLowerCase());
+
+  i18n.on('languageChanged', (lng) => {
+      console.log('ItemDetailsContent languageChanged externali' + lng);
+      setLLnngg(lng);
+  });
+  i18n.on('loaded',  () => console.log('ItemDetailsContent loaded externali'));
+  i18n.on('added',  () => console.log('ItemDetailsContent added externali'));
+
+  useEffect(()=>{
+    const loadTranslations = async () =>{
+      if(languages.length > 0){
+        languages.forEach(async p => {
+          await externali18n.loadLanguages([p.toLowerCase()])
+            .then(async ()=>{
+              console.log("Language loaded: " + p.toLowerCase());
+              await externali18n.reloadResources([p.toLowerCase(), 'externals'])
+                .then(()=>{
+                  console.log("Resource reloaded for: " + p.toLowerCase());
+                })
+                .catch((error: any) => console.log(error));
+            })
+            .catch((error: any) => console.log(error));
+        });
+      }
+    };
+    
+    loadTranslations();
+  }, [languages]);
 
     return (
     <DeviceContextConsumer>
@@ -72,7 +106,7 @@ export function CartContent(){
                             <TableRow key={index}>
                                 <TableCell component="th" scope="row" style={{fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}}>
                                     <I18nextProvider i18n={externali18n}>
-                                        <ItemName name={`${item.details.id || ""}.name`}/>
+                                        <ItemName name={`${item.details.id || ""}.name`} llnngg={llnngg}/>
                                     </I18nextProvider>
                                 </TableCell>
                                 <TableCell align="center" style={{fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}}>
@@ -199,10 +233,15 @@ export function CartContent(){
 
 type ItemNameProps = {
     name: string;
+    llnngg: string;
 }
 const ItemName = (props: ItemNameProps) =>{
     const { name } = props;
-    const { t } = useTranslation();
+    const { t } = useTranslation('externals');
+
+    useEffect(()=>{
+        externali18n.changeLanguage(props.llnngg);
+    },[props.llnngg]);
 
     return(
         <>

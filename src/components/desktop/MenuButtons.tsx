@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 import { configSection, configSectionType, GetFullPathTo } from "../../router/routerConfiguration";
 import { useCategories } from '../../hooks/useCategories';
 import { useTranslation } from "react-i18next";
@@ -7,6 +7,7 @@ import { StyledCategoryTabs } from "../../customTheme";
 import { ButtonBase } from '@material-ui/core';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import externali18n from '../../externali18n';
 
 const chosenTabAlbergueKey = "EA90E5C141024F08849B08342AFF84A6";
 
