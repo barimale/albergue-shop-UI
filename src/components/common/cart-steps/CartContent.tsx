@@ -52,12 +52,13 @@ export function CartContent(){
             paddingLeft: context === DeviceType.isDesktopOrLaptop ? '0px' : '10px',
             paddingRight: context === DeviceType.isDesktopOrLaptop ? '0px' : '10px'
         }}>
-            <TableContainer >
+            <TableContainer style={{maxHeight:window.innerHeight * 0.4}}>
                 <Table 
                     style={{
-                        fontSize: context === DeviceType.isDesktopOrLaptop ? '20px': '12px'
+                        fontSize: context === DeviceType.isDesktopOrLaptop ? '20px': '12px',
                     }}
-                    aria-label="cart content">
+                    aria-label="cart content"
+                    stickyHeader>
                     <TableHead>
                         <TableRow>
                             <TableCell style={{fontWeight: 'bold', fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}} width="40%">{t('Products').toUpperCase()}</TableCell>

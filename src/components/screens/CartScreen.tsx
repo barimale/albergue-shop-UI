@@ -206,11 +206,11 @@ function CartWithItems(){
                     ref={ref}
                     style={{
                       padding: '40px',
+                      paddingTop: '0px',
                       boxShadow: `${theme.shadows[2]}`,
                       border: '1px solid lightgray',
                       display: 'flex',
                       justifyContent: 'center',
-                      maxHeight: window.innerHeight*0.35,
                       overflowY: 'auto',
                       backgroundColor: 'white'
                   }}>

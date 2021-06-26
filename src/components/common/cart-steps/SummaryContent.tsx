@@ -63,7 +63,8 @@ return(
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: 'max-content'
+        height: 'max-content',
+        maxHeight: window.innerHeight*0.4
     }}>
       <Grid container spacing={2}>
        <Grid item xs={12}>

@@ -56,7 +56,8 @@ export function AddressStepContent(props: FormikProps<AddressDetails>) {
     <div
       style={{
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        maxHeight: window.innerHeight*0.4
     }}>
       <Typography 
         style={{
