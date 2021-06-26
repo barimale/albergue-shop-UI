@@ -1,10 +1,9 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import { configSection, configSectionType, GetFullPathTo } from "../../router/routerConfiguration";
 import { useCategories } from '../../hooks/useCategories';
 import { useTranslation } from "react-i18next";
-import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { StyledCategoryTabs } from "../../customTheme";
 
 const chosenTabAlbergueKey = "EA90E5C141024F08849B08342AFF84A6";
 
@@ -16,22 +15,18 @@ export default function MenuButtons(props: any) {
  
   const handleChange = (event: any, newValue: number) => {
     localStorage.setItem(chosenTabAlbergueKey, JSON.stringify(newValue));
-    setValue(newValue);
   };
 
     return (
     <div {...props}>
-      <Tabs
+      <StyledCategoryTabs
           {...props}
           value={value}
           onChange={handleChange}
           textColor="secondary"
           variant="scrollable"
-          scrollButtons="auto"
+          scrollButtons="desktop"
           aria-label="scrollable auto tabs example"
-          style={{
-
-          }}
       >
         {configSections.map((section: configSection, index: number) => {
           if(section.type !== configSectionType.divider){
@@ -42,14 +37,14 @@ export default function MenuButtons(props: any) {
               key={index} 
               color="inherit" 
               style={{
-                paddingLeft: '12px',
-                paddingRight: '12px',
+                paddingLeft: '6px',
+                paddingRight: '6px',
                 fontSize: '20px',
-                margin: '10px',
+                margin: '5px',
                 fontWeight: 'bold'}} 
               href={GetFullPathTo(configSections, section.title)}/>
           }
         })}
-      </Tabs>
+      </StyledCategoryTabs>
     </div>);
 }

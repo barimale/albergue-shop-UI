@@ -1,4 +1,5 @@
-import { MuiThemeProvider, createMuiTheme, hexToRgb } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme, hexToRgb, withStyles } from '@material-ui/core/styles';
+import Tabs from '@material-ui/core/Tabs';
 
 const primaryMain = "#a81916";
 const secondaryMain = "#ffffff";
@@ -53,6 +54,18 @@ export const theme = createMuiTheme({
     }
   },
 });
+
+export const StyledCategoryTabs = withStyles({
+  root:{
+    fontFamily: 'Signoria-Bold',
+    backgroundColor: `transparent`,
+    color: 'black'
+  },
+  indicator:{
+    backgroundColor: `transparent`,
+    height: '1px'
+  }
+})(Tabs);
 
 const CustomMuiThemeProvider = (props: any) => {
     return (
