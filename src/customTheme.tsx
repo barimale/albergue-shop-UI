@@ -58,12 +58,11 @@ export const theme = createMuiTheme({
 export const StyledCategoryTabs = withStyles({
   root:{
     fontFamily: 'Signoria-Bold',
-    backgroundColor: `transparent`,
-    color: 'black'
+    backgroundColor: `transparent`
   },
   indicator:{
-    backgroundColor: `transparent`,
-    height: '1px'
+    backgroundColor: `grey`,
+    height: '2px'
   },
   scrollButtons:{
     color: `${primaryMain}`,
