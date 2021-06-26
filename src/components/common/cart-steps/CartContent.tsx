@@ -162,7 +162,7 @@ export function CartContent(){
                                                 remove(item.details)
                                             }}
                                             >
-                                            {t('remove').toUpperCase()}</a>
+                                            {t('Remove').toUpperCase()}</a>
                                         </Typography>
                                     </div>
                                 </TableCell>

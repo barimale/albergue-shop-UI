@@ -7,7 +7,6 @@ import { FormikProps, useField } from "formik";
 import { DeviceContextConsumer, DeviceType } from '../../../contexts/DeviceContext';
 import { useTranslation } from 'react-i18next';
 import Typography from '@material-ui/core/Typography';
-import { greenColor } from '../../../customTheme';
 
 export const ShortAddressSchema = Yup.object().shape({
   email: Yup.string()
@@ -63,8 +62,7 @@ export function AddressStepContent(props: FormikProps<AddressDetails>) {
         style={{
           fontSize: '20px',
           paddingBottom: '10px',
-          width: '100%',
-          // color: `${greenColor}`
+          width: '100%'
       }}>
         {t("Please select Your delivery address").toUpperCase()}
       </Typography>
@@ -80,6 +78,7 @@ export function AddressStepContent(props: FormikProps<AddressDetails>) {
 
 function MyTextField(props: any) {
   const [field, meta] = useField(props.name);
+  const { t } = useTranslation();
 
   return (
     <>
@@ -90,7 +89,7 @@ function MyTextField(props: any) {
               fontSize: context === DeviceType.isDesktopOrLaptop ? '16px': '10px'}}/>
             {meta.error && meta.touched && <div style={{
               fontSize: context === DeviceType.isDesktopOrLaptop ? '16px': '10px',
-              color: 'rgba(206, 17, 38, 1)'}}>{meta.error}</div>}
+              color: 'rgba(206, 17, 38, 1)'}}>{t(meta.error)}</div>}
           </>
           )
         }
