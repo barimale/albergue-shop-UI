@@ -43,8 +43,7 @@ export default function MenuButtons(props: any) {
                 paddingLeft: '6px',
                 paddingRight: '6px',
                 fontSize: '20px',
-                // fontWeight: value === index ? 'bold' : 'unset',
-                color: 'white',
+                color: value === index ? 'white' : 'grey',
                 margin: '5px',
               }} 
               href={GetFullPathTo(configSections, section.title)}/>
