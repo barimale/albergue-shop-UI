@@ -25,8 +25,9 @@ export default function MenuButtons(props: any) {
           onChange={handleChange}
           textColor="secondary"
           variant="scrollable"
-          scrollButtons="desktop"
-          aria-label="scrollable auto tabs example"
+          scrollButtons="auto"
+          aria-label="dynamic categories scrooler"
+          // TabScrollButtonProps={{height: '100%'}}
       >
         {configSections.map((section: configSection, index: number) => {
           if(section.type !== configSectionType.divider){

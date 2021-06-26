@@ -64,6 +64,9 @@ export const StyledCategoryTabs = withStyles({
   indicator:{
     backgroundColor: `transparent`,
     height: '1px'
+  },
+  scrollButtons:{
+    color: `${primaryMain}`,
   }
 })(Tabs);
 
