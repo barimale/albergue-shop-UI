@@ -10,7 +10,6 @@ import { Redirect } from 'react-router-dom';
 import { Path as HomePath } from '../screens/ContactScreen';
 import { appBaseRouteKey} from "../../router/routerConfiguration";
 import SummaryContent from '../common/cart-steps/SummaryContent';
-import CenteredDiv from '../common/CenteredDiv';
 import SuccessStepContent from "../common/cart-steps/SuccessStepContent";
 import ErrorStepContent from "../common/cart-steps/ErrorStepContent";
 import { ShortAddressSchema, LongAddressSchema} from "../common/cart-steps/AddressStepContent";

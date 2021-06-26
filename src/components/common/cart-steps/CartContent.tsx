@@ -18,8 +18,9 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import IconButton from '@material-ui/core/IconButton';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
-import { useTranslation } from "react-i18next";
+import { I18nextProvider, useTranslation } from "react-i18next";
 import EuroSymbolIcon from '@material-ui/icons/EuroSymbol';
+import externali18n from "../../../externali18n";
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -68,9 +69,12 @@ export function CartContent(){
                     </TableHead>
                     <TableBody style={{fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}}>
                         {groupedItems?.map((item: CountedItemDetails, index: number)=>{
-                            return (<TableRow key={index}>
+                            return (
+                            <TableRow key={index}>
                                 <TableCell component="th" scope="row" style={{fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}}>
-                                {t(`${item.details.id || ""}.name`)}
+                                    <I18nextProvider i18n={externali18n}>
+                                        <ItemName name={`${item.details.id || ""}.name`}/>
+                                    </I18nextProvider>
                                 </TableCell>
                                 <TableCell align="center" style={{fontSize: context === DeviceType.isDesktopOrLaptop ? '18px': '12px'}}>
                                     <div 
@@ -192,4 +196,18 @@ export function CartContent(){
         </div>
     }
     </DeviceContextConsumer>)
+}
+
+type ItemNameProps = {
+    name: string;
+}
+const ItemName = (props: ItemNameProps) =>{
+    const { name } = props;
+    const { t } = useTranslation();
+
+    return(
+        <>
+            {t(name)}
+        </>
+    );
 }
