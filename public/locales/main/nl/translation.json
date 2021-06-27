@@ -48,5 +48,6 @@
     "Your order costs ": "Uw bestelling kost ",
     "I hereby accept": "Hierbij accepteer ik",
     "and fully agree with": "en helemaal mee eens",
-    "Order": "Bestellen"
+    "Order": "Bestellen",
+    "Firstname needs to have at least 2 characters":"Voornaam moet minimaal 2 tekens bevatten"
 }

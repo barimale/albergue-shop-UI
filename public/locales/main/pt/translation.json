@@ -48,5 +48,6 @@
     "Your order costs ": "Os custos do seu pedido ",
     "I hereby accept": "Eu aceito",
     "and fully agree with": "e concordo totalmente com",
-    "Order": "Pedido"
+    "Order": "Pedido",
+    "Firstname needs to have at least 2 characters":"O nome deve ter pelo menos 2 caracteres"
 }

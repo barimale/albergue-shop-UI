@@ -48,5 +48,6 @@
     "Your order costs ": "Your order costs ",
     "I hereby accept": "I hereby accept",
     "and fully agree with": "and fully agree with",
-    "Order": "Order"
+    "Order": "Order",
+    "Firstname needs to have at least 2 characters":"Firstname needs to have at least 2 characters"
 }

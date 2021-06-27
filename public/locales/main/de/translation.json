@@ -41,12 +41,13 @@
     "E-mail": "E-Mail-Adresse",
     "Country": "Land",
     "Repeat e-mail": "Wiederholen Sie die E-Mail-Adresse",
-    "Field is required": "Field is required",
+    "Field is required": "Feld ist erforderlich",
     "Shippment cost": "Lieferpreis",
     "Shippment details": "Address details",
     "Add to cart": "In den Warenkorb legen",
     "Your order costs ": "Ihre Bestellung kostet ",
     "I hereby accept": "Hiermit akzeptiere ich",
     "and fully agree with": "und stimme voll und ganz zu",
-    "Order": "Auftrag"
+    "Order": "Auftrag",
+    "Firstname needs to have at least 2 characters":"Der Vorname muss mindestens 2 Zeichen haben"
 }

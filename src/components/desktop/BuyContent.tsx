@@ -53,6 +53,7 @@ function BuyContent(props: BuyContentProps){
   const { t } = useTranslation();
   const isHorizontalMobile = useMediaQuery({ minDeviceWidth: 444, maxDeviceHeight: 500 });
   
+  //WIP add category api and set at this level category tabs by localstorage
   return (
   <DeviceContextConsumer>
     {context =>
