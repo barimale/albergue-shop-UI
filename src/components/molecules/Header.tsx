@@ -282,7 +282,7 @@ const CategoriesSection = (props: BottomSectionProps) =>{
                     alignItems: 'flex-start'
                 }}/>
               )}
-              <SearchField />
+              {/* <SearchField /> */}
             </div>
           )}
         </I18nextProvider>
