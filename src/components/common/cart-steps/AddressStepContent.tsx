@@ -64,6 +64,7 @@ export function AddressStepContent(props: FormikProps<AddressDetails>) {
           style={{
             fontSize: '20px',
             paddingBottom: '10px',
+            paddingTop: '16px',
             width: '100%'
         }}>
           {t("Please select Your delivery address").toUpperCase()}
