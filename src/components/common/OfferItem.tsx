@@ -11,6 +11,7 @@ import { LoadingInProgress } from '../molecules/LoadingInProgress';
 import { Box } from '@material-ui/core';
 import externali18n from '../../externali18n';
 import { I18nextProvider, useTranslation } from 'react-i18next';
+import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -48,6 +49,7 @@ function OfferItem(props: ClothesItemProps){
   return (
     <DeviceContextConsumer>
       {context =>
+      <Fade in={true} timeout={500}>
        <Box boxShadow={2} 
           style={{
             height: '100%',
@@ -108,6 +110,7 @@ function OfferItem(props: ClothesItemProps){
             />
           </div>
         </Box>
+        </Fade>
       }
     </DeviceContextConsumer>
   );
