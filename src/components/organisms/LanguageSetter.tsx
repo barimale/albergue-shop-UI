@@ -30,7 +30,8 @@ const LanguageSetter = (props: any) => {
           left: context === DeviceType.isDesktopOrLaptop ? 'unset' : '90%',
           position: context === DeviceType.isDesktopOrLaptop ? 'relative' : 'absolute',
           WebkitTransform: context === DeviceType.isDesktopOrLaptop ? 'unset' : 'translate(-50%, 0%)',
-          transform: context === DeviceType.isDesktopOrLaptop ? 'unset' : 'translate(-50%, 0%)'
+          transform: context === DeviceType.isDesktopOrLaptop ? 'unset' : 'translate(-50%, 0%)',
+          float: props.style?.float
         }}>
           <IconButton
             style={{
@@ -63,7 +64,6 @@ const LanguageSetter = (props: any) => {
                   color: 'white'
               }}>
                 <TranslateIcon fontSize="small" style={{paddingRight: '10px', height: '100%'}}/>
-                {/* <img id='myImage' src={`http://www.geonames.org/flags/x/${i18n.language.toLowerCase() === 'en' ? 'gb' : i18n.language.toLowerCase()}.gif`} style={{height: '10px', width: '20px', borderRadius: '0%'}}/> */}
                 {i18n.language.toUpperCase()}
               </div>
             </div>
