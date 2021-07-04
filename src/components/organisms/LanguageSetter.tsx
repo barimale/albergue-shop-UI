@@ -32,7 +32,7 @@ const LanguageSetter = (props: any) => {
           WebkitTransform: context === DeviceType.isDesktopOrLaptop ? 'unset' : 'translate(-50%, 0%)',
           transform: context === DeviceType.isDesktopOrLaptop ? 'unset' : 'translate(-50%, 0%)'
         }}>
-            <IconButton
+          <IconButton
             style={{
               color: `${theme.palette.common.black}`,
               borderRadius: '0px'
