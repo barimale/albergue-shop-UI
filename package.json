@@ -50,6 +50,7 @@
     "yup": "^0.32.9"
   },
   "scripts": {
+    "setup": "yarn install --force",
     "start": "set PORT=3006 && react-scripts start .env.development",
     "build-fast": "react-scripts build .env.production",
     "build": "npx ts-node --project tsconfig.node.json ./src/sitemap-builder.ts && yarn build-fast",
