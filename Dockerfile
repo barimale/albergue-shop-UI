@@ -3,7 +3,8 @@ ENV NODE_ENV development
 # Add a work directory
 WORKDIR /app
 # Cache and Install dependencies
-COPY package.json .
+COPY .env.development .
+COPY *.json .
 COPY yarn.lock .
 RUN yarn install
 # Copy app files

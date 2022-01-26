@@ -1,6 +1,3 @@
-import {  Path as BuyPath } from "../components/screens/BuyScreen";
-import axios from 'axios';
-
 export const appBaseRouteKey = "";
 
 export enum configSectionType {

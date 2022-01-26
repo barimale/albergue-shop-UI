@@ -1,6 +1,6 @@
-import { RefObject } from 'react'
+import { RefObject } from 'react';
 
-function useScroll<T extends HTMLElement = HTMLElement>(
+function useScroll<T extends HTMLElement = HTMLElement> (
   elementRef: RefObject<T>,
 ) {
   const top = () => {
@@ -9,7 +9,7 @@ function useScroll<T extends HTMLElement = HTMLElement>(
     if (node) {
       node.scrollTo(0, 0);
     }
-  }
+  };
 
   const bottom = () => {
     const node = elementRef?.current;
@@ -17,9 +17,11 @@ function useScroll<T extends HTMLElement = HTMLElement>(
     if (node) {
       node.scrollTop = node.scrollHeight;
     }
-  }
+  };
 
-  return { top, bottom };
+  return {
+    top, bottom,
+  };
 }
 
 export default useScroll;

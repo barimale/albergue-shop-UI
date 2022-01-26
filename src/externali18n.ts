@@ -16,7 +16,6 @@ externali18n
     backend: {
       loadPath: '/locales/externals/{{lng}}.json',
       addPath: '/locales/externals/{{lng}}.json',
-      // reloadInterval: 10000
     },
     react: {
       bindI18n: 'languageChanged loaded added',
@@ -25,9 +24,9 @@ externali18n
       transSupportBasicHtmlNodes: true,
       transKeepBasicHtmlNodesFor: ['br', 'strong', 'i'],
       useSuspense: false,
-      wait: true
+      wait: true,
     },
-    initImmediate: true
+    initImmediate: true,
   });
 
 export default externali18n;

@@ -1,12 +1,15 @@
+/* eslint-disable no-console */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import Menu from '@material-ui/core/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import sizeMe from 'react-sizeme';
 import { useTranslation } from 'react-i18next';
 import { Fade, useTheme } from '@material-ui/core';
+import TranslateIcon from '@material-ui/icons/Translate';
 import { Languages } from '../molecules/Languages';
 import { DeviceContextConsumer, DeviceType } from '../../contexts/DeviceContext';
-import TranslateIcon from '@material-ui/icons/Translate';
 
 const LanguageSetter = (props: any) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -24,98 +27,112 @@ const LanguageSetter = (props: any) => {
 
   return (
     <DeviceContextConsumer>
-    { context =>
-      <>
-        <div style={{
-          left: context === DeviceType.isDesktopOrLaptop ? 'unset' : '90%',
-          position: context === DeviceType.isDesktopOrLaptop ? 'relative' : 'absolute',
-          WebkitTransform: context === DeviceType.isDesktopOrLaptop ? 'unset' : 'translate(-50%, 0%)',
-          transform: context === DeviceType.isDesktopOrLaptop ? 'unset' : 'translate(-50%, 0%)',
-          float: props.style?.float
-        }}>
-          <IconButton
-            style={{
-              color: `${theme.palette.common.black}`,
-              borderRadius: '0px'
-            }}
-            aria-controls="language-menu"
-            aria-haspopup="true"
-            onClick={handleClick}>
-            <div 
+      { (context) => (
+        <>
+          <div style={{
+            left: context === DeviceType.isDesktopOrLaptop ? 'unset' : '90%',
+            position: context === DeviceType.isDesktopOrLaptop ? 'relative' : 'absolute',
+            WebkitTransform: context === DeviceType.isDesktopOrLaptop ? 'unset' : 'translate(-50%, 0%)',
+            transform: context === DeviceType.isDesktopOrLaptop ? 'unset' : 'translate(-50%, 0%)',
+            float: props.style?.float,
+          }}
+          >
+            <IconButton
               style={{
-                textAlign: 'center',
-                display: 'flex',
-                flexDirection: 'row',
-                alignContent: 'center',
-                alignItems: 'center'
-            }}>
+                color: `${theme.palette.common.black}`,
+                borderRadius: '0px',
+              }}
+              aria-controls="language-menu"
+              aria-haspopup="true"
+              onClick={handleClick}
+            >
               <div
-                className={"pointerOverEffect"}
                 style={{
-                  fontSize: context.valueOf() === DeviceType.isDesktopOrLaptop ?  16 : 14,
-                  width: context.valueOf() === DeviceType.isDesktopOrLaptop ? '100px': '62px',
-                  fontWeight: 'normal',
                   textAlign: 'center',
-                  verticalAlign: 'center',
-                  alignContent: 'baseline',
                   display: 'flex',
                   flexDirection: 'row',
-                  justifyContent: 'center',
-                  color: 'white'
-              }}>
-                <TranslateIcon fontSize="small" style={{paddingRight: '10px', height: '100%'}}/>
-                {i18n.language.toUpperCase()}
+                  alignContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <div
+                  className="pointerOverEffect"
+                  style={{
+                    fontSize: context.valueOf() === DeviceType.isDesktopOrLaptop ? 16 : 14,
+                    width: context.valueOf() === DeviceType.isDesktopOrLaptop ? '100px' : '62px',
+                    fontWeight: 'normal',
+                    textAlign: 'center',
+                    verticalAlign: 'center',
+                    alignContent: 'baseline',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    color: 'white',
+                  }}
+                >
+                  <TranslateIcon
+                    fontSize="small"
+                    style={{
+                      paddingRight: '10px', height: '100%',
+                    }}
+                  />
+                  {i18n.language.toUpperCase()}
+                </div>
               </div>
-            </div>
-          </IconButton>
-        </div>
-        <Menu
-          id="language-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          marginThreshold={0}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-          TransitionComponent={Fade}
-          anchorReference={context.valueOf() === DeviceType.isDesktopOrLaptop ? "anchorEl": "anchorPosition"}
-          anchorPosition={
-            context.valueOf() === DeviceType.isDesktopOrLaptop ?
-            undefined :
-            {
-              top: props.top,
-              left: props.width - 100
-            }}
-          anchorOrigin={
-            context.valueOf() === DeviceType.isDesktopOrLaptop ?
-            {
-            vertical: 'bottom',
-            horizontal: 'center',
-          }: undefined}
-          transformOrigin={
-            context.valueOf() === DeviceType.isDesktopOrLaptop ?
-            {
-            vertical: 'top',
-            horizontal: 'center',
-            }: 
-            undefined}
+            </IconButton>
+          </div>
+          <Menu
+            id="language-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            marginThreshold={0}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+            TransitionComponent={Fade}
+            anchorReference={context.valueOf() === DeviceType.isDesktopOrLaptop ? 'anchorEl' : 'anchorPosition'}
+            anchorPosition={
+              context.valueOf() === DeviceType.isDesktopOrLaptop
+                ? undefined
+                : {
+                  top: props.top,
+                  left: props.width - 100,
+                }
+              }
+            anchorOrigin={
+              context.valueOf() === DeviceType.isDesktopOrLaptop
+                ? {
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                } : undefined
+              }
+            transformOrigin={
+              context.valueOf() === DeviceType.isDesktopOrLaptop
+                ? {
+                  vertical: 'top',
+                  horizontal: 'center',
+                }
+                : undefined
+              }
           >
-            <Languages 
+            <Languages
               handleClose={handleClose}
               onLanguageChanged={async (lng: string) => {
                 await externali18n.changeLanguage(lng.toLowerCase())
-                  .then(()=>{
-                    console.log('Language for externali changed to: ' + externali18n.language);
+                  .then(() => {
+                    console.log(`Language for externali changed to: ${externali18n.language}`);
                   })
-                  .catch((error: any)=>{
+                  .catch((error: any) => {
                     console.log(error);
                   });
               }}
-               />
-        </Menu>
-      </>
-    }
+            />
+          </Menu>
+        </>
+      )}
     </DeviceContextConsumer>
   );
-}
+};
 
-export default sizeMe({ monitorWidth: true })(LanguageSetter);
+export default sizeMe({
+  monitorWidth: true,
+})(LanguageSetter);

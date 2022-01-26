@@ -1,25 +1,30 @@
-interface RouterRoute { props: { path: string } }
-interface SitemapRoute { path: string }
-
 import fs from 'fs';
 import { SiteMapOnlyRoutes as Routes } from './router/Routes';
 
-const PUBLIC_URL = "https://shop.albergueperegrinosporto.pt"
+interface RouterRoute { props: { path: string } }
+interface SitemapRoute { path: string }
 
-const routes = (Routes()?.props.children || []).reduce((acc: SitemapRoute[], route: RouterRoute) => {
-  if (Array.isArray(route)) {
+const PUBLIC_URL = 'https://shop.albergueperegrinosporto.pt';
+
+const routes = (Routes()?.props.children || [])
+  .reduce((acc: SitemapRoute[], route: RouterRoute) => {
+    if (Array.isArray(route)) {
+      return [
+        ...acc,
+        ...route.map((subRoute) => ({
+          path: subRoute.props?.path,
+        })),
+      ];
+    }
+
     return [
       ...acc,
-      ...route.map(subRoute => ({ path: subRoute.props?.path })),
-    ]
-  }
-
-  return [
-    ...acc,
-    { path: route.props?.path },
-  ]
-}, [])
-  .filter((route: SitemapRoute) => route.path)
+      {
+        path: route.props?.path,
+      },
+    ];
+  }, [])
+  .filter((route: SitemapRoute) => route.path);
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${routes.reduce((acc: string, route: SitemapRoute) => `${acc}
@@ -28,10 +33,11 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
   </url>`, '')
 }
 </urlset>
-`
+`;
 
-const buildPath = './public/sitemap.xml'
+const buildPath = './public/sitemap.xml';
 
-fs.writeFileSync(buildPath, xml)
+fs.writeFileSync(buildPath, xml);
 
-console.info(`> ✔️ Sitemap successfully generated at ${buildPath}`)
+// eslint-disable-next-line no-console
+console.info(`> ✔️ Sitemap successfully generated at ${buildPath}`);

@@ -1,76 +1,77 @@
-import React, { useContext, useEffect, useState } from 'react';
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { Redirect } from 'react-router-dom';
+import { Formik, Form, FormikProps } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { DeviceContextConsumer, DeviceType } from '../../contexts/DeviceContext';
 import { AddressDetails, CartContext } from '../../contexts/CartContext';
-import StepperContainer from "../molecules/Stepper";
-import { CartContent } from "../common/cart-steps/CartContent";
-import { AddressStepContent } from "../common/cart-steps/AddressStepContent";
-import { Redirect } from 'react-router-dom';
+import StepperContainer from '../molecules/Stepper';
+import { CartContent } from '../common/cart-steps/CartContent';
+import { AddressStepContent, ShortAddressSchema, LongAddressSchema } from '../common/cart-steps/AddressStepContent';
 import { Path as HomePath } from '../screens/ContactScreen';
-import { appBaseRouteKey} from "../../router/routerConfiguration";
+import { appBaseRouteKey } from '../../router/routerConfiguration';
 import SummaryContent from '../common/cart-steps/SummaryContent';
-import SuccessStepContent from "../common/cart-steps/SuccessStepContent";
-import ErrorStepContent from "../common/cart-steps/ErrorStepContent";
-import { ShortAddressSchema, LongAddressSchema} from "../common/cart-steps/AddressStepContent";
-import { Formik, Form, FormikProps } from 'formik';
-import { ContentLayout2 } from "../../components/layouts/MainLayout";
-import { useTranslation } from 'react-i18next';
+import SuccessStepContent from '../common/cart-steps/SuccessStepContent';
+import ErrorStepContent from '../common/cart-steps/ErrorStepContent';
+
+import { ContentLayout2 } from '../../components/layouts/MainLayout';
 import { theme } from '../../customTheme';
-import { useRef } from 'react';
+
 import useScroll from '../../hooks/useScroll';
 
-export const Path = "/cart";
+export const Path = '/cart';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      height: '100%'
-    },
-    instructions: {
-      marginTop: theme.spacing(1),
-      marginBottom: theme.spacing(1),
-      fontFamily: "Signoria-Bold"
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => createStyles({
+  root: {
+    width: '100%',
+    height: '100%',
+  },
+  instructions: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+    fontFamily: 'Signoria-Bold',
+  },
+}));
 
-export function CartScreen(){
-    const { getCount } = useContext(CartContext);
-    const [ wizardInProgress ] = useState<boolean>(getCount() > 0);
-    
-    return(
-        getCount() > 0  || wizardInProgress? (
-            <CartWithItems />
-        ):(
-            <EmptyCart />
-        )
-    );
-}
+export function CartScreen () {
+  const { getCount } = useContext(CartContext);
+  const [wizardInProgress] = useState<boolean>(getCount() > 0);
 
-function EmptyCart(){
-  const { t } = useTranslation();
-  
-    return(
-        <DeviceContextConsumer>
-            {context => 
-                <div style={{
-                    alignContent: 'center',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-around',
-                    color: 'white',
-                    fontSize: context === DeviceType.isDesktopOrLaptop ? '40px' : '25px'
-                }}>
-                    {t("There are no items in the cart").toUpperCase()}
-                </div>
-            }
-        </DeviceContextConsumer>
+  return (
+    getCount() > 0 || wizardInProgress ? (
+      <CartWithItems />
+    ) : (
+      <EmptyCart />
     )
+  );
 }
 
-function CartWithItems(){
+function EmptyCart () {
+  const { t } = useTranslation();
+
+  return (
+    <DeviceContextConsumer>
+      {(context) => (
+        <div style={{
+          alignContent: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-around',
+          color: 'white',
+          fontSize: context === DeviceType.isDesktopOrLaptop ? '40px' : '25px',
+        }}
+        >
+          {t('There are no items in the cart').toUpperCase()}
+        </div>
+      )}
+    </DeviceContextConsumer>
+  );
+}
+
+function CartWithItems () {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -86,143 +87,151 @@ function CartWithItems(){
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     top();
   }, [activeStep]);
 
-  function getSteps() {
+  function getSteps () {
     return ['Shopping bag', 'Shipping', 'Review & order'];
   }
-  
-  function getStepContent(
-    stepIndex: number, 
-    handleNext: ()=> void, 
+
+  function getStepContent (
+    stepIndex: number,
+    handleNext: ()=> void,
     formikProps: FormikProps<AddressDetails>,
-    scroolToBottom?: () => void): JSX.Element {
-      switch (stepIndex) {
-        case 0:
-          return <CartContent />;
-        case 1:
-          return <AddressStepContent {...formikProps} />;
-        case 2:
-          return <SummaryContent handleNext={handleNext} scrollToBottom={() => bottom()}/>;
-        default:
-          return <Redirect to={appBaseRouteKey + HomePath} />;
-      }
+    scroolToBottom?: () => void,
+  ): JSX.Element {
+    switch (stepIndex) {
+      case 0:
+        return <CartContent />;
+      case 1:
+        return <AddressStepContent {...formikProps} />;
+      case 2:
+        return <SummaryContent handleNext={handleNext} scrollToBottom={() => bottom()} />;
+      default:
+        return <Redirect to={appBaseRouteKey + HomePath} />;
+    }
   }
 
   const [stepperHeight, setStepperHeight] = useState<number>(0);
   const { innerHeight: height } = window;
   const { isPhysicalItemIncluded, registerAddressDetails, orderStatus } = useContext(CartContext);
   const initialValues: AddressDetails = {
-    firstName: "",
-    lastName: "",
-    addressLine1: "",
-    addressLine2: "",
-    city: "",
-    zipCode: "",
-    region: "",
-    country: "",
-    email: "",
-    emailConfirmed: ""
+    firstName: '',
+    lastName: '',
+    addressLine1: '',
+    addressLine2: '',
+    city: '',
+    zipCode: '',
+    region: '',
+    country: '',
+    email: '',
+    emailConfirmed: '',
   };
 
   return (
-  <ContentLayout2>
-    <DeviceContextConsumer>
-    {context => 
-        <div className={classes.root}>
-          <Formik
-            style={{
-              height: '100%',
-              width: 'inherit',
-              paddingBottom: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px'
-            }}
-            initialValues={initialValues}
-            validateOnMount={true}
-            validationSchema={isPhysicalItemIncluded() ? LongAddressSchema : ShortAddressSchema}
-            onSubmit={(value: AddressDetails)=>{
-              registerAddressDetails(value);
-              handleNext();
-            }}>
-              {props => (
-            <Form>
-              {!((activeStep === steps.length) && (orderStatus !== "success")) && (
-                <StepperContainer
-                activeStep={activeStep}
-                steps={steps}
-                onSize={(size: any)=>{
-                  setStepperHeight(size.height || 0);
-                }}/>
+    <ContentLayout2>
+      <DeviceContextConsumer>
+        {(context) => (
+          <div className={classes.root}>
+            <Formik
+              style={{
+                height: '100%',
+                width: 'inherit',
+                paddingBottom: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px',
+              }}
+              initialValues={initialValues}
+              validateOnMount
+              validationSchema={isPhysicalItemIncluded() ? LongAddressSchema : ShortAddressSchema}
+              onSubmit={(value: AddressDetails) => {
+                registerAddressDetails(value);
+                handleNext();
+              }}
+            >
+              {(props: FormikProps<AddressDetails>) => (
+                <Form>
+                  {!((activeStep === steps.length) && (orderStatus !== 'success')) && (
+                  <StepperContainer
+                    activeStep={activeStep}
+                    steps={steps}
+                    onSize={(size: any) => {
+                      setStepperHeight(size.height || 0);
+                    }}
+                  />
+                  )}
+                  {activeStep === steps.length && orderStatus === 'success' && (
+                  <SuccessStepContent />
+                  )}
+                  {activeStep === steps.length && orderStatus !== 'success' && (
+                  <ErrorStepContent />
+                  )}
+                  {activeStep !== steps.length && (
+                    <div style={{
+                      paddingLeft: context === DeviceType.isDesktopOrLaptop ? '10%' : '10px',
+                      paddingRight: context === DeviceType.isDesktopOrLaptop ? '10%' : '10px',
+                      paddingBottom: '32px',
+                    }}
+                    >
+                      <div style={{
+                        display: 'flex',
+                        paddingBottom: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px',
+                        paddingTop: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px',
+                        flex: 1,
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        backgroundColor: 'inherit',
+                      }}
+                      >
+                        <Button
+                          className="pointerOverEffect"
+                          disabled={activeStep === 0}
+                          onClick={handleBack}
+                          variant="text"
+                          color="primary"
+                        >
+                          {t('Back').toUpperCase()}
+                        </Button>
+                        {activeStep !== steps.length - 1 && (
+                        <Button
+                          className="pointerOverEffect"
+                          variant="contained"
+                          color="primary"
+                          onClick={() => {
+                            if (activeStep === 1) {
+                              props.submitForm();
+                            } else {
+                              handleNext();
+                            }
+                          }}
+                        >
+                          {t('Next').toUpperCase()}
+                        </Button>
+                        )}
+                      </div>
+                      <div
+                        ref={ref}
+                        style={{
+                          padding: '40px',
+                          paddingTop: '0px',
+                          boxShadow: `${theme.shadows[2]}`,
+                          border: '1px solid lightgray',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          overflowY: 'auto',
+                          backgroundColor: 'white',
+                        }}
+                      >
+                        {getStepContent(activeStep, handleNext, props)}
+                      </div>
+                    </div>
+                  )}
+                </Form>
               )}
-              {activeStep === steps.length ? (
-                orderStatus === "success" ? (
-                  <SuccessStepContent/>
-                ):(
-                  <ErrorStepContent/>
-                )
-              ) : (
-              <div style={{
-                paddingLeft: context === DeviceType.isDesktopOrLaptop ? '10%' : '10px',
-                paddingRight: context === DeviceType.isDesktopOrLaptop ? '10%' : '10px',
-                paddingBottom: '32px'
-              }}>
-                  <div style={{
-                    display: 'flex',
-                    paddingBottom: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px',
-                    paddingTop: context === DeviceType.isDesktopOrLaptop ? '32px' : '10px',
-                    flex: 1,
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    backgroundColor: 'inherit'
-                  }}>
-                    <Button
-                        className={"pointerOverEffect"}
-                        disabled={activeStep === 0}
-                        onClick={handleBack}
-                        variant="text"
-                        color="primary">
-                        {t('Back').toUpperCase()}
-                    </Button>
-                    {activeStep !== steps.length - 1  && (
-                    <Button
-                      className={"pointerOverEffect"}
-                      variant={"contained"}
-                      color="primary"
-                      onClick={()=>{
-                        if(activeStep === 1){
-                          props.submitForm();
-                        }else{
-                          handleNext();
-                        }
-                      }}>
-                      {t('Next').toUpperCase()}
-                    </Button>
-                    )}
-                  </div>
-                  <div 
-                    ref={ref}
-                    style={{
-                      padding: '40px',
-                      paddingTop: '0px',
-                      boxShadow: `${theme.shadows[2]}`,
-                      border: '1px solid lightgray',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      overflowY: 'auto',
-                      backgroundColor: 'white'
-                  }}>
-                    {getStepContent(activeStep, handleNext, props)}
-                  </div>
-              </div>
-              )}
-            </Form>
-          )}
-        </Formik>
-      </div>
-    }
-    </DeviceContextConsumer>
-  </ContentLayout2>
+            </Formik>
+          </div>
+        )}
+      </DeviceContextConsumer>
+    </ContentLayout2>
   );
 }

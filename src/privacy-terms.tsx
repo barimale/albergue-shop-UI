@@ -1,6 +1,6 @@
-export const title = "Privacy terms";
+export const title = 'Privacy terms';
 
-const section1Title = "I. Postanowienia ogólne";
+const section1Title = 'I. Postanowienia ogólne';
 const section1Content = `
 <ol style="padding-left: 15px;">
     <li>Polityka prywatności określa zasady przetwarzania i ochrony danych osobowych Użytkowników i Klientów (w tym potencjalnych klientów) korzystających ze sklepu internetowego dostępnego pod adresem internetowym: www.odkrywajcie.pl, zwanego dalej Sklepem.</li>
@@ -16,7 +16,7 @@ const section1Content = `
 </ol>
 `;
 
-const section2Title = "II. Gromadzenie, pozyskiwanie, zakres i cel zbierania danych osobowych";
+const section2Title = 'II. Gromadzenie, pozyskiwanie, zakres i cel zbierania danych osobowych';
 const section2Content = `
 <ol style="padding-left: 15px;">
     <li>Administrator pozyskuje informacje o użytkownikach m.in. poprzez gromadzenie logów serwera za pośrednictwem operatora hostingowego.</li>
@@ -37,7 +37,7 @@ const section2Content = `
 </ol>
 `;
 
-const section3Title = "III. Zarządzanie plikami cookies";
+const section3Title = 'III. Zarządzanie plikami cookies';
 const section3Content = `
 <ol style="padding-left: 15px;">
     <li>Administrator zbiera w sposób automatyczny informacje zawarte w plikach cookies w celu gromadzenia danych związanych z korzystaniem ze Sklepu internetowego przez Klienta. Pliki cookies to mały fragment tekstu, który serwis internetowy wysyła do przeglądarki Użytkownika i który przeglądarka wysyła z powrotem przy następnych wejściach na witrynę. Używane są głównie do utrzymywania sesji np. poprzez wygenerowanie i odesłanie tymczasowego identyfikatora po logowaniu.</li>
@@ -56,7 +56,7 @@ const section3Content = `
 </ol>
 `;
 
-const section4Title = "IV. Prawa i obowiązki Administratora i Użytkowników";
+const section4Title = 'IV. Prawa i obowiązki Administratora i Użytkowników';
 const section4Content = `
 <ol style="padding-left: 15px;">
     <li>Administrator ma prawo, a także ustawowy obowiązek do przekazania wybranych bądź wszystkich informacji dotyczących Użytkowników Strony organom władzy publicznej bądź podmiotom trzecim, które zgłoszą takie żądanie udzielenia informacji na podstawie obowiązujących przepisów prawa polskiego.</li>
@@ -69,7 +69,7 @@ const section4Content = `
 </ol>
 `;
 
-const section5Title = "V. Zmiany Polityki Prywatności";
+const section5Title = 'V. Zmiany Polityki Prywatności';
 const section5Content = `
 <ol style="padding-left: 15px;">
     <li>Oferta Sklepu internetowego będzie w przyszłości ulegać rozszerzeniu. Oznacza to, że Administrator będzie zobowiązany lub uprawniony do wprowadzenia zmian w Polityce Prywatności.</li>

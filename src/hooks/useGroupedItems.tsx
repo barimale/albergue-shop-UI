@@ -2,17 +2,17 @@ import { useContext, useState, useEffect } from 'react';
 import { ItemDetails } from '../components/common/BuyItems';
 import { CartContext } from '../contexts/CartContext';
 
-function GroupBy<T, K extends keyof T>(array: T[], key: K) {
-    let map = new Map<T[K], T[]>();
-    
-	array.forEach(item => {
-		let itemKey = item[key];
-		if (!map.has(itemKey)) {
-			map.set(itemKey, array.filter(i => i[key] === item[key]));
-		}
-    });
-    
-	return map;
+function GroupBy<T, K extends keyof T> (array: T[], key: K) {
+  const map = new Map<T[K], T[]>();
+
+  array.forEach((item) => {
+    const itemKey = item[key];
+    if (!map.has(itemKey)) {
+      map.set(itemKey, array.filter((i) => i[key] === item[key]));
+    }
+  });
+
+  return map;
 }
 
 export type CountedItemDetails ={
@@ -22,28 +22,33 @@ export type CountedItemDetails ={
 
 export const useGroupedItems = () => {
   const { items } = useContext(CartContext);
-  const [ groupedItems, setGroupedItems ] = useState<Array<CountedItemDetails>>(
-      new Array<CountedItemDetails>());
+  const [groupedItems, setGroupedItems] = useState<CountedItemDetails[]>(
+    [],
+  );
 
-  useEffect(()=>{
-      const grouped = GroupBy(items, "id");
-      const flatGrouped = new Array<CountedItemDetails>();
+  useEffect(() => {
+    const grouped = GroupBy(items, 'id');
+    const flatGrouped: CountedItemDetails[] = [];
 
-      grouped.forEach((value: Array<ItemDetails>) => {
-          flatGrouped.push({details: value[0], count: value.length});
+    grouped.forEach((value: Array<ItemDetails>) => {
+      flatGrouped.push({
+        details: value[0], count: value.length,
       });
+    });
 
-      setGroupedItems(flatGrouped);
+    setGroupedItems(flatGrouped);
   }, [items]);
 
-  const total = (): number =>{
-      var sum: number = 0;
-      groupedItems.forEach(p=> {
-        sum += p.count * p.details.price;
-      });
+  const total = (): number => {
+    let sum: number = 0;
+    groupedItems.forEach((p) => {
+      sum += p.count * p.details.price;
+    });
 
-      return sum;
-  }
+    return sum;
+  };
 
-  return { groupedItems, total };
+  return {
+    groupedItems, total,
+  };
 };

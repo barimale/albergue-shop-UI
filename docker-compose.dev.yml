@@ -11,3 +11,5 @@ services:
       - ./src:/app/src
     ports:
       - 3006:3006
+    stdin_open: true
+    command: yarn start

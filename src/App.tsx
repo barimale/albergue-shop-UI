@@ -1,30 +1,31 @@
-import React, { useState } from 'react';
-import ResourceLoadedApp from "./ResourceLoadedApp";
+import React, { useState, useEffect } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import{ init } from 'emailjs-com';
-import { useEffect } from 'react';
+import { init } from 'emailjs-com';
+import ResourceLoadedApp from './ResourceLoadedApp';
 
-function App() {
-  const [ isLoading, setIsLoading ] = useState<boolean>(true);
-  
-  useEffect(()=>{
-    init("user_GDgPHJRKg1GLbUltmYaW1");
+function App () {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    init('user_GDgPHJRKg1GLbUltmYaW1');
     setIsLoading(false);
-  },[]);
-  
+  }, []);
+
   return (
     isLoading ? (
       <div style={{
-        display:'flex',
+        display: 'flex',
         justifyContent: 'space-around',
         verticalAlign: 'center',
         height: '100vh',
         width: '100%',
-        alignItems:'center'}}>
+        alignItems: 'center',
+      }}
+      >
         <CircularProgress color="secondary" />
       </div>
-    ):(
-      <ResourceLoadedApp/>
+    ) : (
+      <ResourceLoadedApp />
     )
   );
 }
