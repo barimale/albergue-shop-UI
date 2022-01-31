@@ -2,11 +2,10 @@ import i18next from 'i18next';
 import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
-import { shopBaseUrl } from './hooks/useCategories';
 
 const externali18n = i18next.createInstance();
 
-const loadPath = `${shopBaseUrl}/locales/{{lng}}/{{ns}}.json`;
+const loadPath = `${process.env.REACT_APP_SHOP_APP}/locales/{{lng}}/{{ns}}.json`;
 
 externali18n
   .use(Backend)
