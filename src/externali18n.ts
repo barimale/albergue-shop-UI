@@ -5,7 +5,7 @@ import { initReactI18next } from 'react-i18next';
 
 const externali18n = i18next.createInstance();
 
-const loadPath = `${process.env.REACT_APP_SHOP_APP}/locales/{{lng}}/{{ns}}.json`;
+const loadPath = `${process.env.REACT_APP_ADMINISTRATOR_BACKEND_APP}/locales/{{lng}}/{{ns}}.json`;
 
 externali18n
   .use(Backend)
@@ -21,9 +21,9 @@ externali18n
       crossDomain: true,
       withCredentials: false,
       requestOptions: {
-        // mode: 'no-cors',
+        mode: 'cors', credentials: 'same-origin', cache: 'default',
       },
-      reloadInterval: 10000,
+      // reloadInterval: 10000,
     },
     react: {
       bindI18n: 'languageChanged loaded added',

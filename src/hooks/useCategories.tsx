@@ -4,7 +4,7 @@ import axios from 'axios';
 import { configSection, configSectionType } from '../router/routerConfiguration';
 import { Path as BuyPath } from '../components/screens/BuyScreen';
 
-export const shopBaseUrl = process.env.REACT_APP_SHOP_APP;
+export const shopBaseUrl = process.env.REACT_APP_ADMINISTRATOR_BACKEND_APP;
 
 export interface Category {
   id: string;
