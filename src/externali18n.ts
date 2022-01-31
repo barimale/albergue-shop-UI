@@ -5,6 +5,8 @@ import { initReactI18next } from 'react-i18next';
 
 const externali18n = i18next.createInstance();
 
+const loadPath = process.env.NODE_ENV !== 'production' ? '/locales/externals/{{lng}}.json' : 'https://administrator-albergue-porto.web.app/locales/{{lng}}.json';
+
 externali18n
   .use(Backend)
   .use(LanguageDetector)
@@ -14,8 +16,9 @@ externali18n
     defaultNS: 'externals',
     fallbackLng: 'en',
     backend: {
-      loadPath: '/locales/externals/{{lng}}.json',
-      addPath: '/locales/externals/{{lng}}.json',
+      loadPath,
+      addPath: loadPath,
+      crossDomain: true,
     },
     react: {
       bindI18n: 'languageChanged loaded added',
