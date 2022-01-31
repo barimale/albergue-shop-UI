@@ -50,7 +50,6 @@
             "named": "always",
             "asyncArrow": "always"
         }],
-        "react/function-component-definition": "off",
         "no-use-before-define": "off",
         "no-restricted-exports": "off",
         "no-shadow" : "off"
