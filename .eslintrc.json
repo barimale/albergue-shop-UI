@@ -6,7 +6,7 @@
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        // "airbnb"
+        "airbnb"
         // "plugin:prettier/recommended"
     ],
     "parser": "@typescript-eslint/parser",
@@ -50,6 +50,10 @@
             "named": "always",
             "asyncArrow": "always"
         }],
+        "react/function-component-definition": [0, {
+            "namedComponents": [ "function-declaration", "function-expression", "arrow-function"],
+            "unnamedComponents": ["function-expression", "arrow-function"]
+          }],
         "no-use-before-define": "off",
         "no-restricted-exports": "off",
         "no-shadow" : "off"
