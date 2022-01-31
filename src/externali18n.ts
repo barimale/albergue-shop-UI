@@ -1,15 +1,14 @@
 import i18next from 'i18next';
-import BackendConnector from 'i18next-http-backend';
+import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
 const externali18n = i18next.createInstance();
 
-const loadPath = process.env.NODE_ENV !== 'production' ? 'http://localhost:5020/externals/{{lng}}.json' : 'https://administrator-albergue-porto.web.app/externals/{{lng}}.json';
-// const loadPath = process.env.NODE_ENV !== 'production' ? '/locales/{{ns}}/{{lng}}.json' : 'https://administrator-albergue-porto.web.app/externals/{{lng}}.json';
+const loadPath = process.env.NODE_ENV !== 'production' ? 'http://localhost:5020/locales/{{lng}}/{{ns}}.json' : 'https://administrator-albergue-porto.web.app/locales/{{lng}}/{{ns}}.json';
 
 externali18n
-  .use(BackendConnector)
+  .use(Backend)
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
@@ -22,14 +21,8 @@ externali18n
       crossDomain: true,
       withCredentials: false,
       requestOptions: {
-        mode: 'no-cors',
-        // headers: {
-        //   'Access-Control-Allow-Origin': '*',
-        // },
+        // mode: 'no-cors',
       },
-      // customHeaders: {
-      //   'Access-Control-Allow-Origin': '*',
-      // },
       reloadInterval: 10000,
     },
     react: {
