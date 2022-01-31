@@ -4,7 +4,7 @@ import { SiteMapOnlyRoutes as Routes } from './router/Routes';
 interface RouterRoute { props: { path: string } }
 interface SitemapRoute { path: string }
 
-const PUBLIC_URL = 'https://shop.albergueperegrinosporto.pt';
+const PUBLIC_URL = 'https://shop-albergue-porto.web.app';
 
 const routes = (Routes()?.props.children || [])
   .reduce((acc: SitemapRoute[], route: RouterRoute) => {
