@@ -57,8 +57,7 @@ function BuyContent (props: BuyContentProps) {
   return (
     <DeviceContextConsumer>
       {(context) => (
-        <>
-          items === undefined || items.length === 0 ? (
+        items === undefined || items.length === 0 ? (
           <div style={{
             alignContent: 'center',
             display: 'flex',
@@ -76,7 +75,7 @@ function BuyContent (props: BuyContentProps) {
               {t('There are no items available in that category').toUpperCase()}
             </div>
           </div>
-          ) : (
+        ) : (
           <div style={{
             height: '100%',
             maxHeight: '100%',
@@ -110,8 +109,7 @@ function BuyContent (props: BuyContentProps) {
               ))}
             </GridList>
           </div>
-          )
-        </>
+        )
       )}
     </DeviceContextConsumer>
   );
