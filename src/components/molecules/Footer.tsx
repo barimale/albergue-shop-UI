@@ -61,40 +61,56 @@ function Footer () {
               </p>
               {status !== undefined && status.isAtLeastOneCategoryDefined.valueOf() === true && (
               <>
-                <a
-                  className="pointerOverEffect"
-                  style={{
-                    paddingLeft: '10px',
-                    paddingRight: '10px',
-                    cursor: 'pointer',
-                    color: 'white',
-                    textDecoration: 'underline',
-                    WebkitTapHighlightColor: 'transparent',
-                  }}
-                  onClick={(event:any) => {
-                    event.stopPropagation();
-                    setIsModalDisplayed(true);
-                  }}
+                <p style={{
+                  paddingLeft: '10px',
+                  paddingRight: '10px',
+                  color: 'white',
+                  WebkitTapHighlightColor: 'transparent',
+                }}
                 >
-                  {t(PivacyTermsTitle)}
-                </a>
-                <a
-                  className="pointerOverEffect"
-                  style={{
-                    paddingLeft: '10px',
-                    paddingRight: '10px',
-                    cursor: 'pointer',
-                    color: 'white',
-                    textDecoration: 'underline',
-                    WebkitTapHighlightColor: 'transparent',
-                  }}
-                  onClick={(event:any) => {
-                    event.stopPropagation();
-                    setIsModal2Displayed(true);
-                  }}
+                  <a
+                    className="pointerOverEffect"
+                    style={{
+                      paddingLeft: '10px',
+                      paddingRight: '10px',
+                      cursor: 'pointer',
+                      color: 'white',
+                      textDecoration: 'underline',
+                      WebkitTapHighlightColor: 'transparent',
+                    }}
+                    onClick={(event:any) => {
+                      event.stopPropagation();
+                      setIsModalDisplayed(true);
+                    }}
+                  >
+                    {t(PivacyTermsTitle)}
+                  </a>
+                </p>
+                <p style={{
+                  paddingLeft: '10px',
+                  paddingRight: '10px',
+                  color: 'white',
+                  WebkitTapHighlightColor: 'transparent',
+                }}
                 >
-                  {t(RulesTitle)}
-                </a>
+                  <a
+                    className="pointerOverEffect"
+                    style={{
+                      paddingLeft: '10px',
+                      paddingRight: '10px',
+                      cursor: 'pointer',
+                      color: 'white',
+                      textDecoration: 'underline',
+                      WebkitTapHighlightColor: 'transparent',
+                    }}
+                    onClick={(event:any) => {
+                      event.stopPropagation();
+                      setIsModal2Displayed(true);
+                    }}
+                  >
+                    {t(RulesTitle)}
+                  </a>
+                </p>
               </>
               )}
               <p style={{
