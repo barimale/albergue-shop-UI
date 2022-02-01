@@ -53,7 +53,7 @@ function Footer () {
             className={classes.title}
           >
             <span style={{
-              display: 'flex', flexDirection: 'row', justifyContent: 'space-around', gap: '20px',
+              display: 'flex', flexDirection: 'row', justifyContent: 'center', gap: '20px',
             }}
             >
               <p>
