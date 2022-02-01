@@ -44,33 +44,34 @@ export const MainLayout = (props : any) => {
   return (
     <DeviceContextConsumer>
       {(context) => (
-        <div style={{
-          padding: '0px', margin: '0px', scale: context.valueOf() === DeviceType.isTabletOrMobile ? '0.5' : 'unset',
-        }}
-        >
-          <Header onSize={(size: any) => {
-            setPaddingTop(size.height || 0);
-          }}
-          />
-          <div
-            className="main-layout"
-            style={{
-              height: height - paddingTop - paddingBottom,
-              width: '100%',
-              paddingTop,
-              paddingBottom,
-              display: 'inline-flex',
-              background: `${RGBToRGBA(hexToRgb(thirdMain), 1)}`,
-              justifyContent: 'center',
+        context.valueOf() === DeviceType.isTabletOrMobile ? (
+          <p>Mobile and Tablet not supported.</p>
+        ) : (
+          <>
+            <Header onSize={(size: any) => {
+              setPaddingTop(size.height || 0);
             }}
-          >
-            {props.children}
-          </div>
-          <Footer onSize={(size: any) => {
-            setPaddingBottom(size.height || 0);
-          }}
-          />
-        </div>
+            />
+            <div
+              className="main-layout"
+              style={{
+                height: height - paddingTop - paddingBottom,
+                width: '100%',
+                paddingTop,
+                paddingBottom,
+                display: 'inline-flex',
+                background: `${RGBToRGBA(hexToRgb(thirdMain), 1)}`,
+                justifyContent: 'center',
+              }}
+            >
+              {props.children}
+            </div>
+            <Footer onSize={(size: any) => {
+              setPaddingBottom(size.height || 0);
+            }}
+            />
+          </>
+        )
       )}
     </DeviceContextConsumer>
   );
