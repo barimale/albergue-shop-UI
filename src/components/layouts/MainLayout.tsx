@@ -6,6 +6,7 @@ import { hexToRgb } from '@material-ui/core/styles';
 import { RGBToRGBA, thirdMain } from '../../customTheme';
 import Footer from '../molecules/Footer';
 import Header from '../molecules/Header';
+import { DeviceContextConsumer, DeviceType } from '../../contexts/DeviceContext';
 
 const usePrevious = (value: any) => {
   const ref = useRef();
@@ -41,30 +42,37 @@ export const MainLayout = (props : any) => {
   }, [isPortrait, prevVal]);
 
   return (
-    <>
-      <Header onSize={(size: any) => {
-        setPaddingTop(size.height || 0);
-      }}
-      />
-      <div
-        className="main-layout"
-        style={{
-          height: height - paddingTop - paddingBottom,
-          width: '100%',
-          paddingTop,
-          paddingBottom,
-          display: 'inline-flex',
-          background: `${RGBToRGBA(hexToRgb(thirdMain), 1)}`,
-          justifyContent: 'center',
+    <DeviceContextConsumer>
+      {(context) => (
+        <div style={{
+          padding: '0px', margin: '0px', scale: context.valueOf() === DeviceType.isTabletOrMobile ? '0.5' : 'unset',
         }}
-      >
-        {props.children}
-      </div>
-      <Footer onSize={(size: any) => {
-        setPaddingBottom(size.height || 0);
-      }}
-      />
-    </>
+        >
+          <Header onSize={(size: any) => {
+            setPaddingTop(size.height || 0);
+          }}
+          />
+          <div
+            className="main-layout"
+            style={{
+              height: height - paddingTop - paddingBottom,
+              width: '100%',
+              paddingTop,
+              paddingBottom,
+              display: 'inline-flex',
+              background: `${RGBToRGBA(hexToRgb(thirdMain), 1)}`,
+              justifyContent: 'center',
+            }}
+          >
+            {props.children}
+          </div>
+          <Footer onSize={(size: any) => {
+            setPaddingBottom(size.height || 0);
+          }}
+          />
+        </div>
+      )}
+    </DeviceContextConsumer>
   );
 };
 
