@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 export const appBaseRouteKey = "";
 
 export enum configSectionType {
