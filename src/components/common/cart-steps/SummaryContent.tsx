@@ -271,7 +271,7 @@ export default function SummaryContent (props: SummaryContentProps) {
               }}
               >
                 <ReCAPTCHA
-                  ref={(el) => { captcha = el; }}
+                  ref={(el:any) => { captcha = el; }}
                   hl={i18n.language.toLowerCase()}
                   theme="dark"
                   sitekey="6LcjoCgaAAAAAB7P7CzAN8jUbsXaS1cGht_CSsb0"

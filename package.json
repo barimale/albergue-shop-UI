@@ -68,6 +68,7 @@
       "react-app/jest"
     ]
   },
+  "eslintIgnore": ["**/*.ts", "*.ts"],
   "browserslist": {
     "production": [
       ">0.2%",
