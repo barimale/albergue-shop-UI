@@ -51,14 +51,15 @@ function Footer () {
         >
           <div
             className={classes.title}
-            style={{
+          >
+            <span style={{
               display: 'flex', flexDirection: 'row', justifyContent: 'space-around', gap: '20px',
             }}
-          >
-            <p>
-              &copy; 2021
-            </p>
-            {status !== undefined && status.isAtLeastOneCategoryDefined.valueOf() === true && (
+            >
+              <p>
+                &copy; 2021
+              </p>
+              {status !== undefined && status.isAtLeastOneCategoryDefined.valueOf() === true && (
               <>
                 <a
                   className="pointerOverEffect"
@@ -95,41 +96,42 @@ function Footer () {
                   {t(RulesTitle)}
                 </a>
               </>
-            )}
-            <p style={{
-              paddingLeft: '10px',
-              paddingRight: '10px',
-              color: 'white',
-              WebkitTapHighlightColor: 'transparent',
-            }}
-            >
-              It is a demo website: inserted data is periodically deleted.
-            </p>
-            <p style={{
-              paddingLeft: '10px',
-              paddingRight: '10px',
-              color: 'white',
-              WebkitTapHighlightColor: 'transparent',
-            }}
-            >
-              Administrator console website:
-              {' '}
-              <a
-                style={{
-                  paddingLeft: '10px',
-                  paddingRight: '10px',
-                  cursor: 'pointer',
-                  color: 'white',
-                  textDecoration: 'underline',
-                  WebkitTapHighlightColor: 'transparent',
-                }}
-                href="https://administrator-albergue-porto.web.app"
-                target="_blank"
-                rel="noreferrer"
+              )}
+              <p style={{
+                paddingLeft: '10px',
+                paddingRight: '10px',
+                color: 'white',
+                WebkitTapHighlightColor: 'transparent',
+              }}
               >
-                https://administrator-albergue-porto.web.app
-              </a>
-            </p>
+                It is a demo website: inserted data is periodically deleted.
+              </p>
+              <p style={{
+                paddingLeft: '10px',
+                paddingRight: '10px',
+                color: 'white',
+                WebkitTapHighlightColor: 'transparent',
+              }}
+              >
+                Administrator console website:
+                {' '}
+                <a
+                  style={{
+                    paddingLeft: '10px',
+                    paddingRight: '10px',
+                    cursor: 'pointer',
+                    color: 'white',
+                    textDecoration: 'underline',
+                    WebkitTapHighlightColor: 'transparent',
+                  }}
+                  href="https://administrator-albergue-porto.web.app"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  https://administrator-albergue-porto.web.app
+                </a>
+              </p>
+            </span>
             <PrivayTermsModal
               isDisplayed={isModalDisplayed}
               onHide={() => {
