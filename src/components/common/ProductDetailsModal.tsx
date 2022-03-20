@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     flexWrap: 'wrap',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    // border: '2px solid #000',
     boxShadow: theme.shadows[2],
   },
 }));
@@ -106,6 +106,9 @@ export default function ProductDetailsModal (props: ProductDetailsModalProps) {
               className={classes.paper}
               style={{
                 borderLeft: `20px solid ${theme.palette.primary.main}`,
+                // borderTop: '2px solid #000',
+                // borderBottom: '2px solid #000',
+                // borderRight: '2px solid #000',
                 maxHeight,
                 width: context === DeviceType.isDesktopOrLaptop ? (images.length === 1 ? '50%' : '75%') : '95%',
               }}
