@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "shop-albergue-porto",
+  "private_key_id": "1ae3baf1e0bd1e6159eea6b3b3f07cbd0120636f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDcG66aMTMWZk94\nHklPV8BSfJFqprtE43RFf02K01yYnyesyjV1AfESA5gn46f35h0xnYTSjo0UC8pb\nIU1O3fCuDCgoZ1ECfSIHLyDVv7/pVznTvnxCNLsPzgYuCK3IF8g5Gd9V1i37AGhE\nJDykLgOG24GIIpvXLgIsn0K+/Af5V0tk93mvP+umNmcW5Rw/AvAjwFWoZIXRHbdH\nViiJ1Ws08izsKr1QyqCtV5RQxRtCXGqjfbYfhp7I7MzpFw4gNNw5O55dcl7fFdXY\ndFjJPmlAl8pwU/mi9huH74AY+7R2ng+wiPCrPEyvFq4fOiBv4mF/CjHbxaEA4Hbb\npwlSrnBPAgMBAAECggEAGhpi/bX0UpA7QB9gtKWkpm5PyopPxC7bVPtGGr7P3j5l\ntKKzGJdshk/h0BKPaCFPTgPZws9qtg64kU/Pkhj/rYxoiMjJPSvSM3A94HY3OrjV\nn/cZAmWsLNwoictisfZMEFAxVxspjyOwZIBi/ATZoI57UUXqyGfplG7QuhiRPjBe\nl9T5yLgaxmVX08te7yqFtx+UofXesN1txdeXAGGuFcARwPlGtrCVrnSQ4tcVBoNx\n6vQFXgxkjH9TRO2rU1uKklzk34pIuUe43PaGDHckOLri0+md174shqeuWriMQWoZ\nrk9ufQbeiJNgcgIgUd1iGMAmt9IVjXuFyZraZEa76QKBgQDyVqSwMtJ/d5QNmlSn\nGhDboMrQvg5OP8CC/4s8pIA5Xr5YQvCPwccxJCoOoOksMcnPVcIAcHvVuzVf91pA\nNMSFiEJrcJKFXqVu2Wypyva74YzJpm3Q3TGVjEcSsdyhsKksOmUkyQ+kmtTC1tnb\nrdILA+vMGZIFemn+I2q2mJHhaQKBgQDohDel1GXMMOn7goIxgTvl8BbrwfGUsqp+\nipQ+dLvMPHK0LV5EMv28dLLcU/2Omj5kTlKZbRYKntF4hOa4fLMzIHmwHpbW17Ro\nwJa0p0uaB6Y4wzV/pVFRteNoefAOF4FF2EqgQ496zVbfWhmPzsVutqP+yMHdmi3g\n0PCl6cvU9wKBgFcEz7xJc5a77Jj52v3p+TW0Rj+wj1h/wfQIKQpMk5KGN9lfqBwm\n3A0ETGnWVAQ/mJTv2Wro+T6lK6RbILg/enXsmNUVpjdn5gWo40ERFYofkrtyHKrM\nUpq9tWO8JFqXIhg0m88at5hG1LFmDvK4Nt0nuksev3ViIJ9WPmJ05KVJAoGAeOd3\ngDVHkbvFj1C3nkJTASes435/vhCBczdgCnHszTCJfIMyx0e0hPAxqTvLVwGBe+r2\nLG16zp7y0TZaOogtLmKupBPj32demjG6q8lqGHftyQpIoU03UcPAsizl1I4IXGcx\nttAqpXJsv8s8C3k7VGyILg36MN7hCEvdNoixwtUCgYADJ4ovDV5xl1XsiNa9+vBn\njxwBsBJWCx4WKrmt8Dua2ystnRx7J79kEc5qIkUxlNGo/mOgb6O05y3C2mLnAZ6x\ncjPZfiXjyNXOcWGWKJ2SaNkeOvlcO6P5rZDGW3GDleRAw9rmZo64UmZT9Cd9Zlst\nvYrgBVZTE4saRwwR4ugalA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-dk9vy@shop-albergue-porto.iam.gserviceaccount.com",
+  "client_id": "106528670676718935178",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-dk9vy%40shop-albergue-porto.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
