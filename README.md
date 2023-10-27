@@ -1,3 +1,6 @@
+#TODOs
+card payment react component npm library
+
 # Tips
 ## CSS nice border
 ```
