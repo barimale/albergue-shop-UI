@@ -1,6 +1,11 @@
 #TODOs
 card payment react component npm library
 
+Sponsored
+pl.prestashop.com
+https://pl.prestashop.com › e-sklep › prestashop
+PrestaShop ® - Załóż Twój e-sklep
+
 # Tips
 ## CSS nice border
 ```
