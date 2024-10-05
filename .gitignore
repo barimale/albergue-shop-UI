@@ -24,8 +24,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 firebase-debug.log
-/yarn.lock
-/package-lock.json
 /.firebase
 /.eslintcache
 /.vs
